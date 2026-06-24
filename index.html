@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ananya Yugaladvatia · 13 Lecciones</title>
+    <title>Plantilla de estudio · Ananya Yugaladvatia</title>
     <style>
         /* ============================================================
            ESTILOS GENERALES Y PORTADA
@@ -39,7 +39,6 @@
             display: none;
         }
 
-        /* Botones de configuración y edición en la portada */
         .top-actions {
             position: absolute;
             top: 20px;
@@ -365,6 +364,14 @@
             font-size: 0.9rem;
             resize: vertical;
         }
+        .modal-group .help-text {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 4px;
+        }
+        body.dark .modal-group .help-text {
+            color: #999;
+        }
         .modal-actions {
             display: flex;
             gap: 12px;
@@ -670,7 +677,7 @@
         </header>
 
         <div class="grid" id="gridTarjetas">
-            <!-- Las tarjetas se generan dinámicamente con JavaScript -->
+            <!-- Generado dinámicamente -->
         </div>
 
         <footer class="footer-dash">
@@ -733,10 +740,18 @@
             <div class="modal-group">
                 <label>Contenido del mapa mental (texto con marcadores #, ##, ###, etc.)</label>
                 <textarea id="editContent" style="min-height:200px; font-family:monospace; font-size:0.85rem;"></textarea>
+                <div class="help-text">
+                    💡 <strong>Protocolo de vinculación:</strong> Cada tarjeta debe tener un número (ej. "Lección 1") que coincida con un nodo raíz (#) que comience con "📜 LECCIÓN 1:". 
+                    Así, al hacer clic en la tarjeta, se abrirá y expandirá esa lección en el mapa.
+                </div>
             </div>
             <div class="modal-group">
                 <label>Tarjetas de la portada (cada línea: icono|numero|título|código|descripción|tag)</label>
                 <textarea id="editCards" style="min-height:200px; font-family:monospace; font-size:0.85rem;"></textarea>
+                <div class="help-text">
+                    💡 El campo "numero" debe coincidir con el número de la lección (ej. "Lección 1"). 
+                    El contenido del mapa debe tener un nodo # que comience con "📜 LECCIÓN 1:" para que la vinculación funcione.
+                </div>
             </div>
             <div class="modal-group">
                 <label>Tema de colores</label>
@@ -762,7 +777,7 @@
     <div id="mapaContainer">
         <div class="app">
             <div class="toolbar">
-                <div class="titulo">🧠 Mapa Mental · <span>Ananya Yugaladvatia</span></div>
+                <div class="titulo" id="mapTitle">🧠 Mapa Mental · <span id="mapTitleSpan">Ananya Yugaladvatia</span></div>
                 <div class="grupo">
                     <button id="expandirTodo">🔽 Expandir todo</button>
                     <button id="colapsarTodo">🔼 Colapsar todo</button>
@@ -776,14 +791,14 @@
         </div>
     </div>
 
-    <!-- ============================================================
-    JAVASCRIPT (TODAS LAS FUNCIONALIDADES)
-    ============================================================ -->
     <script>
         // ============================================================
-        // 1. DATOS POR DEFECTO (TARJETAS Y CONTENIDO)
+        // 1. CONFIGURACIÓN Y DATOS POR DEFECTO (CARGADOS DESDE EL HTML)
         // ============================================================
-        const defaultCards = [
+        // Si el archivo se exporta, estos datos se incrustarán aquí
+        const DEFAULT_TITLE = '⚜️ ANANYA YUGALADVATIA';
+        const DEFAULT_SUBTITLE = 'LAS 13 LECCIONES · EL CAMINO ÚNICO HACIA LA UNIDAD';
+        const DEFAULT_CARDS = [
             { icono: '🧘', numero: 'Lección 1', titulo: 'La purificación del recipiente', codice: 'Códice I · Jung',
                 desc: 'Vacía la mente y el corazón mediante una respiración sagrada para recibir la luz del Pléroma.',
                 tag: 'Viaje interior' },
@@ -826,101 +841,8 @@
                 tag: 'Sabiduría femenina' }
         ];
 
-        // El contenido original (se define más abajo para no sobrecargar, pero lo pondremos en la variable)
-        // Usaremos un texto largo; lo pondré en una variable separada.
-
-        // ============================================================
-        // 2. CARGA Y GUARDADO DE CONFIGURACIÓN DE PLANTILLA
-        // ============================================================
-        let currentCards = [];
-        let currentContent = '';
-        let currentTitle = '⚜️ ANANYA YUGALADVATIA';
-        let currentSubtitle = 'LAS 13 LECCIONES · EL CAMINO ÚNICO HACIA LA UNIDAD';
-
-        function loadTemplate() {
-            try {
-                const saved = localStorage.getItem('templateConfig');
-                if (saved) {
-                    const data = JSON.parse(saved);
-                    currentTitle = data.title || currentTitle;
-                    currentSubtitle = data.subtitle || currentSubtitle;
-                    currentCards = data.cards || defaultCards;
-                    currentContent = data.content || defaultContent;
-                    applyTheme(data.theme || 'light');
-                } else {
-                    currentCards = defaultCards;
-                    currentContent = defaultContent;
-                }
-            } catch (e) {
-                currentCards = defaultCards;
-                currentContent = defaultContent;
-            }
-        }
-
-        function saveTemplate() {
-            try {
-                localStorage.setItem('templateConfig', JSON.stringify({
-                    title: currentTitle,
-                    subtitle: currentSubtitle,
-                    cards: currentCards,
-                    content: currentContent,
-                    theme: document.body.classList.contains('dark') ? 'dark' : 'light'
-                }));
-            } catch (e) {}
-        }
-
-        function applyTheme(theme) {
-            document.body.classList.remove('dark');
-            if (theme === 'dark') {
-                document.body.classList.add('dark');
-            } else if (theme === 'blue') {
-                // Cambiar colores via CSS variables (ejemplo simple)
-                document.documentElement.style.setProperty('--accent', '#3b82f6');
-            } else if (theme === 'green') {
-                document.documentElement.style.setProperty('--accent', '#10b981');
-            } else if (theme === 'warm') {
-                document.documentElement.style.setProperty('--accent', '#f59e0b');
-            } else {
-                document.documentElement.style.setProperty('--accent', '#4a6fa5');
-            }
-        }
-
-        // ============================================================
-        // 3. RENDERIZADO DE PORTADA
-        // ============================================================
-        function renderDashboard() {
-            const grid = document.getElementById('gridTarjetas');
-            grid.innerHTML = '';
-            currentCards.forEach((card, index) => {
-                const div = document.createElement('div');
-                div.className = 'card-dash';
-                div.dataset.leccion = index + 1;
-                div.innerHTML = `
-                    <span class="icono">${card.icono}</span>
-                    <div class="numero">${card.numero}</div>
-                    <div class="titulo">${card.titulo}</div>
-                    <div class="codice">${card.codice}</div>
-                    <div class="desc">${card.desc}</div>
-                    <span class="tag">${card.tag}</span>
-                `;
-                div.addEventListener('click', function() {
-                    const leccion = parseInt(this.dataset.leccion);
-                    if (!isNaN(leccion)) {
-                        mostrarMapa(leccion);
-                    }
-                });
-                grid.appendChild(div);
-            });
-            document.getElementById('mainTitle').textContent = currentTitle;
-            document.getElementById('mainSubtitle').innerHTML = currentSubtitle;
-            document.getElementById('footerStrong').textContent = currentTitle.replace(/[^A-Za-z0-9 ]/g, '').trim();
-            document.getElementById('footerDesc').textContent = currentSubtitle;
-        }
-
-        // ============================================================
-        // 4. CONTENIDO POR DEFECTO (se define aquí)
-        // ============================================================
-        const defaultContent = `# CURSO ANANYA YUGALADVATIA – LAS 13 LECCIONES
+        // Contenido por defecto (se define en una variable separada)
+        const DEFAULT_CONTENT = `# CURSO ANANYA YUGALADVATIA – LAS 13 LECCIONES
 
         ## EL NOMBRE DEL CURSO: ANANYA YUGALADVATIA
 
@@ -964,7 +886,118 @@
         | 13 | Códice XIII | La voz del primer pensamiento: invocar la sabiduría femenina (Protennoia Trimorfa).`;
 
         // ============================================================
-        // 5. MOTOR DE PARSEO Y RENDERIZADO DEL MAPA
+        // 2. CARGA DE DATOS (PRIORIDAD: DATOS INCRUSTADOS > LOCALSTORAGE > DEFAULT)
+        // ============================================================
+        let currentTitle = DEFAULT_TITLE;
+        let currentSubtitle = DEFAULT_SUBTITLE;
+        let currentCards = [...DEFAULT_CARDS];
+        let currentContent = DEFAULT_CONTENT;
+
+        // Función para cargar datos desde localStorage o desde datos incrustados
+        function loadTemplateData() {
+            // Verificar si hay datos incrustados en el HTML (para exportación)
+            const embedded = document.getElementById('embeddedData');
+            if (embedded) {
+                try {
+                    const data = JSON.parse(embedded.textContent);
+                    if (data.title) currentTitle = data.title;
+                    if (data.subtitle) currentSubtitle = data.subtitle;
+                    if (data.cards) currentCards = data.cards;
+                    if (data.content) currentContent = data.content;
+                    if (data.theme) applyTheme(data.theme);
+                    return;
+                } catch (e) {}
+            }
+
+            // Si no hay datos incrustados, cargar de localStorage
+            try {
+                const saved = localStorage.getItem('templateConfig');
+                if (saved) {
+                    const data = JSON.parse(saved);
+                    if (data.title) currentTitle = data.title;
+                    if (data.subtitle) currentSubtitle = data.subtitle;
+                    if (data.cards) currentCards = data.cards;
+                    if (data.content) currentContent = data.content;
+                    if (data.theme) applyTheme(data.theme);
+                }
+            } catch (e) {
+                // Si hay error, usar valores por defecto
+                currentTitle = DEFAULT_TITLE;
+                currentSubtitle = DEFAULT_SUBTITLE;
+                currentCards = [...DEFAULT_CARDS];
+                currentContent = DEFAULT_CONTENT;
+            }
+        }
+
+        function saveTemplateData() {
+            try {
+                localStorage.setItem('templateConfig', JSON.stringify({
+                    title: currentTitle,
+                    subtitle: currentSubtitle,
+                    cards: currentCards,
+                    content: currentContent,
+                    theme: document.body.classList.contains('dark') ? 'dark' : 'light'
+                }));
+            } catch (e) {}
+        }
+
+        function applyTheme(theme) {
+            document.body.classList.remove('dark');
+            if (theme === 'dark') {
+                document.body.classList.add('dark');
+            } else if (theme === 'blue') {
+                document.documentElement.style.setProperty('--accent', '#3b82f6');
+            } else if (theme === 'green') {
+                document.documentElement.style.setProperty('--accent', '#10b981');
+            } else if (theme === 'warm') {
+                document.documentElement.style.setProperty('--accent', '#f59e0b');
+            } else {
+                document.documentElement.style.setProperty('--accent', '#4a6fa5');
+            }
+        }
+
+        // ============================================================
+        // 3. RENDERIZADO DE PORTADA
+        // ============================================================
+        function renderDashboard() {
+            const grid = document.getElementById('gridTarjetas');
+            grid.innerHTML = '';
+            currentCards.forEach((card, index) => {
+                const div = document.createElement('div');
+                div.className = 'card-dash';
+                // Guardamos el índice o el número de lección para vincular
+                const leccionNum = index + 1;
+                div.dataset.leccion = leccionNum;
+                div.innerHTML = `
+                    <span class="icono">${card.icono}</span>
+                    <div class="numero">${card.numero}</div>
+                    <div class="titulo">${card.titulo}</div>
+                    <div class="codice">${card.codice}</div>
+                    <div class="desc">${card.desc}</div>
+                    <span class="tag">${card.tag}</span>
+                `;
+                div.addEventListener('click', function() {
+                    const leccion = parseInt(this.dataset.leccion);
+                    if (!isNaN(leccion)) {
+                        mostrarMapa(leccion);
+                    }
+                });
+                grid.appendChild(div);
+            });
+            document.getElementById('mainTitle').textContent = currentTitle;
+            document.getElementById('mainSubtitle').innerHTML = currentSubtitle;
+            document.getElementById('footerStrong').textContent = currentTitle.replace(/[^A-Za-z0-9 ]/g, '').trim();
+            document.getElementById('footerDesc').textContent = currentSubtitle;
+
+            // Actualizar título del mapa (si está visible)
+            const mapTitleSpan = document.getElementById('mapTitleSpan');
+            if (mapTitleSpan) {
+                mapTitleSpan.textContent = currentTitle.replace(/[^A-Za-z0-9 ]/g, '').trim() || 'Plantilla';
+            }
+        }
+
+        // ============================================================
+        // 4. MOTOR DE PARSEO Y RENDERIZADO DEL MAPA
         // ============================================================
         let activeNodeId = null;
         let allNodes = [];
@@ -1095,7 +1128,7 @@
         }
 
         // ============================================================
-        // 6. SISTEMA TTS CON BUCLE Y CONFIGURACIÓN
+        // 5. SISTEMA TTS CON BUCLE
         // ============================================================
         let ttsConfig = {
             voice: null,
@@ -1155,7 +1188,6 @@
         function leerNodo(id) {
             if (isSpeaking) {
                 detenerLectura();
-                // Si el bucle estaba activo, lo respetamos al reiniciar
                 setTimeout(() => {
                     leerNodoInterno(id);
                 }, 300);
@@ -1202,7 +1234,6 @@
 
             utterance.onend = function() {
                 if (isLoopActive) {
-                    // Repetir después de una pausa breve
                     loopTimeout = setTimeout(() => {
                         if (isLoopActive && currentSpeakingText) {
                             leerNodoInterno(id);
@@ -1245,11 +1276,10 @@
             const btn = document.getElementById('btnBucle');
             btn.classList.toggle('active', isLoopActive);
             btn.textContent = isLoopActive ? '🔁 Bucle (ON)' : '🔁 Bucle';
-            // Si el bucle se activa y está sonando, no interrumpimos; el onend lo manejará.
         }
 
         // ============================================================
-        // 7. NAVEGACIÓN Y EVENTOS PRINCIPALES
+        // 6. NAVEGACIÓN Y EXPANSIÓN AUTOMÁTICA
         // ============================================================
         let mapaRenderizado = false;
 
@@ -1261,7 +1291,6 @@
             mapaContainer.classList.add('visible');
 
             if (!mapaRenderizado || !allNodes.length) {
-                // Usar el contenido actual (puede haber sido editado)
                 const parsed = parsear(currentContent);
                 allNodes = parsed.nodos;
                 childrenMap = parsed.hijosMap;
@@ -1275,12 +1304,25 @@
                 }
             }
 
-            // Expandir la lección correspondiente
+            // Buscar la lección correspondiente y expandirla
             const targetText = `📜 LECCIÓN ${leccionNum}:`;
             const targetNode = allNodes.find(n => n.etiqueta.includes(targetText));
             if (targetNode) {
                 expandirNodoYAncestros(targetNode.id);
                 setActiveNode(targetNode.id);
+                // Desplazar la vista al nodo
+                const targetCard = document.querySelector(`.card-map[data-id="${targetNode.id}"]`);
+                if (targetCard) {
+                    setTimeout(() => {
+                        targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 400);
+                }
+            } else {
+                // Si no se encuentra, expandir el primer nodo raíz
+                if (rootNodes.length > 0) {
+                    expandirNodoYAncestros(rootNodes[0]);
+                    setActiveNode(rootNodes[0]);
+                }
             }
         }
 
@@ -1304,23 +1346,17 @@
                     }
                 }
             });
-            const targetCard = document.querySelector(`.card-map[data-id="${nodeId}"]`);
-            if (targetCard) {
-                setTimeout(() => {
-                    targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }, 300);
-            }
         }
 
         function mostrarDashboard() {
             document.getElementById('dashboard').classList.remove('hidden');
             document.getElementById('mapaContainer').classList.remove('visible');
             detenerLectura();
-            // Reiniciar estado del bucle visual pero no desactivarlo (el usuario decide)
+            // No desactivar el bucle, el usuario decide
         }
 
         // ============================================================
-        // 8. EVENTOS DE BOTONES
+        // 7. EVENTOS DE LA INTERFAZ
         // ============================================================
         document.getElementById('btnVolver').addEventListener('click', mostrarDashboard);
 
@@ -1342,11 +1378,6 @@
         document.getElementById('btnEscuchar').addEventListener('click', function() {
             if (isSpeaking) {
                 detenerLectura();
-                // Si el bucle estaba activo, al detener manualmente se desactiva el bucle
-                if (isLoopActive) {
-                    // Opcional: mantener el bucle activo pero se detiene la reproducción
-                    // Preferimos mantener el estado del bucle, solo detener la voz
-                }
                 return;
             }
             let id = activeNodeId;
@@ -1363,7 +1394,7 @@
         });
 
         // ============================================================
-        // 9. MODAL DE CONFIGURACIÓN DE VOZ
+        // 8. MODAL DE CONFIGURACIÓN DE VOZ
         // ============================================================
         const configBtn = document.getElementById('configBtn');
         const configModal = document.getElementById('configModal');
@@ -1460,7 +1491,7 @@
         setTimeout(populateVoices, 500);
 
         // ============================================================
-        // 10. MODAL DE EDICIÓN DE PLANTILLA
+        // 9. MODAL DE EDICIÓN DE PLANTILLA
         // ============================================================
         const editBtn = document.getElementById('editBtn');
         const editModal = document.getElementById('editModal');
@@ -1473,12 +1504,10 @@
             document.getElementById('editTitle').value = currentTitle;
             document.getElementById('editSubtitle').value = currentSubtitle;
             document.getElementById('editContent').value = currentContent;
-            // Generar texto de tarjetas
             let cardsText = currentCards.map(c =>
                 `${c.icono}|${c.numero}|${c.titulo}|${c.codice}|${c.desc}|${c.tag}`
             ).join('\n');
             document.getElementById('editCards').value = cardsText;
-            // Tema actual
             const theme = document.body.classList.contains('dark') ? 'dark' : 'light';
             document.getElementById('editTheme').value = theme;
             editModal.classList.add('active');
@@ -1490,12 +1519,10 @@
         editModal.addEventListener('click', function(e) { if (e.target === this) closeEditModalFn(); });
 
         saveEdit.addEventListener('click', function() {
-            // Guardar título y subtítulo
             currentTitle = document.getElementById('editTitle').value.trim() || currentTitle;
             currentSubtitle = document.getElementById('editSubtitle').value.trim() || currentSubtitle;
-            // Guardar contenido del mapa
-            currentContent = document.getElementById('editContent').value;
-            // Guardar tarjetas
+            currentContent = document.getElementById('editContent').value || currentContent;
+
             const cardsText = document.getElementById('editCards').value;
             const lines = cardsText.split('\n').filter(l => l.trim());
             currentCards = lines.map(line => {
@@ -1509,21 +1536,17 @@
                     tag: parts[5] || ''
                 };
             });
-            // Tema
+
             const theme = document.getElementById('editTheme').value;
             applyTheme(theme);
             if (theme === 'dark') document.body.classList.add('dark');
             else document.body.classList.remove('dark');
 
-            // Guardar en localStorage
-            saveTemplate();
-
-            // Re-renderizar portada
+            saveTemplateData();
             renderDashboard();
 
-            // Si el mapa estaba abierto, lo re-renderizamos
+            // Re-renderizar mapa si está visible
             if (document.getElementById('mapaContainer').classList.contains('visible')) {
-                // Limpiar y re-renderizar con nuevo contenido
                 const parsed = parsear(currentContent);
                 allNodes = parsed.nodos;
                 childrenMap = parsed.hijosMap;
@@ -1537,10 +1560,34 @@
             closeEditModalFn();
         });
 
-        // Exportar HTML
+        // Exportar HTML (incluye datos incrustados para preservar la vinculación)
         exportHtml.addEventListener('click', function() {
-            // Obtener el HTML actual completo y generar un nuevo archivo con los cambios aplicados
-            const htmlContent = document.documentElement.outerHTML;
+            // Obtener el HTML actual
+            let htmlContent = document.documentElement.outerHTML;
+
+            // Incrustar los datos actuales en el HTML antes de exportar
+            const dataEmbed = {
+                title: currentTitle,
+                subtitle: currentSubtitle,
+                cards: currentCards,
+                content: currentContent,
+                theme: document.body.classList.contains('dark') ? 'dark' : 'light'
+            };
+            const scriptTag = `<script id="embeddedData" type="application/json">${JSON.stringify(dataEmbed)}<\/script>`;
+
+            // Insertar los datos justo antes de cargar el script principal
+            // Buscamos el primer <script> y lo insertamos antes
+            const firstScript = htmlContent.indexOf('<script');
+            if (firstScript !== -1) {
+                htmlContent = htmlContent.slice(0, firstScript) + scriptTag + htmlContent.slice(firstScript);
+            } else {
+                // Si no hay script, insertar al final del body
+                const bodyEnd = htmlContent.lastIndexOf('</body>');
+                if (bodyEnd !== -1) {
+                    htmlContent = htmlContent.slice(0, bodyEnd) + scriptTag + htmlContent.slice(bodyEnd);
+                }
+            }
+
             const blob = new Blob([htmlContent], { type: 'text/html' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
@@ -1555,21 +1602,18 @@
         editBtn.addEventListener('click', openEditModal);
 
         // ============================================================
-        // 11. INICIALIZACIÓN
+        // 10. INICIALIZACIÓN
         // ============================================================
-        loadTemplate();
+        loadTemplateData();
         renderDashboard();
 
-        // Inicialmente la portada visible, mapa oculto
         document.getElementById('dashboard').classList.remove('hidden');
         document.getElementById('mapaContainer').classList.remove('visible');
 
-        // Activar bucle por defecto? Lo dejamos apagado
-        isLoopActive = false;
-
-        console.log('🚀 Herramienta 100% lista.');
+        console.log('✅ Herramienta 100% lista.');
         console.log('🔁 Bucle:', isLoopActive);
-        console.log('📦 Plantilla editable.');
+        console.log('📦 Plantilla editable con vinculación automática.');
     </script>
+
 </body>
 </html>
