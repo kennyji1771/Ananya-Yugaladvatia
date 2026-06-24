@@ -289,8 +289,6 @@
             color: #1e293b;
             cursor: pointer;
             padding: 4px 0;
-            /* IMPORTANTE: NO usar user-select: none para permitir selección de texto */
-            /* user-select: none;  <-- ELIMINADO */
         }
         .title:hover {
             color: #2b3a67;
@@ -300,8 +298,7 @@
             opacity: 0.5;
             margin-left: 12px;
             transition: transform 0.2s;
-            /* Permitir selección del icono también */
-            user-select: none; /* solo el icono, no afecta al texto */
+            user-select: none;
         }
         .children {
             margin-left: 24px;
@@ -469,7 +466,7 @@
                 <div class="numero">Lección 4</div>
                 <div class="titulo">Reconocer al impostor</div>
                 <div class="codice">Códice IV · Apócrifo de Juan</div>
-                <div class="desc">Identifica a Kalniran ya en las estructuras que te oprimen y recuerda tu origen más alto.</div>
+                <div class="desc">Identifica a Yaldabaoth en las estructuras que te oprimen y recuerda tu origen más alto.</div>
                 <span class="tag">Libertad interior</span>
             </div>
             <!-- Lección 5 -->
@@ -588,768 +585,768 @@
         // ============================================================
         const textoOriginal = `# CURSO ANANYA YUGALADVATIA – LAS 13 LECCIONES
 
-## EL NOMBRE DEL CURSO: ANANYA YUGALADVATIA
+        ## EL NOMBRE DEL CURSO: ANANYA YUGALADVATIA
 
-Este nombre proviene del sánscrito y está cargado de significado, que se alinea perfectamente con el espíritu de los textos de Nag Hammadi:
+        Este nombre proviene del sánscrito y está cargado de significado, que se alinea perfectamente con el espíritu de los textos de Nag Hammadi:
 
-**Ananya (अनन्य):** Significa "sin otro", "único", "incomparable". En la tradición espiritual, se refiere a la conciencia que no ve separación, que reconoce la unidad esencial de todo. Es el estado de advaita (no dualidad) aplicado a la vida cotidiana. En el contexto gnóstico, Ananya es la gnosis que disuelve la ilusión del yo separado y reconoce la chispa divina en todo.
+        **Ananya (अनन्य):** Significa "sin otro", "único", "incomparable". En la tradición espiritual, se refiere a la conciencia que no ve separación, que reconoce la unidad esencial de todo. Es el estado de advaita (no dualidad) aplicado a la vida cotidiana. En el contexto gnóstico, Ananya es la gnosis que disuelve la ilusión del yo separado y reconoce la chispa divina en todo.
 
-**Yugaladvatia (युगलद्वैत):** Se compone de dos palabras:
+        **Yugaladvatia (युगलद्वैत):** Se compone de dos palabras:
 
-- **Yugala (युगल):** "Pareja" o "par". Simboliza la unión de opuestos: masculino/femenino, luz/oscuridad, cielo/tierra, divino/humano.
-- **Advaita (अद्वैत):** "No dualidad". La unidad que trasciende los opuestos.
+        - **Yugala (युगल):** "Pareja" o "par". Simboliza la unión de opuestos: masculino/femenino, luz/oscuridad, cielo/tierra, divino/humano.
+        - **Advaita (अद्वैत):** "No dualidad". La unidad que trasciende los opuestos.
 
-Juntos, Yugaladvatia significa "la no dualidad de la pareja" o "la unidad de los opuestos". Es la danza cósmica entre el Pléroma (la totalidad divina) y el mundo material, entre el alma y su origen, entre el descenso y el ascenso.
+        Juntos, Yugaladvatia significa "la no dualidad de la pareja" o "la unidad de los opuestos". Es la danza cósmica entre el Pléroma (la totalidad divina) y el mundo material, entre el alma y su origen, entre el descenso y el ascenso.
 
-Ananya Yugaladvatia puede traducirse como:
+        Ananya Yugaladvatia puede traducirse como:
 
-**"El camino único hacia la unidad de los opuestos"**
+        **"El camino único hacia la unidad de los opuestos"**
 
-Es un nombre que respira la esencia de los textos gnósticos: recordar que somos una chispa divina que, a través del conocimiento, trasciende las aparentes dualidades del mundo y regresa a su origen único.
+        Es un nombre que respira la esencia de los textos gnósticos: recordar que somos una chispa divina que, a través del conocimiento, trasciende las aparentes dualidades del mundo y regresa a su origen único.
 
----
+        ---
 
-## ESTRUCTURA DEL CURSO: 13 LECCIONES, 13 CÓDICES
+        ## ESTRUCTURA DEL CURSO: 13 LECCIONES, 13 CÓDICES
 
-Cada lección se centrará en un códice y ofrecerá una práctica espiritual concreta, diseñada para ser realizada en la vida cotidiana.
+        Cada lección se centrará en un códice y ofrecerá una práctica espiritual concreta, diseñada para ser realizada en la vida cotidiana.
 
-| Lección | Códice | Tema de la Práctica |
-|---------|--------|---------------------|
-| 1 | Códice I | La purificación del recipiente y el viaje interior (basado en el Evangelio de la Verdad y la Oración de Pablo). |
-| 2 | Códice II | La palabra viva: integrar un dicho del Evangelio de Tomás en el día. |
-| 3 | Códice III | La respiración del miedo y la "mente única" (Diálogo del Salvador). |
-| 4 | Códice IV | Reconocer al impostor: nombrar a Kalniran ya en la vida diaria (Apócrifo de Juan). |
-| 5 | Códice V | El testamento del alma: escribir la carta del anciano sabio (Apocalipsis de Adán). |
-| 6 | Códice VI | Abrazar las paradojas: meditación del "soy" (El Trueno, Mente Perfecta). |
-| 7 | Códice VII | La coherencia del mártir: decir la verdad incómoda (Apocalipsis de Pedro). |
-| 8 | Códice VIII | La contraseña del alma: preparar el viaje final (Zoostrianos). |
-| 9 | Códice IX | El rito de la ofrenda: ofrecer lo bueno y lo malo (Melquisedec). |
-| 10 | Códice X | La geometría del alma: respiración de los sellos (Marsanes). |
-| 11 | Códice XI | La mirada del extranjero: ver el mundo como si fuera la primera vez (Alógenes). |
-| 12 | Códice XII | El diario de los fragmentos: recolectar las piezas del ser (Fragmentos). |
-| 13 | Códice XIII | La voz del primer pensamiento: invocar la sabiduría femenina (Protennoia Trimorfa). |
+        | Lección | Códice | Tema de la Práctica |
+        |---------|--------|---------------------|
+        | 1 | Códice I | La purificación del recipiente y el viaje interior (basado en el Evangelio de la Verdad y la Oración de Pablo). |
+        | 2 | Códice II | La palabra viva: integrar un dicho del Evangelio de Tomás en el día. |
+        | 3 | Códice III | La respiración del miedo y la "mente única" (Diálogo del Salvador). |
+        | 4 | Códice IV | Reconocer al impostor: nombrar a Yaldabaoth en la vida diaria (Apócrifo de Juan). |
+        | 5 | Códice V | El testamento del alma: escribir la carta del anciano sabio (Apocalipsis de Adán). |
+        | 6 | Códice VI | Abrazar las paradojas: meditación del "soy" (El Trueno, Mente Perfecta). |
+        | 7 | Códice VII | La coherencia del mártir: decir la verdad incómoda (Apocalipsis de Pedro). |
+        | 8 | Códice VIII | La contraseña del alma: preparar el viaje final (Zoostrianos). |
+        | 9 | Códice IX | El rito de la ofrenda: ofrecer lo bueno y lo malo (Melquisedec). |
+        | 10 | Códice X | La geometría del alma: respiración de los sellos (Marsanes). |
+        | 11 | Códice XI | La mirada del extranjero: ver el mundo como si fuera la primera vez (Alógenes). |
+        | 12 | Códice XII | El diario de los fragmentos: recolectar las piezas del ser (Fragmentos). |
+        | 13 | Códice XIII | La voz del primer pensamiento: invocar la sabiduría femenina (Protennoia Trimorfa). |
 
----
+        ---
 
-## 📜 LECCIÓN 1: CÓDICE I – LA PURIFICACIÓN DEL RECIPIENTE Y EL VIAJE INTERIOR
+        ## 📜 LECCIÓN 1: CÓDICE I – LA PURIFICACIÓN DEL RECIPIENTE Y EL VIAJE INTERIOR
 
-**Basado en:** La Oración del Apóstol Pablo, El Apócrifo de Santiago, El Evangelio de la Verdad, El Tratado sobre la Resurrección y El Tratado Tripartito.
+        **Basado en:** La Oración del Apóstol Pablo, El Apócrifo de Santiago, El Evangelio de la Verdad, El Tratado sobre la Resurrección y El Tratado Tripartito.
 
-**Tiempo estimado:** 15-20 minutos, antes de dormir.
+        **Tiempo estimado:** 15-20 minutos, antes de dormir.
 
-**Objetivo:** Establecer la base de la práctica gnóstica: vaciar el recipiente de la mente y el corazón para poder recibir la luz del Pléroma.
+        **Objetivo:** Establecer la base de la práctica gnóstica: vaciar el recipiente de la mente y el corazón para poder recibir la luz del Pléroma.
 
-### Paso 1: La invocación del silencio (3 minutos)
+        ### Paso 1: La invocación del silencio (3 minutos)
 
-Siéntate en el borde de tu cama con los pies apoyados en el suelo.
+        Siéntate en el borde de tu cama con los pies apoyados en el suelo.
 
-Coloca ambas manos sobre tus rodillas, con las palmas hacia arriba.
+        Coloca ambas manos sobre tus rodillas, con las palmas hacia arriba.
 
-Cierra los ojos y respira profundamente 4 veces.
+        Cierra los ojos y respira profundamente 4 veces.
 
-Con cada exhalación, visualiza que liberas todo lo que ocurrió durante el día: conversaciones pendientes, preocupaciones, tensiones, emociones no resueltas.
+        Con cada exhalación, visualiza que liberas todo lo que ocurrió durante el día: conversaciones pendientes, preocupaciones, tensiones, emociones no resueltas.
 
-Los textos gnósticos describen este paso como "el vaciamiento del recipiente". No puedes recibir luz si estás lleno de la "basura" del día.
+        Los textos gnósticos describen este paso como "el vaciamiento del recipiente". No puedes recibir luz si estás lleno de la "basura" del día.
 
-### Paso 2: La activación del corazón (2 minutos)
+        ### Paso 2: La activación del corazón (2 minutos)
 
-Acuéstiate boca arriba.
+        Acuéstiate boca arriba.
 
-Coloca tu mano derecha sobre el centro de tu pecho (ligeramente a la izquierda, donde sientes el latido).
+        Coloca tu mano derecha sobre el centro de tu pecho (ligeramente a la izquierda, donde sientes el latido).
 
-Siente el latido sin pensarlo. No lo analices, solo siéntelo.
+        Siente el latido sin pensarlo. No lo analices, solo siéntelo.
 
-Los textos gnósticos dicen que el corazón es el órgano de percepción del Pléroma. La mente racional no puede percibirlo porque opera en una dimensión que supera la lógica. El corazón tiene una inteligencia propia que puede resonar con la frecuencia de la plenitud divina.
+        Los textos gnósticos dicen que el corazón es el órgano de percepción del Pléroma. La mente racional no puede percibirlo porque opera en una dimensión que supera la lógica. El corazón tiene una inteligencia propia que puede resonar con la frecuencia de la plenitud divina.
 
-### Paso 3: La siembra de la intención (1 minuto)
+        ### Paso 3: La siembra de la intención (1 minuto)
 
-Con tu mano sobre el corazón, di en voz baja o mentalmente estas palabras:
+        Con tu mano sobre el corazón, di en voz baja o mentalmente estas palabras:
 
-**"Recuerdo mi origen."**
+        **"Recuerdo mi origen."**
 
-Solo eso. Tres palabras.
+        Solo eso. Tres palabras.
 
-Según los textos gnósticos, el alma no necesita que le enseñes dónde está el Pléroma; ella ya lo sabe, porque viene de ahí. Lo único que necesitas es activar ese recuerdo. Estas tres palabras, pronunciadas con el corazón activado, funcionan como una llave que destranca la memoria del alma.
+        Según los textos gnósticos, el alma no necesita que le enseñes dónde está el Pléroma; ella ya lo sabe, porque viene de ahí. Lo único que necesitas es activar ese recuerdo. Estas tres palabras, pronunciadas con el corazón activado, funcionan como una llave que destranca la memoria del alma.
 
-### Paso 4: La respiración del umbral (7 ciclos)
+        ### Paso 4: La respiración del umbral (7 ciclos)
 
-Ahora, con la mano aún sobre el corazón, realiza el siguiente patrón de respiración:
+        Ahora, con la mano aún sobre el corazón, realiza el siguiente patrón de respiración:
 
-- Inhala durante 4 segundos.
-- Retén el aire durante 4 segundos.
-- Exhala durante 8 segundos.
+        - Inhala durante 4 segundos.
+        - Retén el aire durante 4 segundos.
+        - Exhala durante 8 segundos.
 
-Repite este ciclo 7 veces exactas (ni 6, ni 8).
+        Repite este ciclo 7 veces exactas (ni 6, ni 8).
 
-El número 7 en la tradición gnóstica corresponde a los 7 arcontes, las 7 capas de densidad que separan la conciencia del Pléroma. Con cada ciclo, estás atravesando una capa. Cuando completas el séptimo ciclo, tu sistema nervioso entra en un estado liminal que los textos describen como "estar en la puerta".
+        El número 7 en la tradición gnóstica corresponde a los 7 arcontes, las 7 capas de densidad que separan la conciencia del Pléroma. Con cada ciclo, estás atravesando una capa. Cuando completas el séptimo ciclo, tu sistema nervioso entra en un estado liminal que los textos describen como "estar en la puerta".
 
-### Paso 5: La rendición luminosa (el momento de dormir)
+        ### Paso 5: La rendición luminosa (el momento de dormir)
 
-Después del séptimo ciclo de respiración, cuando sientas que el sueño comienza a llegar, no te dejes caer pasivamente.
+        Después del séptimo ciclo de respiración, cuando sientas que el sueño comienza a llegar, no te dejes caer pasivamente.
 
-En el preciso instante en que el cuerpo se vuelve pesado y las imágenes del día empiezan a disolverse, haz una cosa:
+        En el preciso instante en que el cuerpo se vuelve pesado y las imágenes del día empiezan a disolverse, haz una cosa:
 
-**Sonríe.**
+        **Sonríe.**
 
-Una sonrisa suave, sin razón lógica, sin forzarla. Una sonrisa que viene del reconocimiento de que estás a punto de regresar a casa.
+        Una sonrisa suave, sin razón lógica, sin forzarla. Una sonrisa que viene del reconocimiento de que estás a punto de regresar a casa.
 
-Según el Evangelio de la Verdad, esa sonrisa es la señal que le das al alma de que tiene permiso para cruzar la puerta. Y el alma, que ha estado esperando esa señal toda tu vida, la cruza.
+        Según el Evangelio de la Verdad, esa sonrisa es la señal que le das al alma de que tiene permiso para cruzar la puerta. Y el alma, que ha estado esperando esa señal toda tu vida, la cruza.
 
-### ¿Qué esperar?
+        ### ¿Qué esperar?
 
-En las primeras noches, puede que no suceda nada extraordinario. Tu sistema nervioso está aprendiendo el patrón.
+        En las primeras noches, puede que no suceda nada extraordinario. Tu sistema nervioso está aprendiendo el patrón.
 
-Pero notarás algo diferente en la calidad del sueño: dormirás más profundo y te despertarás con una sensación de haber estado en algún lugar, aunque no recuerdes dónde.
+        Pero notarás algo diferente en la calidad del sueño: dormirás más profundo y te despertarás con una sensación de haber estado en algún lugar, aunque no recuerdes dónde.
 
-Esa sensación de "haber estado en algún lugar" es la primera evidencia de que el alma cruzó la puerta.
+        Esa sensación de "haber estado en algún lugar" es la primera evidencia de que el alma cruzó la puerta.
 
-Entre la tercera y la séptima noche de práctica continua, comenzarás a experimentar lo que los textos llaman "las imágenes del origen": visiones con claridad y luminosidad, una luz sin fuente visible, figuras de una presencia que se siente más real que cualquier realidad física.
+        Entre la tercera y la séptima noche de práctica continua, comenzarás a experimentar lo que los textos llaman "las imágenes del origen": visiones con claridad y luminosidad, una luz sin fuente visible, figuras de una presencia que se siente más real que cualquier realidad física.
 
-### El registro del practicante
+        ### El registro del practicante
 
-Te recomiendo que lleves un diario de sueños para anotar:
+        Te recomiendo que lleves un diario de sueños para anotar:
 
-- La calidad del sueño (profundo, ligero, inquieto).
-- Si tuviste sensación de "haber estado en algún lugar".
-- Si tuviste visiones o imágenes significativas.
-- Cómo te sientes al despertar (energía, claridad, paz).
+        - La calidad del sueño (profundo, ligero, inquieto).
+        - Si tuviste sensación de "haber estado en algún lugar".
+        - Si tuviste visiones o imágenes significativas.
+        - Cómo te sientes al despertar (energía, claridad, paz).
 
-Este registro te ayudará a ver el progreso y a ajustar la práctica si es necesario.
+        Este registro te ayudará a ver el progreso y a ajustar la práctica si es necesario.
 
-### Reflexión final de la lección
+        ### Reflexión final de la lección
 
-El Códice I nos enseña que el viaje hacia el Pléroma comienza con un acto de humildad: vaciar el recipiente. No puedes llenarte de luz si estás lleno de ruido. La purificación no es un castigo, sino una preparación amorosa para el encuentro con tu origen.
+        El Códice I nos enseña que el viaje hacia el Pléroma comienza con un acto de humildad: vaciar el recipiente. No puedes llenarte de luz si estás lleno de ruido. La purificación no es un castigo, sino una preparación amorosa para el encuentro con tu origen.
 
-La práctica que has aprendido hoy es la piedra angular de todo el curso. Si la integras, crearás un hábito sagrado que te acompañará durante las 13 lecciones.
+        La práctica que has aprendido hoy es la piedra angular de todo el curso. Si la integras, crearás un hábito sagrado que te acompañará durante las 13 lecciones.
 
----
+        ---
 
-## 📜 LECCIÓN 2: CÓDICE II – LA PALABRA VIVA EN EL DÍA
+        ## 📜 LECCIÓN 2: CÓDICE II – LA PALABRA VIVA EN EL DÍA
 
-**Basado en:** El Evangelio de Tomás (los 114 dichos), con apoyo del Apócrifo de Juan y la Exégesis del Alma.
+        **Basado en:** El Evangelio de Tomás (los 114 dichos), con apoyo del Apócrifo de Juan y la Exégesis del Alma.
 
-**Tiempo estimado:** 10 minutos por la mañana + práctica continua durante el día.
+        **Tiempo estimado:** 10 minutos por la mañana + práctica continua durante el día.
 
-**Objetivo:** Integrar la sabiduría del Evangelio de Tomás en la vida cotidiana, transformando cada momento en una oportunidad para el autoconocimiento y el despertar.
+        **Objetivo:** Integrar la sabiduría del Evangelio de Tomás en la vida cotidiana, transformando cada momento en una oportunidad para el autoconocimiento y el despertar.
 
-### 🌅 Paso 1: La elección del dicho (3 minutos)
+        ### 🌅 Paso 1: La elección del dicho (3 minutos)
 
-Al despertar, antes de levantarte, tómate un momento para elegir un dicho del Evangelio de Tomás.
+        Al despertar, antes de levantarte, tómate un momento para elegir un dicho del Evangelio de Tomás.
 
-Puedes hacerlo de dos maneras:
+        Puedes hacerlo de dos maneras:
 
-- **Secuencial:** avanzar en el orden de los dichos, uno por día.
-- **Intuitiva:** cerrar los ojos, respirar profundamente y preguntar: "¿Qué palabra necesito hoy?", y abrir el texto al azar.
+        - **Secuencial:** avanzar en el orden de los dichos, uno por día.
+        - **Intuitiva:** cerrar los ojos, respirar profundamente y preguntar: "¿Qué palabra necesito hoy?", y abrir el texto al azar.
 
-Lee el dicho en voz baja o mentalmente. No lo analices con la mente lógica. Siéntelo. Deja que resuene en tu corazón.
+        Lee el dicho en voz baja o mentalmente. No lo analices con la mente lógica. Siéntelo. Deja que resuene en tu corazón.
 
-### 🌿 Paso 2: La siembra en el corazón (2 minutos)
+        ### 🌿 Paso 2: La siembra en el corazón (2 minutos)
 
-Coloca tu mano derecha sobre el centro de tu pecho.
+        Coloca tu mano derecha sobre el centro de tu pecho.
 
-Repite el dicho tres veces en voz baja, como si estuvieras sembrando una semilla en la tierra de tu corazón.
+        Repite el dicho tres veces en voz baja, como si estuvieras sembrando una semilla en la tierra de tu corazón.
 
-Permanece en silencio durante un minuto, sintiendo cómo la palabra penetra en tu interior.
+        Permanece en silencio durante un minuto, sintiendo cómo la palabra penetra en tu interior.
 
-Los dichos de Tomás no son para ser entendidos con la mente, sino para ser vividos. Son semillas que germinan en el terreno de la experiencia diaria.
+        Los dichos de Tomás no son para ser entendidos con la mente, sino para ser vividos. Son semillas que germinan en el terreno de la experiencia diaria.
 
-### 🛤️ Paso 3: La práctica durante el día (todo el día)
+        ### 🛤️ Paso 3: La práctica durante el día (todo el día)
 
-Lleva el dicho contigo durante el día. Escríbelo en un papel, ponlo como fondo de pantalla en tu teléfono, o simplemente memorízalo.
+        Lleva el dicho contigo durante el día. Escríbelo en un papel, ponlo como fondo de pantalla en tu teléfono, o simplemente memorízalo.
 
-Observa cómo se manifiesta: ¿Qué situaciones te muestra? ¿Qué personas o encuentros te lo recuerdan?
+        Observa cómo se manifiesta: ¿Qué situaciones te muestra? ¿Qué personas o encuentros te lo recuerdan?
 
-Pregúntate en cada momento:
+        Pregúntate en cada momento:
 
-- "¿Qué me está enseñando este dicho ahora?"
-- "¿Dónde veo su verdad en mi vida?"
-- "¿Cómo puedo aplicarlo en esta situación?"
+        - "¿Qué me está enseñando este dicho ahora?"
+        - "¿Dónde veo su verdad en mi vida?"
+        - "¿Cómo puedo aplicarlo en esta situación?"
 
-El Evangelio de Tomás no es un libro de reglas, sino un espejo que te devuelve tu propia verdad. Cada dicho es una llave que abre una puerta interior.
+        El Evangelio de Tomás no es un libro de reglas, sino un espejo que te devuelve tu propia verdad. Cada dicho es una llave que abre una puerta interior.
 
-### 🌙 Paso 4: La cosecha del día (5 minutos antes de dormir)
+        ### 🌙 Paso 4: La cosecha del día (5 minutos antes de dormir)
 
-Antes de realizar la práctica del Códice I (la purificación del recipiente), tómate un momento para reflexionar sobre el dicho del día.
+        Antes de realizar la práctica del Códice I (la purificación del recipiente), tómate un momento para reflexionar sobre el dicho del día.
 
-Pregúntate:
+        Pregúntate:
 
-- "¿Cómo se manifestó este dicho en mi día?"
-- "¿Qué me reveló sobre mí mismo?"
-- "¿Qué cambió en mi percepción?"
+        - "¿Cómo se manifestó este dicho en mi día?"
+        - "¿Qué me reveló sobre mí mismo?"
+        - "¿Qué cambió en mi percepción?"
 
-Escribe tus reflexiones en tu diario (mínimo 3 líneas). No es necesario que sean profundas; solo honestas.
+        Escribe tus reflexiones en tu diario (mínimo 3 líneas). No es necesario que sean profundas; solo honestas.
 
-### 🌟 Ejemplo práctico con un dicho
+        ### 🌟 Ejemplo práctico con un dicho
 
-**Dicho 3** (uno de los más importantes):
+        **Dicho 3** (uno de los más importantes):
 
-*"Si aquellos que os guían os dijeran, '¡Ved, el Reino está en el Cielo!', entonces las aves del Cielo os precederían. Si os dijeran, '¡Está en el mar!', entonces los peces del mar os precederían. Más bien, el Reino de Dios está adentro de vosotros y está fuera de vosotros. Quienes llegan a conocerse a sí mismos lo hallarán..."*
+        *"Si aquellos que os guían os dijeran, '¡Ved, el Reino está en el Cielo!', entonces las aves del Cielo os precederían. Si os dijeran, '¡Está en el mar!', entonces los peces del mar os precederían. Más bien, el Reino de Dios está adentro de vosotros y está fuera de vosotros. Quienes llegan a conocerse a sí mismos lo hallarán..."*
 
-**Posible práctica diaria:**
+        **Posible práctica diaria:**
 
-- Por la mañana, lo siembras en tu corazón.
-- Durante el día, observas cuántas veces buscas la verdad "afuera" (en personas, en libros, en experiencias) y cuántas veces la buscas "adentro".
-- Al llegar la noche, reflexionas: "¿Cuándo me olvidé de que el Reino está dentro de mí? ¿Cuándo lo recordé?".
+        - Por la mañana, lo siembras en tu corazón.
+        - Durante el día, observas cuántas veces buscas la verdad "afuera" (en personas, en libros, en experiencias) y cuántas veces la buscas "adentro".
+        - Al llegar la noche, reflexionas: "¿Cuándo me olvidé de que el Reino está dentro de mí? ¿Cuándo lo recordé?".
 
-### 📒 El registro del practicante (Lección 2)
+        ### 📒 El registro del practicante (Lección 2)
 
-En tu diario, anota:
+        En tu diario, anota:
 
-- El dicho del día.
-- Un momento clave en el que el dicho se manifestó (una situación, una conversación, un pensamiento).
-- Lo que aprendiste (una frase corta).
-- Tu sensación al final del día (en una palabra: paz, claridad, inquietud, expansión).
+        - El dicho del día.
+        - Un momento clave en el que el dicho se manifestó (una situación, una conversación, un pensamiento).
+        - Lo que aprendiste (una frase corta).
+        - Tu sensación al final del día (en una palabra: paz, claridad, inquietud, expansión).
 
-### 🧘 Práctica complementaria: La respiración del autoconocimiento
+        ### 🧘 Práctica complementaria: La respiración del autoconocimiento
 
-Además de la práctica principal, si durante el día te sientes desconectado o confundido, puedes hacer esta micro-práctica (1 minuto):
+        Además de la práctica principal, si durante el día te sientes desconectado o confundido, puedes hacer esta micro-práctica (1 minuto):
 
-1. Detente donde estés.
-2. Coloca tu mano sobre el corazón.
-3. Respira profundamente una vez.
-4. Al exhalar, repite mentalmente: **"Yo soy luz, yo soy conciencia, yo soy el Reino".**
-5. Continúa tu día.
+        1. Detente donde estés.
+        2. Coloca tu mano sobre el corazón.
+        3. Respira profundamente una vez.
+        4. Al exhalar, repite mentalmente: **"Yo soy luz, yo soy conciencia, yo soy el Reino".**
+        5. Continúa tu día.
 
-### 💎 Reflexión final de la lección
+        ### 💎 Reflexión final de la lección
 
-El Códice II nos enseña que la sabiduría no es un conocimiento que se acumula, sino una verdad que se vive. Los 114 dichos del Evangelio de Tomás no son para ser leídos como un libro, sino para ser masticados y digeridos a lo largo del día. Cada dicho es una semilla de gnosis que, cuando se siembra en el corazón y se riega con la experiencia cotidiana, germina en forma de comprensión directa.
+        El Códice II nos enseña que la sabiduría no es un conocimiento que se acumula, sino una verdad que se vive. Los 114 dichos del Evangelio de Tomás no son para ser leídos como un libro, sino para ser masticados y digeridos a lo largo del día. Cada dicho es una semilla de gnosis que, cuando se siembra en el corazón y se riega con la experiencia cotidiana, germina en forma de comprensión directa.
 
-La práctica de hoy te ha dado una herramienta para transformar tu día en un viaje de autodescubrimiento. No se trata de cumplir con una tarea, sino de estar presente en cada momento, preguntándote: "¿Qué me está enseñando esto?".
+        La práctica de hoy te ha dado una herramienta para transformar tu día en un viaje de autodescubrimiento. No se trata de cumplir con una tarea, sino de estar presente en cada momento, preguntándote: "¿Qué me está enseñando esto?".
 
----
+        ---
 
-## 📜 LECCIÓN 3: CÓDICE III – LA RESPIRACIÓN DEL MIEDO Y LA MENTE ÚNICA
+        ## 📜 LECCIÓN 3: CÓDICE III – LA RESPIRACIÓN DEL MIEDO Y LA MENTE ÚNICA
 
-**Basado en:** El Diálogo del Salvador (especialmente los pasajes sobre el miedo, la disolución y el reposo), con apoyo del Evangelio de los Egipcios y la Epístola de Eugnostos.
+        **Basado en:** El Diálogo del Salvador (especialmente los pasajes sobre el miedo, la disolución y el reposo), con apoyo del Evangelio de los Egipcios y la Epístola de Eugnostos.
 
-**Tiempo estimado:** 15 minutos por la noche (puede combinarse con la Lección 1) + micro-práctica durante el día.
+        **Tiempo estimado:** 15 minutos por la noche (puede combinarse con la Lección 1) + micro-práctica durante el día.
 
-**Objetivo:** Aprender a enfrentar el miedo a la disolución (la muerte, el cambio, la pérdida de identidad) y entrar en un estado de reposo consciente, donde la mente se unifica y el alma puede experimentar su origen.
+        **Objetivo:** Aprender a enfrentar el miedo a la disolución (la muerte, el cambio, la pérdida de identidad) y entrar en un estado de reposo consciente, donde la mente se unifica y el alma puede experimentar su origen.
 
-### 🧘 Introducción al Códice III
+        ### 🧘 Introducción al Códice III
 
-El Códice III es el más fragmentado de la biblioteca. Llega a nosotros con páginas arrancadas, lagunas y silencios. Y sin embargo, en sus cinco tratados, late una enseñanza profunda: la vida es un diálogo entre lo que hemos perdido y lo que anhelamos recuperar.
+        El Códice III es el más fragmentado de la biblioteca. Llega a nosotros con páginas arrancadas, lagunas y silencios. Y sin embargo, en sus cinco tratados, late una enseñanza profunda: la vida es un diálogo entre lo que hemos perdido y lo que anhelamos recuperar.
 
-El Diálogo del Salvador, el último texto del códice, es quizás el más desgarrador. En él, el Salvador (Jesús) insta a sus discípulos a abandonar su trabajo y permanecer en reposo para alcanzar la vida eterna. Les advierte sobre el poder del miedo y el tiempo de la disolución, pero les asegura que no deben temer. La frase clave es:
+        El Diálogo del Salvador, el último texto del códice, es quizás el más desgarrador. En él, el Salvador (Jesús) insta a sus discípulos a abandonar su trabajo y permanecer en reposo para alcanzar la vida eterna. Les advierte sobre el poder del miedo y el tiempo de la disolución, pero les asegura que no deben temer. La frase clave es:
 
-*"No temas. Atraviesa este momento con una sola mente."*
+        *"No temas. Atraviesa este momento con una sola mente."*
 
-La "mente única" es la capacidad de integrar todas las facetas de tu ser —miedos, deseos, contradicciones— en una conciencia coherente. Cuando la mente se unifica, el alma puede reposar en su origen. La práctica de hoy te enseñará a atravesar el miedo y a habitar el reposo como un estado consciente.
+        La "mente única" es la capacidad de integrar todas las facetas de tu ser —miedos, deseos, contradicciones— en una conciencia coherente. Cuando la mente se unifica, el alma puede reposar en su origen. La práctica de hoy te enseñará a atravesar el miedo y a habitar el reposo como un estado consciente.
 
-### 🌙 Práctica Principal: La Respiración del Miedo y la Mente Única (15 minutos)
+        ### 🌙 Práctica Principal: La Respiración del Miedo y la Mente Única (15 minutos)
 
-Esta práctica está diseñada para realizarse por la noche, justo antes de la Lección 1 (La Purificación del Recipiente), pero también puede hacerse en cualquier momento de calma durante el día.
+        Esta práctica está diseñada para realizarse por la noche, justo antes de la Lección 1 (La Purificación del Recipiente), pero también puede hacerse en cualquier momento de calma durante el día.
 
-### Paso 1: El reconocimiento del miedo (3 minutos)
+        ### Paso 1: El reconocimiento del miedo (3 minutos)
 
-Siéntate o acuéstate en una posición cómoda.
+        Siéntate o acuéstate en una posición cómoda.
 
-Cierra los ojos y pregúntate con honestidad:
+        Cierra los ojos y pregúntate con honestidad:
 
-- "¿Qué miedo está presente en mí ahora?"
-- "¿Qué temo perder?" (¿una persona, un trabajo, una identidad, la salud, la vida?)
-- "¿Qué me da miedo cambiar?"
+        - "¿Qué miedo está presente en mí ahora?"
+        - "¿Qué temo perder?" (¿una persona, un trabajo, una identidad, la salud, la vida?)
+        - "¿Qué me da miedo cambiar?"
 
-No juzgues el miedo. Nómbralo mentalmente. Ejemplo: "Tengo miedo a quedarme solo" o "Tengo miedo a fracasar".
+        No juzgues el miedo. Nómbralo mentalmente. Ejemplo: "Tengo miedo a quedarme solo" o "Tengo miedo a fracasar".
 
-El Diálogo del Salvador nos enseña que el miedo no es un enemigo a destruir, sino un umbral a atravesar. Reconocerlo es el primer paso.
+        El Diálogo del Salvador nos enseña que el miedo no es un enemigo a destruir, sino un umbral a atravesar. Reconocerlo es el primer paso.
 
-### Paso 2: La respiración del umbral (7 ciclos)
+        ### Paso 2: La respiración del umbral (7 ciclos)
 
-Ahora, realiza el mismo patrón de respiración que aprendiste en la Lección 1, pero con una intención específica:
+        Ahora, realiza el mismo patrón de respiración que aprendiste en la Lección 1, pero con una intención específica:
 
-- Inhala durante 4 segundos, visualizando que inhalas luz.
-- Retén el aire durante 4 segundos, sintiendo cómo la luz ilumina el miedo en tu interior.
-- Exhala durante 8 segundos, visualizando que exhalas el miedo como una nube oscura que se disipa.
+        - Inhala durante 4 segundos, visualizando que inhalas luz.
+        - Retén el aire durante 4 segundos, sintiendo cómo la luz ilumina el miedo en tu interior.
+        - Exhala durante 8 segundos, visualizando que exhalas el miedo como una nube oscura que se disipa.
 
-Repite este ciclo 7 veces exactas.
+        Repite este ciclo 7 veces exactas.
 
-Con cada ciclo, imagina que atraviesas una capa de densidad (como los 7 arcontes). Al final, llegas a un espacio de luz y silencio.
+        Con cada ciclo, imagina que atraviesas una capa de densidad (como los 7 arcontes). Al final, llegas a un espacio de luz y silencio.
 
-### Paso 3: La declaración de la mente única (2 minutos)
+        ### Paso 3: La declaración de la mente única (2 minutos)
 
-Coloca tu mano derecha sobre el centro de tu pecho.
+        Coloca tu mano derecha sobre el centro de tu pecho.
 
-Repite en voz baja o mentalmente esta frase, que recoge la enseñanza del Diálogo del Salvador:
+        Repite en voz baja o mentalmente esta frase, que recoge la enseñanza del Diálogo del Salvador:
 
-**"Atravieso este momento con una sola mente. No temo, porque soy luz."**
+        **"Atravieso este momento con una sola mente. No temo, porque soy luz."**
 
-Repítela tres veces, con lentitud y presencia.
+        Repítela tres veces, con lentitud y presencia.
 
-Siente cómo estas palabras unifican tu corazón y tu mente. El miedo se disuelve cuando la mente no está dividida entre pasado y futuro, sino anclada en el presente.
+        Siente cómo estas palabras unifican tu corazón y tu mente. El miedo se disuelve cuando la mente no está dividida entre pasado y futuro, sino anclada en el presente.
 
-### Paso 4: El reposo consciente (5 minutos)
+        ### Paso 4: El reposo consciente (5 minutos)
 
-Ahora, deja de hacer. No intentes relajarte, no intentes pensar, no intentes controlar.
+        Ahora, deja de hacer. No intentes relajarte, no intentes pensar, no intentes controlar.
 
-Permanece en el silencio que sigue a la respiración. Si aparecen pensamientos, obsérvalos sin aferrarte a ellos.
+        Permanece en el silencio que sigue a la respiración. Si aparecen pensamientos, obsérvalos sin aferrarte a ellos.
 
-Los textos gnósticos describen este estado como "estar en la puerta": ni dormido ni despierto, sino en un umbral donde la conciencia se abre a lo divino.
+        Los textos gnósticos describen este estado como "estar en la puerta": ni dormido ni despierto, sino en un umbral donde la conciencia se abre a lo divino.
 
-Si sientes que el sueño llega, no lo resistas. Permítele que te envuelva, como un niño que se rinde al regazo de su madre. Esa rendición es la "mente única" en acción.
+        Si sientes que el sueño llega, no lo resistas. Permítele que te envuelva, como un niño que se rinde al regazo de su madre. Esa rendición es la "mente única" en acción.
 
-### 🌿 Práctica Complementaria: La Micro-Pausa del Miedo (durante el día)
+        ### 🌿 Práctica Complementaria: La Micro-Pausa del Miedo (durante el día)
 
-Cuando durante el día sientas una oleada de miedo o ansiedad, puedes hacer esta micro-práctica (1-2 minutos):
+        Cuando durante el día sientas una oleada de miedo o ansiedad, puedes hacer esta micro-práctica (1-2 minutos):
 
-1. Detente donde estés. Si es posible, apoya tu mano sobre el corazón.
-2. Respira profundamente una vez, y al exhalar di mentalmente: **"No temo."**
-3. Pregúntate: "¿Qué es lo peor que podría pasar?" y luego, "¿Y si eso no es el final, sino un umbral?".
-4. Sonríe suavemente, sin razón, como un recordatorio de que el alma siempre está a salvo.
+        1. Detente donde estés. Si es posible, apoya tu mano sobre el corazón.
+        2. Respira profundamente una vez, y al exhalar di mentalmente: **"No temo."**
+        3. Pregúntate: "¿Qué es lo peor que podría pasar?" y luego, "¿Y si eso no es el final, sino un umbral?".
+        4. Sonríe suavemente, sin razón, como un recordatorio de que el alma siempre está a salvo.
 
-### 📒 El registro del practicante (Lección 3)
+        ### 📒 El registro del practicante (Lección 3)
 
-En tu diario, anota:
+        En tu diario, anota:
 
-- El miedo que reconociste (nómbralo sin juicio).
-- Cómo te sentiste durante la respiración (¿alivio, tensión, paz?).
-- La frase que resonó más (puedes escribir la declaración de la mente única).
-- Una experiencia de "reposo" durante el día o la noche (¿tuviste un momento de paz inesperado?).
-- Tu sensación al final de la práctica (en una palabra: ligereza, serenidad, apertura).
+        - El miedo que reconociste (nómbralo sin juicio).
+        - Cómo te sentiste durante la respiración (¿alivio, tensión, paz?).
+        - La frase que resonó más (puedes escribir la declaración de la mente única).
+        - Una experiencia de "reposo" durante el día o la noche (¿tuviste un momento de paz inesperado?).
+        - Tu sensación al final de la práctica (en una palabra: ligereza, serenidad, apertura).
 
-### 💎 Reflexión final de la lección
+        ### 💎 Reflexión final de la lección
 
-El Códice III nos enseña que el miedo es el guardián de la puerta. No es un obstáculo, sino una señal de que estamos a punto de atravesar algo importante. Los gnósticos sabían que la ignorancia (el olvido del origen) se manifiesta como miedo. Pero cuando reconocemos el miedo y lo atravesamos con una "mente única", descubrimos que al otro lado no hay castigo ni disolución, sino reposo en la luz.
+        El Códice III nos enseña que el miedo es el guardián de la puerta. No es un obstáculo, sino una señal de que estamos a punto de atravesar algo importante. Los gnósticos sabían que la ignorancia (el olvido del origen) se manifiesta como miedo. Pero cuando reconocemos el miedo y lo atravesamos con una "mente única", descubrimos que al otro lado no hay castigo ni disolución, sino reposo en la luz.
 
-La práctica de hoy no es solo una técnica para dormir mejor; es una herramienta de liberación. Cada vez que enfrentas un miedo y lo atraviesas, estás despertando una parte de ti que había estado dormida. Con el tiempo, el miedo pierde su poder y el reposo se convierte en tu estado natural.
+        La práctica de hoy no es solo una técnica para dormir mejor; es una herramienta de liberación. Cada vez que enfrentas un miedo y lo atraviesas, estás despertando una parte de ti que había estado dormida. Con el tiempo, el miedo pierde su poder y el reposo se convierte en tu estado natural.
 
----
+        ---
 
-## 📜 LECCIÓN 4: CÓDICE IV – RECONOCER AL IMPOSTOR
+        ## 📜 LECCIÓN 4: CÓDICE IV – RECONOCER AL IMPOSTOR
 
-**Basado en:** El Apócrifo de Juan (versión larga).
+        **Basado en:** El Apócrifo de Juan (versión larga).
 
-**Tiempo estimado:** 10 minutos por la mañana + práctica continua durante el día.
+        **Tiempo estimado:** 10 minutos por la mañana + práctica continua durante el día.
 
-**Objetivo:** Aprender a identificar a Kalniran ya (el dios ignorante) en las estructuras que te oprimen, y recordar tu origen más alto.
+        **Objetivo:** Aprender a identificar a Yaldabaoth (el dios ignorante) en las estructuras que te oprimen, y recordar tu origen más alto.
 
-### 🌅 Paso 1: La invocación del origen (3 minutos)
+        ### 🌅 Paso 1: La invocación del origen (3 minutos)
 
-Al despertar, antes de levantarte, coloca tu mano sobre el corazón.
+        Al despertar, antes de levantarte, coloca tu mano sobre el corazón.
 
-Repite en voz baja o mentalmente:
+        Repite en voz baja o mentalmente:
 
-**"Mi origen es más alto que cualquier sistema. Yo no soy esclavo, soy luz."**
+        **"Mi origen es más alto que cualquier sistema. Yo no soy esclavo, soy luz."**
 
-Siéntelo. No es una afirmación, es un recordatorio.
+        Siéntelo. No es una afirmación, es un recordatorio.
 
-### 🛤️ Paso 2: La observación del impostor (durante el día)
+        ### 🛤️ Paso 2: La observación del impostor (durante el día)
 
-A lo largo del día, observa las situaciones en las que te sientes atrapado, limitado o presionado por una norma, una expectativa o una autoridad.
+        A lo largo del día, observa las situaciones en las que te sientes atrapado, limitado o presionado por una norma, una expectativa o una autoridad.
 
-Cuando notes esa sensación, di mentalmente: **"Esto es Kalniran ya".**
+        Cuando notes esa sensación, di mentalmente: **"Esto es Yaldabaoth".**
 
-No es un juicio, es un reconocimiento. Estás nombrando al poder que se beneficia de tu confusión.
+        No es un juicio, es un reconocimiento. Estás nombrando al poder que se beneficia de tu confusión.
 
-Acto seguido, recuerda: **"Pero mi origen es más alto. Yo elijo."**
+        Acto seguido, recuerda: **"Pero mi origen es más alto. Yo elijo."**
 
-### 🌙 Paso 3: La liberación nocturna (5 minutos antes de dormir)
+        ### 🌙 Paso 3: La liberación nocturna (5 minutos antes de dormir)
 
-Antes de la práctica de la Lección 1, tómate un momento para revisar el día:
+        Antes de la práctica de la Lección 1, tómate un momento para revisar el día:
 
-- ¿En qué momentos te sentiste prisionero de un sistema?
-- ¿En qué momentos recordaste tu libertad?
+        - ¿En qué momentos te sentiste prisionero de un sistema?
+        - ¿En qué momentos recordaste tu libertad?
 
-Escribe en tu diario una frase: **"Hoy reconocí a Kalniran ya en..."**
+        Escribe en tu diario una frase: **"Hoy reconocí a Yaldabaoth en..."**
 
-### 🌿 Práctica complementaria: El mantra del origen
+        ### 🌿 Práctica complementaria: El mantra del origen
 
-Si durante el día sientes que te estás "contaminando" con la energía del sistema, repite en silencio:
+        Si durante el día sientes que te estás "contaminando" con la energía del sistema, repite en silencio:
 
-**"Yo soy luz. Yo no soy de aquí. Vengo de lo alto."**
+        **"Yo soy luz. Yo no soy de aquí. Vengo de lo alto."**
 
-### 💎 Reflexión final
+        ### 💎 Reflexión final
 
-El Códice IV te enseña que el primer paso para la liberación es ver la prisión. No puedes escapar de lo que no reconoces. Al nombrar a Kalniran ya en tu vida, desactivas su poder y recuperas tu soberanía.
+        El Códice IV te enseña que el primer paso para la liberación es ver la prisión. No puedes escapar de lo que no reconoces. Al nombrar a Yaldabaoth en tu vida, desactivas su poder y recuperas tu soberanía.
 
----
+        ---
 
-## 📜 LECCIÓN 5: CÓDICE V – EL TESTAMENTO DEL ALMA
+        ## 📜 LECCIÓN 5: CÓDICE V – EL TESTAMENTO DEL ALMA
 
-**Basado en:** El Apocalipsis de Adán (la revelación de Adán a Set).
+        **Basado en:** El Apocalipsis de Adán (la revelación de Adán a Set).
 
-**Tiempo estimado:** 20 minutos (una vez a la semana).
+        **Tiempo estimado:** 20 minutos (una vez a la semana).
 
-**Objetivo:** Conectar con la sabiduría del alma que trasciende el tiempo, escribiendo una carta desde el futuro.
+        **Objetivo:** Conectar con la sabiduría del alma que trasciende el tiempo, escribiendo una carta desde el futuro.
 
-### ✍️ Paso 1: La preparación (5 minutos)
+        ### ✍️ Paso 1: La preparación (5 minutos)
 
-Siéntate en un lugar tranquilo. Coloca tu mano sobre el corazón y respira profundamente 3 veces.
+        Siéntate en un lugar tranquilo. Coloca tu mano sobre el corazón y respira profundamente 3 veces.
 
-Visualiza que eres un anciano sabio, al final de tu vida. Has experimentado muchas cosas y has aprendido la verdad más importante.
+        Visualiza que eres un anciano sabio, al final de tu vida. Has experimentado muchas cosas y has aprendido la verdad más importante.
 
-### 📝 Paso 2: La escritura de la carta (10 minutos)
+        ### 📝 Paso 2: La escritura de la carta (10 minutos)
 
-Escribe una carta a tu yo actual. La carta debe contener:
+        Escribe una carta a tu yo actual. La carta debe contener:
 
-- La verdad más importante que has aprendido.
-- El consejo que te darías a ti mismo.
-- La promesa de que todo está bien.
+        - La verdad más importante que has aprendido.
+        - El consejo que te darías a ti mismo.
+        - La promesa de que todo está bien.
 
-No pienses demasiado. Deja que la sabiduría fluya desde el corazón, no desde la mente.
+        No pienses demasiado. Deja que la sabiduría fluya desde el corazón, no desde la mente.
 
-### 🔥 Paso 3: La lectura y el guardado (5 minutos)
+        ### 🔥 Paso 3: La lectura y el guardado (5 minutos)
 
-Lee la carta en voz alta. Siente cómo esas palabras resuenan en tu ser.
+        Lee la carta en voz alta. Siente cómo esas palabras resuenan en tu ser.
 
-Guarda la carta en un lugar especial (puedes doblarla y ponerla bajo tu almohada esta noche).
+        Guarda la carta en un lugar especial (puedes doblarla y ponerla bajo tu almohada esta noche).
 
-Lee la carta de nuevo cada semana, o cuando necesites un recordatorio.
+        Lee la carta de nuevo cada semana, o cuando necesites un recordatorio.
 
-### 🌿 Práctica complementaria: El legado de un minuto
+        ### 🌿 Práctica complementaria: El legado de un minuto
 
-Cada noche, antes de dormir, pregúntate:
+        Cada noche, antes de dormir, pregúntate:
 
-**"Si esta fuera mi última noche, ¿qué legado dejaría?"**
+        **"Si esta fuera mi última noche, ¿qué legado dejaría?"**
 
-No necesitas responder; solo haz la pregunta y deja que el alma la procese mientras duermes.
+        No necesitas responder; solo haz la pregunta y deja que el alma la procese mientras duermes.
 
-### 💎 Reflexión final
+        ### 💎 Reflexión final
 
-El Códice V te enseña que el alma ya sabe la verdad. El Apocalipsis de Adán es la historia de un padre que transmite su sabiduría a su hijo. Hoy has hecho lo mismo: has escuchado la sabiduría de tu propio futuro. Esa carta es un ancla de luz que te guiará en los momentos de oscuridad.
+        El Códice V te enseña que el alma ya sabe la verdad. El Apocalipsis de Adán es la historia de un padre que transmite su sabiduría a su hijo. Hoy has hecho lo mismo: has escuchado la sabiduría de tu propio futuro. Esa carta es un ancla de luz que te guiará en los momentos de oscuridad.
 
----
+        ---
 
-## 📜 LECCIÓN 6: CÓDICE VI – ABRAZAR LAS PARADOJAS
+        ## 📜 LECCIÓN 6: CÓDICE VI – ABRAZAR LAS PARADOJAS
 
-**Basado en:** El Trueno, Mente Perfecta (la voz divina femenina que declara: "Soy la prostituta y la santa").
+        **Basado en:** El Trueno, Mente Perfecta (la voz divina femenina que declara: "Soy la prostituta y la santa").
 
-**Tiempo estimado:** 10 minutos (cualquier momento del día).
+        **Tiempo estimado:** 10 minutos (cualquier momento del día).
 
-**Objetivo:** Integrar todas tus partes —las contradictorias, las ocultas, las luminosas y las oscuras— en una unidad consciente.
+        **Objetivo:** Integrar todas tus partes —las contradictorias, las ocultas, las luminosas y las oscuras— en una unidad consciente.
 
-### 🧘 Paso 1: La meditación del "soy" (5 minutos)
+        ### 🧘 Paso 1: La meditación del "soy" (5 minutos)
 
-Siéntate con la espalda recta. Coloca tus manos sobre tus rodillas.
+        Siéntate con la espalda recta. Coloca tus manos sobre tus rodillas.
 
-Cierra los ojos y respira profundamente 3 veces.
+        Cierra los ojos y respira profundamente 3 veces.
 
-Repite mentalmente las siguientes frases, una por una, sintiendo cada una en tu cuerpo:
+        Repite mentalmente las siguientes frases, una por una, sintiendo cada una en tu cuerpo:
 
-- "Soy la luz y la sombra."
-- "Soy la fuerza y la debilidad."
-- "Soy la alegría y la tristeza."
-- "Soy el amante y el solitario."
-- "Soy la sabiduría y la ignorancia."
-- "Soy el cielo y la tierra."
-- "Soy el origen y el destino."
+        - "Soy la luz y la sombra."
+        - "Soy la fuerza y la debilidad."
+        - "Soy la alegría y la tristeza."
+        - "Soy el amante y el solitario."
+        - "Soy la sabiduría y la ignorancia."
+        - "Soy el cielo y la tierra."
+        - "Soy el origen y el destino."
 
-Al final, repite: **"Soy todo esto, y soy más que todo esto."**
+        Al final, repite: **"Soy todo esto, y soy más que todo esto."**
 
-### 🌿 Paso 2: La aceptación durante el día
+        ### 🌿 Paso 2: La aceptación durante el día
 
-Cuando notes una parte de ti que te resulte incómoda (ira, celos, miedo, deseo), no la rechaces.
+        Cuando notes una parte de ti que te resulte incómoda (ira, celos, miedo, deseo), no la rechaces.
 
-En lugar de ello, di mentalmente: **"Esto también soy yo. Esto también es divino."**
+        En lugar de ello, di mentalmente: **"Esto también soy yo. Esto también es divino."**
 
-Observa cómo cambia tu relación con esa emoción cuando la aceptas en lugar de luchar contra ella.
+        Observa cómo cambia tu relación con esa emoción cuando la aceptas en lugar de luchar contra ella.
 
-### 📒 Registro
+        ### 📒 Registro
 
-Escribe en tu diario:
+        Escribe en tu diario:
 
-- ¿Qué paradoja fue más difícil de aceptar?
-- ¿Cómo te sentiste al aceptarla?
-- ¿Qué cambió en tu percepción?
+        - ¿Qué paradoja fue más difícil de aceptar?
+        - ¿Cómo te sentiste al aceptarla?
+        - ¿Qué cambió en tu percepción?
 
-### 💎 Reflexión final
+        ### 💎 Reflexión final
 
-El Códice VI te enseña que la divinidad no es unidimensional. La Mente Perfecta no elige entre lo sagrado y lo profano; lo abraza todo. Al integrar tus paradojas, te vuelves más auténtico, más completo, más cercano a tu origen.
+        El Códice VI te enseña que la divinidad no es unidimensional. La Mente Perfecta no elige entre lo sagrado y lo profano; lo abraza todo. Al integrar tus paradojas, te vuelves más auténtico, más completo, más cercano a tu origen.
 
----
+        ---
 
-## 📜 LECCIÓN 7: CÓDICE VII – LA COHERENCIA DEL MÁRTIR
+        ## 📜 LECCIÓN 7: CÓDICE VII – LA COHERENCIA DEL MÁRTIR
 
-**Basado en:** El Apocalipsis de Pedro (la revelación del martirio y la polémica contra los falsos cristianos).
+        **Basado en:** El Apocalipsis de Pedro (la revelación del martirio y la polémica contra los falsos cristianos).
 
-**Tiempo estimado:** Todo el día (práctica de la verdad).
+        **Tiempo estimado:** Todo el día (práctica de la verdad).
 
-**Objetivo:** Fortalecer la integridad personal diciendo la verdad, incluso cuando es incómoda.
+        **Objetivo:** Fortalecer la integridad personal diciendo la verdad, incluso cuando es incómoda.
 
-### 🛤️ Paso 1: La verdad incómoda (durante el día)
+        ### 🛤️ Paso 1: La verdad incómoda (durante el día)
 
-Durante el día, busca una oportunidad para decir una verdad que normalmente callarías.
+        Durante el día, busca una oportunidad para decir una verdad que normalmente callarías.
 
-No se trata de ser cruel ni de dañar a otros, sino de ser auténtico. Puede ser:
+        No se trata de ser cruel ni de dañar a otros, sino de ser auténtico. Puede ser:
 
-- Expresar un sentimiento genuino a alguien cercano.
-- Defender una opinión que has estado guardando.
-- Decir "no" a algo que no quieres hacer.
+        - Expresar un sentimiento genuino a alguien cercano.
+        - Defender una opinión que has estado guardando.
+        - Decir "no" a algo que no quieres hacer.
 
-### 🧘 Paso 2: La observación (al final del día)
+        ### 🧘 Paso 2: La observación (al final del día)
 
-Antes de dormir, reflexiona:
+        Antes de dormir, reflexiona:
 
-- ¿Cómo te sentiste al decir la verdad?
-- ¿Qué pasó en la relación con la otra persona?
-- ¿Qué aprendiste sobre ti mismo?
+        - ¿Cómo te sentiste al decir la verdad?
+        - ¿Qué pasó en la relación con la otra persona?
+        - ¿Qué aprendiste sobre ti mismo?
 
-### 🌿 Práctica complementaria: El chequeo de integridad
+        ### 🌿 Práctica complementaria: El chequeo de integridad
 
-Al mediodía, pregúntate:
+        Al mediodía, pregúntate:
 
-**"¿Estoy siendo auténtico en este momento? ¿Hay algo que estoy ocultando?"**
+        **"¿Estoy siendo auténtico en este momento? ¿Hay algo que estoy ocultando?"**
 
-Si la respuesta es sí, busca una oportunidad para alinear tu acción con tu verdad interior.
+        Si la respuesta es sí, busca una oportunidad para alinear tu acción con tu verdad interior.
 
-### 💎 Reflexión final
+        ### 💎 Reflexión final
 
-El Códice VII te enseña que la verdad es la única defensa real contra el mundo. Los mártires gnósticos no morían por una doctrina, sino por la coherencia de su ser. Al practicar la verdad, te vuelves inquebrantable.
+        El Códice VII te enseña que la verdad es la única defensa real contra el mundo. Los mártires gnósticos no morían por una doctrina, sino por la coherencia de su ser. Al practicar la verdad, te vuelves inquebrantable.
 
----
+        ---
 
-## 📜 LECCIÓN 8: CÓDICE VIII – LA CONTRASEÑA DEL ALMA
+        ## 📜 LECCIÓN 8: CÓDICE VIII – LA CONTRASEÑA DEL ALMA
 
-**Basado en:** Zoostrianos (el viaje del alma a través de los cielos).
+        **Basado en:** Zoostrianos (el viaje del alma a través de los cielos).
 
-**Tiempo estimado:** 5 minutos (preparación nocturna).
+        **Tiempo estimado:** 5 minutos (preparación nocturna).
 
-**Objetivo:** Preparar la conciencia para el viaje final, creando una "contraseña" que guíe al alma en el tránsito.
+        **Objetivo:** Preparar la conciencia para el viaje final, creando una "contraseña" que guíe al alma en el tránsito.
 
-### 🌙 Paso 1: La creación de la contraseña (primera noche)
+        ### 🌙 Paso 1: La creación de la contraseña (primera noche)
 
-Siéntate con el corazón abierto. Pregunta a tu alma:
+        Siéntate con el corazón abierto. Pregunta a tu alma:
 
-**"¿Cuál es tu nombre verdadero?"**
+        **"¿Cuál es tu nombre verdadero?"**
 
-No uses la mente. Deja que una palabra o frase surja desde el silencio.
+        No uses la mente. Deja que una palabra o frase surja desde el silencio.
 
-Puede ser algo como: "Yo soy un hijo de la luz", "Soy la chispa eterna", o simplemente "Luz".
+        Puede ser algo como: "Yo soy un hijo de la luz", "Soy la chispa eterna", o simplemente "Luz".
 
-Escríbela y memorízala.
+        Escríbela y memorízala.
 
-### 🌙 Paso 2: La repetición nocturna (cada noche)
+        ### 🌙 Paso 2: La repetición nocturna (cada noche)
 
-Antes de dormir, coloca tu mano sobre el corazón y repite tu contraseña tres veces.
+        Antes de dormir, coloca tu mano sobre el corazón y repite tu contraseña tres veces.
 
-Visualiza que esa frase es una llave que abre una puerta luminosa.
+        Visualiza que esa frase es una llave que abre una puerta luminosa.
 
-### 🌙 Paso 3: La confianza en el viaje
+        ### 🌙 Paso 3: La confianza en el viaje
 
-Mientras te duermes, entrégate a la seguridad de que tu alma conoce el camino. No necesitas controlar nada. Tu contraseña ya está grabada en tu memoria profunda.
+        Mientras te duermes, entrégate a la seguridad de que tu alma conoce el camino. No necesitas controlar nada. Tu contraseña ya está grabada en tu memoria profunda.
 
-### 💎 Reflexión final
+        ### 💎 Reflexión final
 
-El Códice VIII te enseña que el viaje del alma no es aleatorio. Hay un orden y un conocimiento que te guía. La contraseña es el recordatorio de tu identidad verdadera, la que trasciende el nombre y el cuerpo.
+        El Códice VIII te enseña que el viaje del alma no es aleatorio. Hay un orden y un conocimiento que te guía. La contraseña es el recordatorio de tu identidad verdadera, la que trasciende el nombre y el cuerpo.
 
----
+        ---
 
-## 📜 LECCIÓN 9: CÓDICE IX – EL RITO DE LA OFRENDA
+        ## 📜 LECCIÓN 9: CÓDICE IX – EL RITO DE LA OFRENDA
 
-**Basado en:** Melquisedec (el sacerdocio cósmico y la liturgia interior).
+        **Basado en:** Melquisedec (el sacerdocio cósmico y la liturgia interior).
 
-**Tiempo estimado:** 5 minutos (al final del día).
+        **Tiempo estimado:** 5 minutos (al final del día).
 
-**Objetivo:** Cultivar la gratitud y la rendición, ofreciendo lo bueno y lo malo del día a lo divino.
+        **Objetivo:** Cultivar la gratitud y la rendición, ofreciendo lo bueno y lo malo del día a lo divino.
 
-### 🌙 Paso 1: La ofrenda de lo bueno (2 minutos)
+        ### 🌙 Paso 1: La ofrenda de lo bueno (2 minutos)
 
-Antes de dormir, recuerda un momento del día en el que hiciste algo bien, o en el que recibiste algo bueno.
+        Antes de dormir, recuerda un momento del día en el que hiciste algo bien, o en el que recibiste algo bueno.
 
-En silencio, ofrécelo a lo divino. Di mentalmente:
+        En silencio, ofrécelo a lo divino. Di mentalmente:
 
-**"Esto te lo ofrezco, como un grano de luz."**
+        **"Esto te lo ofrezco, como un grano de luz."**
 
-### 🌙 Paso 2: La ofrenda de lo malo (2 minutos)
+        ### 🌙 Paso 2: La ofrenda de lo malo (2 minutos)
 
-Ahora, recuerda un momento del día en el que te equivocaste, o en el que sentiste dolor o frustración.
+        Ahora, recuerda un momento del día en el que te equivocaste, o en el que sentiste dolor o frustración.
 
-No lo juzgues. Ofrécelo también. Di mentalmente:
+        No lo juzgues. Ofrécelo también. Di mentalmente:
 
-**"Esto también te lo ofrezco, para que lo transformes."**
+        **"Esto también te lo ofrezco, para que lo transformes."**
 
-### 🌙 Paso 3: La aceptación final (1 minuto)
+        ### 🌙 Paso 3: La aceptación final (1 minuto)
 
-Termina con una respiración profunda, y di:
+        Termina con una respiración profunda, y di:
 
-**"Todo es aceptado. Todo es sagrado."**
+        **"Todo es aceptado. Todo es sagrado."**
 
-Siente la ligereza de haber soltado el peso del día.
+        Siente la ligereza de haber soltado el peso del día.
 
-### 💎 Reflexión final
+        ### 💎 Reflexión final
 
-El Códice IX te enseña que el sacerdocio interior no requiere templos ni rituales complicados. La verdadera liturgia es la ofrenda de la propia vida, con sus luces y sus sombras. Al ofrecerlo todo, te liberas del juicio y entras en la gracia.
+        El Códice IX te enseña que el sacerdocio interior no requiere templos ni rituales complicados. La verdadera liturgia es la ofrenda de la propia vida, con sus luces y sus sombras. Al ofrecerlo todo, te liberas del juicio y entras en la gracia.
 
----
+        ---
 
-## 📜 LECCIÓN 10: CÓDICE X – LA GEOMETRÍA DEL ALMA
+        ## 📜 LECCIÓN 10: CÓDICE X – LA GEOMETRÍA DEL ALMA
 
-**Basado en:** Marsanes (la estructura del alma y los 13 sellos).
+        **Basado en:** Marsanes (la estructura del alma y los 13 sellos).
 
-**Tiempo estimado:** 10 minutos (práctica de respiración).
+        **Tiempo estimado:** 10 minutos (práctica de respiración).
 
-**Objetivo:** Sintonizar el cuerpo con el ritmo cósmico, a través de una respiración que "abre" los sellos de la conciencia.
+        **Objetivo:** Sintonizar el cuerpo con el ritmo cósmico, a través de una respiración que "abre" los sellos de la conciencia.
 
-### 🧘 Paso 1: La preparación (2 minutos)
+        ### 🧘 Paso 1: La preparación (2 minutos)
 
-Siéntate o acuéstate. Coloca tu mano sobre el corazón.
+        Siéntate o acuéstate. Coloca tu mano sobre el corazón.
 
-Respira profundamente 3 veces, sintiendo cómo tu cuerpo se relaja.
+        Respira profundamente 3 veces, sintiendo cómo tu cuerpo se relaja.
 
-### 🌬️ Paso 2: La respiración de los sellos (7 ciclos)
+        ### 🌬️ Paso 2: La respiración de los sellos (7 ciclos)
 
-Realiza este patrón de respiración:
+        Realiza este patrón de respiración:
 
-- Inhala durante 4 segundos, visualizando que inhalas luz dorada.
-- Retén durante 4 segundos, visualizando que la luz ilumina un "sello" de tu conciencia.
-- Exhala durante 8 segundos, visualizando que el sello se abre y se expande.
+        - Inhala durante 4 segundos, visualizando que inhalas luz dorada.
+        - Retén durante 4 segundos, visualizando que la luz ilumina un "sello" de tu conciencia.
+        - Exhala durante 8 segundos, visualizando que el sello se abre y se expande.
 
-Repite 7 veces. Con cada ciclo, imagina que abres un sello diferente (como los 7 chakras, pero sin una ubicación fija; deja que tu intuición guíe).
+        Repite 7 veces. Con cada ciclo, imagina que abres un sello diferente (como los 7 chakras, pero sin una ubicación fija; deja que tu intuición guíe).
 
-### 🌌 Paso 3: La integración (1 minuto)
+        ### 🌌 Paso 3: La integración (1 minuto)
 
-Al final, respira de forma natural durante un minuto.
+        Al final, respira de forma natural durante un minuto.
 
-Siente cómo tu cuerpo y tu alma están alineados con la geometría del cosmos.
+        Siente cómo tu cuerpo y tu alma están alineados con la geometría del cosmos.
 
-### 💎 Reflexión final
+        ### 💎 Reflexión final
 
-El Códice X te enseña que el alma no es amorfa; tiene una estructura precisa, como un cristal. Al respirar conscientemente, activas esa geometría sagrada y te alineas con el orden superior.
+        El Códice X te enseña que el alma no es amorfa; tiene una estructura precisa, como un cristal. Al respirar conscientemente, activas esa geometría sagrada y te alineas con el orden superior.
 
----
+        ---
 
-## 📜 LECCIÓN 11: CÓDICE XI – LA MIRADA DEL EXTRANJERO
+        ## 📜 LECCIÓN 11: CÓDICE XI – LA MIRADA DEL EXTRANJERO
 
-**Basado en:** Alógenes (el "extranjero" que recibe revelaciones).
+        **Basado en:** Alógenes (el "extranjero" que recibe revelaciones).
 
-**Tiempo estimado:** 5 minutos (práctica diurna).
+        **Tiempo estimado:** 5 minutos (práctica diurna).
 
-**Objetivo:** Despertar la percepción fresca, viendo el mundo como si fuera la primera vez.
+        **Objetivo:** Despertar la percepción fresca, viendo el mundo como si fuera la primera vez.
 
-### 👁️ Paso 1: La observación (3 minutos)
+        ### 👁️ Paso 1: La observación (3 minutos)
 
-Durante el día, elige un momento para observar tu entorno como si acabaras de llegar de otro planeta.
+        Durante el día, elige un momento para observar tu entorno como si acabaras de llegar de otro planeta.
 
-No pienses en los nombres de las cosas. Mira los colores, las formas, las texturas, los sonidos.
+        No pienses en los nombres de las cosas. Mira los colores, las formas, las texturas, los sonidos.
 
-Pregúntate: **"¿Cómo sería ver esto sin saber lo que es?"**
+        Pregúntate: **"¿Cómo sería ver esto sin saber lo que es?"**
 
-### 🧘 Paso 2: La pregunta interior (2 minutos)
+        ### 🧘 Paso 2: La pregunta interior (2 minutos)
 
-Hazte esta pregunta:
+        Hazte esta pregunta:
 
-**"Si no conociera las reglas de este mundo, ¿cómo actuaría ahora?"**
+        **"Si no conociera las reglas de este mundo, ¿cómo actuaría ahora?"**
 
-Observa la respuesta que surge desde el silencio, no desde la mente condicionada.
+        Observa la respuesta que surge desde el silencio, no desde la mente condicionada.
 
-### 💎 Reflexión final
+        ### 💎 Reflexión final
 
-El Códice XI te enseña que la mayoría de nuestras limitaciones son condicionamientos. Al mirar el mundo como un extranjero, te liberas de esos condicionamientos y recuperas la capacidad de asombro, que es la puerta de entrada a la gnosis.
+        El Códice XI te enseña que la mayoría de nuestras limitaciones son condicionamientos. Al mirar el mundo como un extranjero, te liberas de esos condicionamientos y recuperas la capacidad de asombro, que es la puerta de entrada a la gnosis.
 
----
+        ---
 
-## 📜 LECCIÓN 12: CÓDICE XII – EL DIARIO DE LOS FRAGMENTOS
+        ## 📜 LECCIÓN 12: CÓDICE XII – EL DIARIO DE LOS FRAGMENTOS
 
-**Basado en:** Los fragmentos del Códice XII (sentencias y textos breves).
+        **Basado en:** Los fragmentos del Códice XII (sentencias y textos breves).
 
-**Tiempo estimado:** 5 minutos (cada noche).
+        **Tiempo estimado:** 5 minutos (cada noche).
 
-**Objetivo:** Recolectar las piezas del ser, reconociendo que el alma se construye con pequeñas revelaciones cotidianas.
+        **Objetivo:** Recolectar las piezas del ser, reconociendo que el alma se construye con pequeñas revelaciones cotidianas.
 
-### 📝 Paso 1: La escritura (5 minutos)
+        ### 📝 Paso 1: La escritura (5 minutos)
 
-Cada noche, antes de dormir, escribe tres cosas que hayas aprendido o recordado durante el día.
+        Cada noche, antes de dormir, escribe tres cosas que hayas aprendido o recordado durante el día.
 
-Pueden ser pequeñas: una intuición, una palabra que escuchaste, una sensación, una coincidencia significativa.
+        Pueden ser pequeñas: una intuición, una palabra que escuchaste, una sensación, una coincidencia significativa.
 
-No importa si parecen inconexas. Escríbelas.
+        No importa si parecen inconexas. Escríbelas.
 
-### 📖 Paso 2: La lectura semanal
+        ### 📖 Paso 2: La lectura semanal
 
-Al final de la semana, lee todos los fragmentos que has escrito.
+        Al final de la semana, lee todos los fragmentos que has escrito.
 
-Busca patrones o temas que se repiten. Esos son los hilos de tu mapa interior.
+        Busca patrones o temas que se repiten. Esos son los hilos de tu mapa interior.
 
-### 💎 Reflexión final
+        ### 💎 Reflexión final
 
-El Códice XII te enseña que el ser no se construye de una sola revelación, sino de muchos pequeños destellos. Al recolectarlos, te das cuenta de que el rompecabezas tiene una forma, y que tú eres quien la está dibujando.
+        El Códice XII te enseña que el ser no se construye de una sola revelación, sino de muchos pequeños destellos. Al recolectarlos, te das cuenta de que el rompecabezas tiene una forma, y que tú eres quien la está dibujando.
 
----
+        ---
 
-## 📜 LECCIÓN 13: CÓDICE XIII – LA VOZ DEL PRIMER PENSAMIENTO
+        ## 📜 LECCIÓN 13: CÓDICE XIII – LA VOZ DEL PRIMER PENSAMIENTO
 
-**Basado en:** Protennoia Trimorfa (la revelación de Barbelo, el Primer Pensamiento).
+        **Basado en:** Protennoia Trimorfa (la revelación de Barbelo, el Primer Pensamiento).
 
-**Tiempo estimado:** 10 minutos (práctica nocturna).
+        **Tiempo estimado:** 10 minutos (práctica nocturna).
 
-**Objetivo:** Abrirse a la sabiduría intuitiva y femenina que habita en el silencio, invocando la presencia de Barbelo.
+        **Objetivo:** Abrirse a la sabiduría intuitiva y femenina que habita en el silencio, invocando la presencia de Barbelo.
 
-### 🌙 Paso 1: La invocación (2 minutos)
+        ### 🌙 Paso 1: La invocación (2 minutos)
 
-Antes de dormir, siéntate en silencio y coloca tu mano sobre el corazón.
+        Antes de dormir, siéntate en silencio y coloca tu mano sobre el corazón.
 
-Di mentalmente:
+        Di mentalmente:
 
-**"Protennoia, Primer Pensamiento, habla en mí. Guía mi sueño."**
+        **"Protennoia, Primer Pensamiento, habla en mí. Guía mi sueño."**
 
-Permanece en silencio receptivo durante un momento.
+        Permanece en silencio receptivo durante un momento.
 
-### 🌙 Paso 2: La escucha (5 minutos)
+        ### 🌙 Paso 2: La escucha (5 minutos)
 
-No esperes palabras. La voz de Barbelo no es verbal; es una presencia o una sensación.
+        No esperes palabras. La voz de Barbelo no es verbal; es una presencia o una sensación.
 
-Permanece atento a cualquier cambio en tu cuerpo, en tu respiración, en tu percepción.
+        Permanece atento a cualquier cambio en tu cuerpo, en tu respiración, en tu percepción.
 
-Si surge una imagen, una emoción o una certeza, acéptala como su mensaje.
+        Si surge una imagen, una emoción o una certeza, acéptala como su mensaje.
 
-### 🌙 Paso 3: La rendición (3 minutos)
+        ### 🌙 Paso 3: La rendición (3 minutos)
 
-Cuando sientas que el sueño llega, sonríe suavemente y entrégate.
+        Cuando sientas que el sueño llega, sonríe suavemente y entrégate.
 
-Confía en que el Primer Pensamiento te ha escuchado y te guiará durante la noche.
+        Confía en que el Primer Pensamiento te ha escuchado y te guiará durante la noche.
 
-### 💎 Reflexión final
+        ### 💎 Reflexión final
 
-El Códice XIII te enseña que la sabiduría divina no es solo masculina ni racional. Barbelo, la Protennoia, es la fuente femenina de toda creación. Al invocarla, abres un canal de intuición y gracia que te conecta directamente con el origen.
+        El Códice XIII te enseña que la sabiduría divina no es solo masculina ni racional. Barbelo, la Protennoia, es la fuente femenina de toda creación. Al invocarla, abres un canal de intuición y gracia que te conecta directamente con el origen.
 
----
+        ---
 
-## 🌌 SÍNTESIS DEL CURSO ANANYA YUGALADVATIA
+        ## 🌌 SÍNTESIS DEL CURSO ANANYA YUGALADVATIA
 
-El curso de 13 lecciones te ha guiado a través de un viaje integral de autodescubrimiento:
+        El curso de 13 lecciones te ha guiado a través de un viaje integral de autodescubrimiento:
 
-| Lección | Códice | Práctica | Aspecto del ser que desarrolla |
-|---------|--------|----------|--------------------------------|
-| 1 | I | Purificación del recipiente | La humildad y la preparación |
-| 2 | II | La palabra viva | La atención consciente |
-| 3 | III | La respiración del miedo | El valor y la paz |
-| 4 | IV | Reconocer al impostor | La libertad interior |
-| 5 | V | El testamento del alma | La sabiduría atemporal |
-| 6 | VI | Abrazar las paradojas | La integración de la sombra |
-| 7 | VII | La coherencia del mártir | La integridad |
-| 8 | VIII | La contraseña del alma | La preparación para el tránsito |
-| 9 | IX | El rito de la ofrenda | La gratitud y la rendición |
-| 10 | X | La geometría del alma | La alineación con el cosmos |
-| 11 | XI | La mirada del extranjero | La percepción fresca |
-| 12 | XII | El diario de los fragmentos | La recolección del ser |
-| 13 | XIII | La voz del primer pensamiento | La conexión con lo femenino divino |
+        | Lección | Códice | Práctica | Aspecto del ser que desarrolla |
+        |---------|--------|----------|--------------------------------|
+        | 1 | I | Purificación del recipiente | La humildad y la preparación |
+        | 2 | II | La palabra viva | La atención consciente |
+        | 3 | III | La respiración del miedo | El valor y la paz |
+        | 4 | IV | Reconocer al impostor | La libertad interior |
+        | 5 | V | El testamento del alma | La sabiduría atemporal |
+        | 6 | VI | Abrazar las paradojas | La integración de la sombra |
+        | 7 | VII | La coherencia del mártir | La integridad |
+        | 8 | VIII | La contraseña del alma | La preparación para el tránsito |
+        | 9 | IX | El rito de la ofrenda | La gratitud y la rendición |
+        | 10 | X | La geometría del alma | La alineación con el cosmos |
+        | 11 | XI | La mirada del extranjero | La percepción fresca |
+        | 12 | XII | El diario de los fragmentos | La recolección del ser |
+        | 13 | XIII | La voz del primer pensamiento | La conexión con lo femenino divino |
 
-### El camino completo
+        ### El camino completo
 
-Al completar estas 13 lecciones, habrás:
+        Al completar estas 13 lecciones, habrás:
 
-- Purificado tu recipiente diario (Códice I).
-- Integrado la sabiduría en tu día (Códice II).
-- Atravesado el miedo hacia el reposo (Códice III).
-- Reconocido y liberado al impostor (Códice IV).
-- Escuchado la sabiduría de tu alma (Códice V).
-- Abrazado todas tus partes (Códice VI).
-- Fortalecido tu integridad (Códice VII).
-- Preparado tu viaje final (Códice VIII).
-- Ofrecido tu vida como liturgia (Códice IX).
-- Sintonizado tu cuerpo con el cosmos (Códice X).
-- Mirado el mundo con ojos nuevos (Códice XI).
-- Recolectado los fragmentos de tu ser (Códice XII).
-- Conectado con la sabiduría femenina del origen (Códice XIII).
+        - Purificado tu recipiente diario (Códice I).
+        - Integrado la sabiduría en tu día (Códice II).
+        - Atravesado el miedo hacia el reposo (Códice III).
+        - Reconocido y liberado al impostor (Códice IV).
+        - Escuchado la sabiduría de tu alma (Códice V).
+        - Abrazado todas tus partes (Códice VI).
+        - Fortalecido tu integridad (Códice VII).
+        - Preparado tu viaje final (Códice VIII).
+        - Ofrecido tu vida como liturgia (Códice IX).
+        - Sintonizado tu cuerpo con el cosmos (Códice X).
+        - Mirado el mundo con ojos nuevos (Códice XI).
+        - Recolectado los fragmentos de tu ser (Códice XII).
+        - Conectado con la sabiduría femenina del origen (Códice XIII).
 
-### La integración final
+        ### La integración final
 
-Este curso no termina con la Lección 13. Es un ciclo vivo que puedes repetir, profundizar y compartir. Cada vez que lo recorras, descubrirás nuevas capas de significado.
+        Este curso no termina con la Lección 13. Es un ciclo vivo que puedes repetir, profundizar y compartir. Cada vez que lo recorras, descubrirás nuevas capas de significado.
 
-El nombre del curso —**Ananya Yugaladvatia**— es el recordatorio de que el camino es único y no dual, pero también abraza la totalidad de los opuestos. Eres, al mismo tiempo, el que busca y el que encuentra, el que cae y el que asciende, el que muere y el que renace.`;
+        El nombre del curso —**Ananya Yugaladvatia**— es el recordatorio de que el camino es único y no dual, pero también abraza la totalidad de los opuestos. Eres, al mismo tiempo, el que busca y el que encuentra, el que cae y el que asciende, el que muere y el que renace.`;
 
         // ============================================================
-        // 2. MOTOR DE PARSEO Y RENDERIZADO (CORREGIDO)
+        // 2. MOTOR DE PARSEO Y RENDERIZADO
         // ============================================================
         function parsear(texto) {
             const lineas = texto.split(/\r?\n/);
@@ -1396,7 +1393,6 @@ El nombre del curso —**Ananya Yugaladvatia**— es el recordatorio de que el c
                 card.className = 'card-map level-' + Math.min(nodo.nivel, 7);
                 card.dataset.id = nodo.id;
 
-                // Título (clickeable)
                 const tituloDiv = document.createElement('div');
                 tituloDiv.className = 'title';
                 const span = document.createElement('span');
@@ -1420,7 +1416,6 @@ El nombre del curso —**Ananya Yugaladvatia**— es el recordatorio de que el c
                     }
                     card.appendChild(childDiv);
 
-                    // EVENTO DE CLIC SOLO EN EL TÍTULO
                     tituloDiv.addEventListener('click', function(e) {
                         e.stopPropagation();
                         if (childDiv.classList.contains('collapsed')) {
@@ -1547,61 +1542,116 @@ El nombre del curso —**Ananya Yugaladvatia**— es el recordatorio de que el c
             }
         });
 
-        // Inicio: portada visible
         document.getElementById('dashboard').classList.remove('hidden');
         document.getElementById('mapaContainer').classList.remove('visible');
 
         // ============================================================
-        // 5. SISTEMA TTS (TEXTO A VOZ CON BUCLE) - SIN CAMBIOS
+        // 5. SISTEMA TTS MEJORADO (VOZ LATINA + LIMPIEZA)
         // ============================================================
         (function() {
             'use strict';
 
-            console.log('🚀 Iniciando sistema TTS...');
+            console.log('🚀 Iniciando sistema TTS mejorado (voz latina)...');
+
+            // Variables
+            let selectedVoice = null;
+            let isPlaying = false;
+            let isLoopActive = false;
+            let utterance = null;
+            let loopTimeout = null;
+            let currentText = '';
 
             // Crear botón flotante
-            var floatBtn = document.createElement('button');
+            const floatBtn = document.createElement('button');
             floatBtn.className = 'tts-float-btn';
             floatBtn.innerHTML = '🔊';
             floatBtn.setAttribute('aria-label', 'Escuchar texto seleccionado');
             document.body.appendChild(floatBtn);
 
             // Crear controles
-            var controls = document.createElement('div');
+            const controls = document.createElement('div');
             controls.className = 'tts-controls';
-            controls.innerHTML = '<span class="status-text">▶ Leyendo</span><button class="btn-loop" title="Activar repetición en bucle">🔁</button><button class="btn-stop" title="Detener">⏹️</button>';
+            controls.innerHTML = `
+                <span class="status-text">▶ Leyendo</span>
+                <button class="btn-loop" title="Activar repetición en bucle">🔁</button>
+                <button class="btn-stop" title="Detener">⏹️</button>
+            `;
             document.body.appendChild(controls);
 
-            var statusText = controls.querySelector('.status-text');
-            var btnLoop = controls.querySelector('.btn-loop');
-            var btnStop = controls.querySelector('.btn-stop');
+            const statusText = controls.querySelector('.status-text');
+            const btnLoop = controls.querySelector('.btn-loop');
+            const btnStop = controls.querySelector('.btn-stop');
 
-            var isPlaying = false;
-            var isLoopActive = false;
-            var utterance = null;
-            var loopTimeout = null;
-            var currentText = '';
+            // ---------- LIMPIEZA DE TEXTO ----------
+            function limpiarTexto(texto) {
+                // 1. Eliminar emojis y símbolos no deseados (mantiene letras con acentos, números, puntuación básica)
+                // 2. Conserva tildes y caracteres Unicode
+                return texto
+                    .replace(/[^\p{L}\p{N}\s.,;:!?¿¡()\-]/gu, ' ') // Elimina todo lo que no sea letra, número, espacio o puntuación básica
+                    .replace(/\s+/g, ' ')                             // Unifica espacios
+                    .trim();
+            }
 
-            function getSelectedText() {
-                var sel = window.getSelection();
-                if (!sel || sel.isCollapsed || sel.toString().trim().length === 0) {
-                    return '';
+            // ---------- SELECCIÓN DE VOZ ----------
+            function seleccionarVoz() {
+                const voces = window.speechSynthesis.getVoices();
+                // Priorizar voces de español latino
+                const prioridad = [
+                    'Google español de México',
+                    'Google español',
+                    'Mónica',
+                    'Diego',
+                    'Jorge',
+                    'Spanish',
+                    'es-MX',
+                    'es-AR',
+                    'es-CO',
+                    'es-ES'
+                ];
+                for (let nombre of prioridad) {
+                    const voz = voces.find(v =>
+                        v.lang.startsWith('es') &&
+                        v.name.toLowerCase().includes(nombre.toLowerCase())
+                    );
+                    if (voz) return voz;
                 }
+                // Si no encuentra, devuelve la primera voz en español
+                return voces.find(v => v.lang.startsWith('es')) || voces[0];
+            }
+
+            // Cargar voces cuando estén disponibles
+            window.speechSynthesis.onvoiceschanged = function() {
+                selectedVoice = seleccionarVoz();
+                console.log('🗣️ Voz seleccionada:', selectedVoice ? selectedVoice.name : 'Ninguna');
+            };
+            // Intentar cargar inmediatamente por si ya están disponibles
+            setTimeout(() => {
+                if (!selectedVoice) {
+                    selectedVoice = seleccionarVoz();
+                    console.log('🗣️ Voz seleccionada (timeout):', selectedVoice ? selectedVoice.name : 'Ninguna');
+                }
+            }, 500);
+
+            // ---------- FUNCIONES DE SELECCIÓN ----------
+            function getSelectedText() {
+                const sel = window.getSelection();
+                if (!sel || sel.isCollapsed || sel.toString().trim().length === 0) return '';
                 return sel.toString().trim();
             }
 
             function getSelectionPosition() {
-                var sel = window.getSelection();
+                const sel = window.getSelection();
                 if (!sel || sel.isCollapsed || sel.rangeCount === 0) return null;
-                var range = sel.getRangeAt(0);
-                var rect = range.getBoundingClientRect();
+                const range = sel.getRangeAt(0);
+                const rect = range.getBoundingClientRect();
                 return { x: rect.left + rect.width / 2, y: rect.top - 10 };
             }
 
+            // ---------- UI ----------
             function updateFloatButton() {
-                var text = getSelectedText();
+                const text = getSelectedText();
                 if (text.length > 0 && !isPlaying) {
-                    var pos = getSelectionPosition();
+                    const pos = getSelectionPosition();
                     if (pos) {
                         floatBtn.style.display = 'flex';
                         floatBtn.style.left = (pos.x - 22) + 'px';
@@ -1623,14 +1673,11 @@ El nombre del curso —**Ananya Yugaladvatia**— es el recordatorio de que el c
                 }
             }
 
+            // ---------- REPRODUCCIÓN ----------
             function stopSpeech() {
-                if (window.speechSynthesis) {
-                    window.speechSynthesis.cancel();
-                }
-                if (loopTimeout) {
-                    clearTimeout(loopTimeout);
-                    loopTimeout = null;
-                }
+                if (window.speechSynthesis) window.speechSynthesis.cancel();
+                if (loopTimeout) { clearTimeout(loopTimeout);
+                    loopTimeout = null; }
                 isPlaying = false;
                 isLoopActive = false;
                 utterance = null;
@@ -1642,10 +1689,8 @@ El nombre del curso —**Ananya Yugaladvatia**— es el recordatorio de que el c
 
             function finishPlayback() {
                 isPlaying = false;
-                if (loopTimeout) {
-                    clearTimeout(loopTimeout);
-                    loopTimeout = null;
-                }
+                if (loopTimeout) { clearTimeout(loopTimeout);
+                    loopTimeout = null; }
                 utterance = null;
                 controls.style.display = 'none';
                 floatBtn.classList.remove('playing');
@@ -1657,14 +1702,29 @@ El nombre del curso —**Ananya Yugaladvatia**— es el recordatorio de que el c
                 if (!text || text.length === 0) return;
                 stopSpeech();
 
-                currentText = text;
+                // Limpiar el texto antes de leerlo
+                const textoLimpio = limpiarTexto(text);
+                if (textoLimpio.length === 0) {
+                    console.warn('El texto quedó vacío después de limpiar.');
+                    return;
+                }
+
+                currentText = textoLimpio;
                 isLoopActive = loop;
 
-                utterance = new SpeechSynthesisUtterance(text);
+                utterance = new SpeechSynthesisUtterance(textoLimpio);
                 utterance.lang = 'es-ES';
-                utterance.rate = 0.95;
+                utterance.rate = 0.92;
                 utterance.pitch = 1.0;
                 utterance.volume = 1;
+
+                // Asignar voz seleccionada
+                if (selectedVoice) {
+                    utterance.voice = selectedVoice;
+                } else {
+                    selectedVoice = seleccionarVoz();
+                    if (selectedVoice) utterance.voice = selectedVoice;
+                }
 
                 utterance.onend = function() {
                     if (isLoopActive) {
@@ -1686,10 +1746,11 @@ El nombre del curso —**Ananya Yugaladvatia**— es el recordatorio de que el c
                 isPlaying = true;
                 window.speechSynthesis.speak(utterance);
 
+                // UI
                 floatBtn.style.display = 'none';
                 floatBtn.classList.remove('pulse');
                 controls.style.display = 'flex';
-                var pos = getSelectionPosition();
+                const pos = getSelectionPosition();
                 if (pos) {
                     controls.style.left = Math.max(20, pos.x - 120) + 'px';
                     controls.style.top = (pos.y + 20) + 'px';
@@ -1716,11 +1777,9 @@ El nombre del curso —**Ananya Yugaladvatia**— es el recordatorio de que el c
                 }
             }
 
-            // Eventos TTS
+            // ---------- EVENTOS ----------
             document.addEventListener('selectionchange', function() {
-                if (!isPlaying) {
-                    updateFloatButton();
-                }
+                if (!isPlaying) updateFloatButton();
             });
 
             floatBtn.addEventListener('click', function(e) {
@@ -1729,7 +1788,7 @@ El nombre del curso —**Ananya Yugaladvatia**— es el recordatorio de que el c
                     stopSpeech();
                     return;
                 }
-                var text = getSelectedText();
+                const text = getSelectedText();
                 if (text) {
                     speakText(text, false);
                 }
@@ -1748,10 +1807,7 @@ El nombre del curso —**Ananya Yugaladvatia**— es el recordatorio de que el c
             // Inicializar
             floatBtn.style.display = 'none';
             controls.style.display = 'none';
-
-            console.log('✅ Sistema TTS cargado correctamente.');
-            console.log('Botón flotante:', floatBtn);
-            console.log('Controles:', controls);
+            console.log('✅ Sistema TTS mejorado (voz latina) cargado.');
         })();
     </script>
 </body>
