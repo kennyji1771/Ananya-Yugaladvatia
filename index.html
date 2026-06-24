@@ -287,9 +287,10 @@
             justify-content: space-between;
             align-items: center;
             color: #1e293b;
-            cursor: pointer; /* Solo el título es clickeable */
+            cursor: pointer;
             padding: 4px 0;
-            user-select: none; /* Evita selección accidental del título, pero no interfiere con el texto interior */
+            /* IMPORTANTE: NO usar user-select: none para permitir selección de texto */
+            /* user-select: none;  <-- ELIMINADO */
         }
         .title:hover {
             color: #2b3a67;
@@ -299,6 +300,8 @@
             opacity: 0.5;
             margin-left: 12px;
             transition: transform 0.2s;
+            /* Permitir selección del icono también */
+            user-select: none; /* solo el icono, no afecta al texto */
         }
         .children {
             margin-left: 24px;
@@ -1346,7 +1349,7 @@ Este curso no termina con la Lección 13. Es un ciclo vivo que puedes repetir, p
 El nombre del curso —**Ananya Yugaladvatia**— es el recordatorio de que el camino es único y no dual, pero también abraza la totalidad de los opuestos. Eres, al mismo tiempo, el que busca y el que encuentra, el que cae y el que asciende, el que muere y el que renace.`;
 
         // ============================================================
-        // 2. MOTOR DE PARSEO Y RENDERIZADO (ACTUALIZADO)
+        // 2. MOTOR DE PARSEO Y RENDERIZADO (CORREGIDO)
         // ============================================================
         function parsear(texto) {
             const lineas = texto.split(/\r?\n/);
@@ -1380,7 +1383,6 @@ El nombre del curso —**Ananya Yugaladvatia**— es el recordatorio de que el c
             return { nodos, hijosMap, raices };
         }
 
-        // NUEVA VERSIÓN: el click se asigna solo al título (.title)
         function renderizar(raices, nodosMap, hijosMap) {
             const contenedor = document.getElementById('mapa');
             if (!raices.length) { contenedor.innerHTML = '<div style="padding:20px;">No se encontró jerarquía</div>'; return; }
@@ -1550,7 +1552,7 @@ El nombre del curso —**Ananya Yugaladvatia**— es el recordatorio de que el c
         document.getElementById('mapaContainer').classList.remove('visible');
 
         // ============================================================
-        // 5. SISTEMA TTS (TEXTO A VOZ CON BUCLE)
+        // 5. SISTEMA TTS (TEXTO A VOZ CON BUCLE) - SIN CAMBIOS
         // ============================================================
         (function() {
             'use strict';
