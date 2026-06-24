@@ -28,14 +28,42 @@
             width: 100%;
             max-width: 1300px;
             transition: opacity 0.4s ease;
+            position: relative;
         }
         #dashboard.hidden {
             display: none;
         }
 
+        /* Botón de configuración en la portada */
+        .config-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(43, 58, 103, 0.1);
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+            color: #2b3a67;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(43, 58, 103, 0.15);
+        }
+        .config-btn:hover {
+            background: rgba(43, 58, 103, 0.2);
+            transform: rotate(60deg);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+        }
+
         .header {
             text-align: center;
             margin-bottom: 48px;
+            padding-top: 20px;
         }
         .header h1 {
             font-size: 3.2rem;
@@ -175,6 +203,125 @@
             max-width: 600px;
         }
 
+        /* ---- MODAL DE CONFIGURACIÓN ---- */
+        .config-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(6px);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+        .config-modal.active {
+            display: flex;
+        }
+        .config-modal-content {
+            background: white;
+            border-radius: 30px;
+            padding: 40px 50px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        .config-modal-content h2 {
+            color: #2b3a67;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+        .config-modal-content .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #aaa;
+            transition: 0.2s;
+            background: none;
+            border: none;
+        }
+        .config-modal-content .close-modal:hover {
+            color: #333;
+            transform: rotate(90deg);
+        }
+        .config-group {
+            margin-bottom: 20px;
+        }
+        .config-group label {
+            display: block;
+            font-weight: 600;
+            color: #2b3a67;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+        .config-group select, .config-group input[type="range"] {
+            width: 100%;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid #d1d9e6;
+            font-size: 1rem;
+            background: #f5f9ff;
+            transition: 0.2s;
+        }
+        .config-group select:focus, .config-group input:focus {
+            outline: none;
+            border-color: #4a6fa5;
+            box-shadow: 0 0 0 3px rgba(74,111,165,0.15);
+        }
+        .config-group .range-value {
+            display: inline-block;
+            margin-left: 10px;
+            font-weight: 600;
+            color: #4a6fa5;
+            min-width: 40px;
+        }
+        .config-group .range-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .config-group .range-container input {
+            flex: 1;
+        }
+        .config-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+            justify-content: flex-end;
+        }
+        .config-actions button {
+            padding: 10px 24px;
+            border-radius: 30px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 0.95rem;
+        }
+        .config-actions .btn-save {
+            background: #2b3a67;
+            color: white;
+        }
+        .config-actions .btn-save:hover {
+            background: #4a6fa5;
+        }
+        .config-actions .btn-cancel {
+            background: #eef2f8;
+            color: #2b3a67;
+        }
+        .config-actions .btn-cancel:hover {
+            background: #d1d9e6;
+        }
+
         /* ---- MAPA MENTAL (INTERIOR) ---- */
         #mapaContainer {
             width: 100%;
@@ -218,6 +365,7 @@
             display: flex;
             gap: 10px;
             flex-wrap: wrap;
+            align-items: center;
         }
         .toolbar button {
             background: #ffcd3c;
@@ -229,6 +377,7 @@
             font-size: 0.85rem;
             transition: 0.2s;
             color: #1e2f4f;
+            white-space: nowrap;
         }
         .toolbar button:hover {
             background: #ffe074;
@@ -240,6 +389,19 @@
         }
         .btn-volver:hover {
             background: #5b7fbf !important;
+        }
+        .btn-escuchar {
+            background: #27ae60 !important;
+            color: white !important;
+        }
+        .btn-escuchar:hover {
+            background: #2ecc71 !important;
+        }
+        .btn-escuchar.playing {
+            background: #e67e22 !important;
+        }
+        .btn-escuchar.playing:hover {
+            background: #d35400 !important;
         }
 
         .mapa {
@@ -272,6 +434,13 @@
             background: #f5f7fb;
             transform: translateX(4px);
         }
+        .card-map.active-tts > .title {
+            color: #27ae60;
+            font-weight: 700;
+        }
+        .card-map.active-tts > .title .icon-map {
+            color: #27ae60;
+        }
         .level-0 { border-left-color: #e67e22; background: #fff6ea; }
         .level-1 { border-left-color: #3b82f6; }
         .level-2 { border-left-color: #10b981; }
@@ -289,6 +458,7 @@
             color: #1e293b;
             cursor: pointer;
             padding: 4px 0;
+            transition: color 0.2s;
         }
         .title:hover {
             color: #2b3a67;
@@ -319,97 +489,6 @@
             letter-spacing: 1px;
         }
 
-        /* ---- SISTEMA TTS (TEXTO A VOZ) ---- */
-        .tts-float-btn {
-            position: fixed;
-            background: #2b3a67;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 44px;
-            height: 44px;
-            font-size: 20px;
-            cursor: pointer;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.15);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: transform 0.2s, background 0.2s;
-            font-family: 'Segoe UI', sans-serif;
-            line-height: 1;
-            padding: 0;
-        }
-        .tts-float-btn:hover {
-            background: #4a6fa5;
-            transform: scale(1.08);
-        }
-        .tts-float-btn.playing {
-            background: #e67e22;
-        }
-        .tts-float-btn.playing:hover {
-            background: #d35400;
-        }
-        .tts-controls {
-            position: fixed;
-            background: rgba(43, 58, 103, 0.92);
-            backdrop-filter: blur(6px);
-            color: white;
-            padding: 8px 16px 8px 20px;
-            border-radius: 40px;
-            display: none;
-            align-items: center;
-            gap: 12px;
-            z-index: 9999;
-            box-shadow: 0 6px 24px rgba(0,0,0,0.2);
-            font-family: 'Segoe UI', sans-serif;
-            font-size: 14px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        .tts-controls button {
-            background: transparent;
-            border: none;
-            color: white;
-            font-size: 18px;
-            cursor: pointer;
-            padding: 4px 6px;
-            border-radius: 8px;
-            transition: background 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            line-height: 1;
-        }
-        .tts-controls button:hover {
-            background: rgba(255,255,255,0.15);
-        }
-        .tts-controls .status-text {
-            font-size: 13px;
-            opacity: 0.8;
-            letter-spacing: 0.3px;
-            margin-right: 4px;
-            min-width: 60px;
-            text-align: center;
-        }
-        .tts-controls .btn-loop.active {
-            color: #f1c40f;
-            text-shadow: 0 0 12px rgba(241,196,15,0.4);
-        }
-        .tts-controls .btn-stop {
-            color: #e74c3c;
-        }
-        .tts-controls .btn-stop:hover {
-            background: rgba(231,76,60,0.2);
-        }
-        @keyframes tts-pulse {
-            0% { box-shadow: 0 0 0 0 rgba(43,58,103,0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(43,58,103,0); }
-            100% { box-shadow: 0 0 0 0 rgba(43,58,103,0); }
-        }
-        .tts-float-btn.pulse {
-            animation: tts-pulse 1.5s infinite;
-        }
-
         /* ---- RESPONSIVE ---- */
         @media (max-width: 600px) {
             .header h1 { font-size: 2.2rem; }
@@ -418,6 +497,8 @@
             .card-dash { padding: 22px 18px; }
             .toolbar { flex-direction: column; align-items: stretch; }
             .toolbar .grupo { justify-content: center; }
+            .config-btn { top: 10px; right: 10px; width: 40px; height: 40px; font-size: 1.6rem; }
+            .config-modal-content { padding: 30px 20px; }
         }
     </style>
 </head>
@@ -427,6 +508,9 @@
     PORTADA (DASHBOARD)
     ============================================================ -->
     <div id="dashboard">
+        <!-- Botón de configuración -->
+        <button class="config-btn" id="configBtn" aria-label="Configuración de voz">⚙️</button>
+
         <header class="header">
             <h1>⚜️ ANANYA YUGALADVATIA</h1>
             <div class="subtitle">LAS <span>13</span> LECCIONES · EL CAMINO ÚNICO HACIA LA UNIDAD</div>
@@ -559,6 +643,42 @@
     </div>
 
     <!-- ============================================================
+    MODAL DE CONFIGURACIÓN DE VOZ
+    ============================================================ -->
+    <div class="config-modal" id="configModal">
+        <div class="config-modal-content">
+            <button class="close-modal" id="closeConfigModal">✕</button>
+            <h2>⚙️ Configuración de voz</h2>
+            <div class="config-group">
+                <label for="voiceSelect">Seleccionar voz</label>
+                <select id="voiceSelect">
+                    <option value="">Cargando voces...</option>
+                </select>
+            </div>
+            <div class="config-group">
+                <label for="rateControl">Velocidad: <span class="range-value" id="rateValue">0.92</span></label>
+                <div class="range-container">
+                    <span>Lento</span>
+                    <input type="range" id="rateControl" min="0.5" max="1.8" step="0.01" value="0.92" />
+                    <span>Rápido</span>
+                </div>
+            </div>
+            <div class="config-group">
+                <label for="pitchControl">Tono: <span class="range-value" id="pitchValue">1.0</span></label>
+                <div class="range-container">
+                    <span>Grave</span>
+                    <input type="range" id="pitchControl" min="0.5" max="1.5" step="0.01" value="1.0" />
+                    <span>Agudo</span>
+                </div>
+            </div>
+            <div class="config-actions">
+                <button class="btn-cancel" id="cancelConfig">Cancelar</button>
+                <button class="btn-save" id="saveConfig">Guardar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
     MAPA MENTAL (INTERIOR)
     ============================================================ -->
     <div id="mapaContainer">
@@ -568,16 +688,17 @@
                 <div class="grupo">
                     <button id="expandirTodo">🔽 Expandir todo</button>
                     <button id="colapsarTodo">🔼 Colapsar todo</button>
+                    <button class="btn-escuchar" id="btnEscuchar">🔊 Escuchar</button>
                     <button class="btn-volver" id="btnVolver">⬅ Volver</button>
                 </div>
             </div>
             <div class="mapa" id="mapa"></div>
-            <div class="footer-map">✦ Haz clic en los títulos para expandir/colapsar · Inicia todo colapsado ✦</div>
+            <div class="footer-map">✦ Haz clic en los títulos para expandir/colapsar · El nodo activo se resalta en verde ✦</div>
         </div>
     </div>
 
     <!-- ============================================================
-    JAVASCRIPT (RENDERIZADO + TTS)
+    JAVASCRIPT (RENDERIZADO + TTS + CONFIGURACIÓN)
     ============================================================ -->
     <script>
         // ============================================================
@@ -1346,8 +1467,14 @@
         El nombre del curso —**Ananya Yugaladvatia**— es el recordatorio de que el camino es único y no dual, pero también abraza la totalidad de los opuestos. Eres, al mismo tiempo, el que busca y el que encuentra, el que cae y el que asciende, el que muere y el que renace.`;
 
         // ============================================================
-        // 2. MOTOR DE PARSEO Y RENDERIZADO
+        // 2. MOTOR DE PARSEO Y RENDERIZADO (CON NODO ACTIVO)
         // ============================================================
+        let activeNodeId = null; // ID del nodo activo para lectura
+        let allNodes = [];
+        let nodesMap = new Map();
+        let childrenMap = new Map();
+        let rootNodes = [];
+
         function parsear(texto) {
             const lineas = texto.split(/\r?\n/);
             const nodos = [];
@@ -1416,8 +1543,10 @@
                     }
                     card.appendChild(childDiv);
 
+                    // Evento de clic en el título: expandir/colapsar y establecer nodo activo
                     tituloDiv.addEventListener('click', function(e) {
                         e.stopPropagation();
+                        // Expandir/colapsar
                         if (childDiv.classList.contains('collapsed')) {
                             childDiv.classList.remove('collapsed');
                             icono.textContent = '▼';
@@ -1425,6 +1554,14 @@
                             childDiv.classList.add('collapsed');
                             icono.textContent = '▶';
                         }
+                        // Establecer este nodo como activo
+                        setActiveNode(nodo.id);
+                    });
+                } else {
+                    // Si no tiene hijos, también se puede activar al hacer clic
+                    tituloDiv.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        setActiveNode(nodo.id);
                     });
                 }
 
@@ -1441,13 +1578,199 @@
             contenedor.appendChild(rootDiv);
         }
 
+        // Función para establecer el nodo activo y resaltarlo
+        function setActiveNode(id) {
+            // Quitar clase active-tts de todas las tarjetas
+            document.querySelectorAll('.card-map.active-tts').forEach(el => el.classList.remove('active-tts'));
+            // Marcar la nueva
+            const card = document.querySelector(`.card-map[data-id="${id}"]`);
+            if (card) card.classList.add('active-tts');
+            activeNodeId = id;
+            // Actualizar texto del botón de escuchar (opcional)
+            const btn = document.getElementById('btnEscuchar');
+            if (btn) {
+                const node = nodesMap.get(id);
+                if (node) {
+                    btn.title = `Escuchar: ${node.etiqueta.substring(0, 40)}...`;
+                }
+            }
+        }
+
         // ============================================================
-        // 3. NAVEGACIÓN ENTRE PORTADA Y MAPA
+        // 3. FUNCIONES DE TEXTO PARA LECTURA POR NIVELES
+        // ============================================================
+        function obtenerTextoNodo(id, nivel = 0) {
+            const nodo = nodesMap.get(id);
+            if (!nodo) return '';
+            let texto = '';
+            // Añadir sangría visual (pero no afecta a la voz)
+            const indent = '  '.repeat(nivel);
+            texto += nodo.etiqueta + '. ';
+            // Recursivamente añadir hijos
+            const hijos = childrenMap.get(id) || [];
+            for (let h of hijos) {
+                texto += obtenerTextoNodo(h, nivel + 1);
+            }
+            return texto;
+        }
+
+        function limpiarTextoParaVoz(texto) {
+            // Eliminar emojis, flechas, símbolos no deseados, pero conservar tildes y signos de puntuación
+            return texto
+                .replace(/[^\p{L}\p{N}\s.,;:!?¿¡()\-]/gu, ' ')
+                .replace(/\s+/g, ' ')
+                .trim();
+        }
+
+        // ============================================================
+        // 4. SISTEMA DE LECTURA (TTS) CON CONFIGURACIÓN
+        // ============================================================
+        let ttsConfig = {
+            voice: null,
+            rate: 0.92,
+            pitch: 1.0
+        };
+
+        // Cargar configuración desde localStorage
+        function loadConfig() {
+            try {
+                const saved = localStorage.getItem('ttsConfig');
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    ttsConfig.rate = parsed.rate || 0.92;
+                    ttsConfig.pitch = parsed.pitch || 1.0;
+                    // La voz se cargará después de que las voces estén disponibles
+                }
+            } catch (e) {}
+        }
+        loadConfig();
+
+        // Guardar configuración
+        function saveConfig() {
+            try {
+                localStorage.setItem('ttsConfig', JSON.stringify({
+                    rate: ttsConfig.rate,
+                    pitch: ttsConfig.pitch,
+                    voice: ttsConfig.voice ? ttsConfig.voice.name : null
+                }));
+            } catch (e) {}
+        }
+
+        // Seleccionar voz por nombre
+        function seleccionarVozPorNombre(nombre) {
+            const voces = window.speechSynthesis.getVoices();
+            return voces.find(v => v.name === nombre) || null;
+        }
+
+        // Función de lectura
+        let isSpeaking = false;
+        let currentUtterance = null;
+        let loopTimeout = null;
+
+        function leerNodo(id) {
+            if (isSpeaking) {
+                detenerLectura();
+                // Pequeña pausa antes de iniciar la nueva
+                setTimeout(() => {
+                    leerNodoInterno(id);
+                }, 300);
+                return;
+            }
+            leerNodoInterno(id);
+        }
+
+        function leerNodoInterno(id) {
+            const nodo = nodesMap.get(id);
+            if (!nodo) {
+                // Si no hay nodo activo, leer el primer nodo raíz
+                if (rootNodes.length > 0) {
+                    leerNodoInterno(rootNodes[0]);
+                }
+                return;
+            }
+
+            const textoCompleto = obtenerTextoNodo(id);
+            const textoLimpio = limpiarTextoParaVoz(textoCompleto);
+            if (textoLimpio.length === 0) {
+                console.warn('El texto del nodo está vacío después de limpiar.');
+                return;
+            }
+
+            // Crear utterance con la configuración actual
+            const utterance = new SpeechSynthesisUtterance(textoLimpio);
+            utterance.lang = 'es-ES';
+            utterance.rate = ttsConfig.rate;
+            utterance.pitch = ttsConfig.pitch;
+            utterance.volume = 1;
+
+            // Asignar voz guardada
+            if (ttsConfig.voice) {
+                utterance.voice = ttsConfig.voice;
+            } else {
+                // Intentar seleccionar una voz por defecto
+                const voces = window.speechSynthesis.getVoices();
+                const vozLatina = voces.find(v => v.lang.startsWith('es') &&
+                    (v.name.toLowerCase().includes('mexico') ||
+                        v.name.toLowerCase().includes('latino') ||
+                        v.name.toLowerCase().includes('argentina') ||
+                        v.name.toLowerCase().includes('colombia') ||
+                        v.name.includes('Google')));
+                if (vozLatina) utterance.voice = vozLatina;
+            }
+
+            utterance.onend = function() {
+                isSpeaking = false;
+                currentUtterance = null;
+                const btn = document.getElementById('btnEscuchar');
+                if (btn) {
+                    btn.classList.remove('playing');
+                    btn.textContent = '🔊 Escuchar';
+                }
+                // Si había bucle, no lo implementamos aquí (por ahora solo lectura única)
+            };
+
+            utterance.onerror = function(e) {
+                console.warn('Error en TTS:', e);
+                isSpeaking = false;
+                currentUtterance = null;
+                const btn = document.getElementById('btnEscuchar');
+                if (btn) {
+                    btn.classList.remove('playing');
+                    btn.textContent = '🔊 Escuchar';
+                }
+            };
+
+            isSpeaking = true;
+            currentUtterance = utterance;
+            const btn = document.getElementById('btnEscuchar');
+            if (btn) {
+                btn.classList.add('playing');
+                btn.textContent = '⏹️ Detener';
+            }
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function detenerLectura() {
+            if (window.speechSynthesis) {
+                window.speechSynthesis.cancel();
+            }
+            if (loopTimeout) {
+                clearTimeout(loopTimeout);
+                loopTimeout = null;
+            }
+            isSpeaking = false;
+            currentUtterance = null;
+            const btn = document.getElementById('btnEscuchar');
+            if (btn) {
+                btn.classList.remove('playing');
+                btn.textContent = '🔊 Escuchar';
+            }
+        }
+
+        // ============================================================
+        // 5. NAVEGACIÓN Y EVENTOS
         // ============================================================
         let mapaRenderizado = false;
-        let todosLosNodos = [];
-        let mapHijos = new Map();
-        let raices = [];
 
         function mostrarMapa(leccionNum) {
             const dashboard = document.getElementById('dashboard');
@@ -1458,20 +1781,26 @@
 
             if (!mapaRenderizado) {
                 const parsed = parsear(textoOriginal);
-                todosLosNodos = parsed.nodos;
-                mapHijos = parsed.hijosMap;
-                raices = parsed.raices;
-                const nodosMap = new Map();
-                todosLosNodos.forEach(n => nodosMap.set(n.id, n));
-                renderizar(raices, nodosMap, mapHijos);
+                allNodes = parsed.nodos;
+                childrenMap = parsed.hijosMap;
+                rootNodes = parsed.raices;
+                nodesMap = new Map();
+                allNodes.forEach(n => nodesMap.set(n.id, n));
+                renderizar(rootNodes, nodesMap, childrenMap);
                 mapaRenderizado = true;
+
+                // Establecer el primer nodo raíz como activo por defecto
+                if (rootNodes.length > 0) {
+                    setActiveNode(rootNodes[0]);
+                }
             }
 
+            // Buscar el nodo de la lección correspondiente para expandirlo
             const targetText = `📜 LECCIÓN ${leccionNum}:`;
-            const targetNode = todosLosNodos.find(n => n.etiqueta.includes(targetText));
-
+            const targetNode = allNodes.find(n => n.etiqueta.includes(targetText));
             if (targetNode) {
                 expandirNodoYAncestros(targetNode.id);
+                setActiveNode(targetNode.id);
             }
         }
 
@@ -1480,7 +1809,7 @@
             let currentId = nodeId;
             while (currentId) {
                 ancestros.push(currentId);
-                const nodo = todosLosNodos.find(n => n.id === currentId);
+                const nodo = nodesMap.get(currentId);
                 currentId = nodo ? nodo.padreId : null;
             }
 
@@ -1501,11 +1830,6 @@
             if (targetCard) {
                 setTimeout(() => {
                     targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    targetCard.style.transition = 'background 0.3s';
-                    targetCard.style.background = '#e8f0fe';
-                    setTimeout(() => {
-                        targetCard.style.background = '';
-                    }, 1500);
                 }, 300);
             }
         }
@@ -1513,11 +1837,10 @@
         function mostrarDashboard() {
             document.getElementById('dashboard').classList.remove('hidden');
             document.getElementById('mapaContainer').classList.remove('visible');
+            detenerLectura();
         }
 
-        // ============================================================
-        // 4. EVENTOS
-        // ============================================================
+        // Eventos de tarjetas
         document.querySelectorAll('.card-dash').forEach(card => {
             card.addEventListener('click', function() {
                 const leccion = parseInt(this.dataset.leccion);
@@ -1542,273 +1865,162 @@
             }
         });
 
+        // Botón de escuchar
+        document.getElementById('btnEscuchar').addEventListener('click', function() {
+            if (isSpeaking) {
+                detenerLectura();
+                return;
+            }
+            // Si hay un nodo activo, leerlo; si no, el primero de la raíz
+            let id = activeNodeId;
+            if (!id || !nodesMap.has(id)) {
+                if (rootNodes.length > 0) {
+                    id = rootNodes[0];
+                    setActiveNode(id);
+                } else {
+                    alert('No hay contenido para leer.');
+                    return;
+                }
+            }
+            leerNodo(id);
+        });
+
+        // ============================================================
+        // 6. CONFIGURACIÓN DE VOZ (MODAL)
+        // ============================================================
+        const configBtn = document.getElementById('configBtn');
+        const configModal = document.getElementById('configModal');
+        const closeConfigModal = document.getElementById('closeConfigModal');
+        const cancelConfig = document.getElementById('cancelConfig');
+        const saveConfigBtn = document.getElementById('saveConfig');
+        const voiceSelect = document.getElementById('voiceSelect');
+        const rateControl = document.getElementById('rateControl');
+        const pitchControl = document.getElementById('pitchControl');
+        const rateValue = document.getElementById('rateValue');
+        const pitchValue = document.getElementById('pitchValue');
+
+        // Cargar voces en el select
+        function populateVoices() {
+            const voces = window.speechSynthesis.getVoices();
+            const esVoces = voces.filter(v => v.lang.startsWith('es'));
+            voiceSelect.innerHTML = '';
+            if (esVoces.length === 0) {
+                // Si no hay voces en español, mostrar mensaje
+                const option = document.createElement('option');
+                option.value = '';
+                option.textContent = 'No hay voces en español disponibles';
+                voiceSelect.appendChild(option);
+                return;
+            }
+            // Ordenar: primero las latinas, luego el resto
+            const prioridad = ['mexico', 'latino', 'argentina', 'colombia', 'españa'];
+            esVoces.sort((a, b) => {
+                const aIndex = prioridad.findIndex(p => a.name.toLowerCase().includes(p));
+                const bIndex = prioridad.findIndex(p => b.name.toLowerCase().includes(p));
+                if (aIndex === -1 && bIndex === -1) return a.name.localeCompare(b.name);
+                if (aIndex === -1) return 1;
+                if (bIndex === -1) return -1;
+                return aIndex - bIndex;
+            });
+            esVoces.forEach(v => {
+                const option = document.createElement('option');
+                option.value = v.name;
+                option.textContent = `${v.name} (${v.lang})`;
+                voiceSelect.appendChild(option);
+            });
+            // Seleccionar la voz guardada si existe
+            if (ttsConfig.voice) {
+                const savedName = ttsConfig.voice.name;
+                for (let opt of voiceSelect.options) {
+                    if (opt.value === savedName) {
+                        opt.selected = true;
+                        break;
+                    }
+                }
+            } else {
+                // Seleccionar la primera por defecto
+                if (voiceSelect.options.length > 0) {
+                    voiceSelect.selectedIndex = 0;
+                }
+            }
+        }
+
+        // Actualizar valores de los sliders
+        rateControl.addEventListener('input', function() {
+            rateValue.textContent = parseFloat(this.value).toFixed(2);
+        });
+        pitchControl.addEventListener('input', function() {
+            pitchValue.textContent = parseFloat(this.value).toFixed(2);
+        });
+
+        // Abrir modal
+        configBtn.addEventListener('click', function() {
+            // Actualizar voces antes de mostrar
+            populateVoices();
+            // Cargar valores actuales
+            rateControl.value = ttsConfig.rate;
+            rateValue.textContent = ttsConfig.rate.toFixed(2);
+            pitchControl.value = ttsConfig.pitch;
+            pitchValue.textContent = ttsConfig.pitch.toFixed(2);
+            configModal.classList.add('active');
+        });
+
+        // Cerrar modal
+        function closeModal() {
+            configModal.classList.remove('active');
+        }
+        closeConfigModal.addEventListener('click', closeModal);
+        cancelConfig.addEventListener('click', closeModal);
+        configModal.addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // Guardar configuración
+        saveConfigBtn.addEventListener('click', function() {
+            const selectedVoiceName = voiceSelect.value;
+            const voces = window.speechSynthesis.getVoices();
+            const voice = voces.find(v => v.name === selectedVoiceName) || null;
+            ttsConfig.voice = voice;
+            ttsConfig.rate = parseFloat(rateControl.value);
+            ttsConfig.pitch = parseFloat(pitchControl.value);
+            saveConfig();
+            closeModal();
+            // Si se está reproduciendo, detener y reanudar con nueva configuración (opcional)
+            if (isSpeaking) {
+                detenerLectura();
+                // Si hay nodo activo, reanudar
+                if (activeNodeId) {
+                    setTimeout(() => leerNodo(activeNodeId), 300);
+                }
+            }
+            console.log('Configuración guardada:', ttsConfig);
+        });
+
+        // Cargar voces cuando estén disponibles
+        window.speechSynthesis.onvoiceschanged = function() {
+            populateVoices();
+            // Si hay una voz guardada, intentar seleccionarla
+            if (ttsConfig.voice) {
+                const voces = window.speechSynthesis.getVoices();
+                const found = voces.find(v => v.name === ttsConfig.voice.name);
+                if (found) {
+                    ttsConfig.voice = found;
+                } else {
+                    // Si no se encuentra, resetear
+                    ttsConfig.voice = null;
+                    saveConfig();
+                }
+            }
+        };
+
+        // Intentar cargar voces inmediatamente
+        setTimeout(populateVoices, 500);
+
+        // ============================================================
+        // 7. INICIO
+        // ============================================================
         document.getElementById('dashboard').classList.remove('hidden');
         document.getElementById('mapaContainer').classList.remove('visible');
-
-        // ============================================================
-        // 5. SISTEMA TTS MEJORADO (VOZ LATINA + LIMPIEZA)
-        // ============================================================
-        (function() {
-            'use strict';
-
-            console.log('🚀 Iniciando sistema TTS mejorado (voz latina)...');
-
-            // Variables
-            let selectedVoice = null;
-            let isPlaying = false;
-            let isLoopActive = false;
-            let utterance = null;
-            let loopTimeout = null;
-            let currentText = '';
-
-            // Crear botón flotante
-            const floatBtn = document.createElement('button');
-            floatBtn.className = 'tts-float-btn';
-            floatBtn.innerHTML = '🔊';
-            floatBtn.setAttribute('aria-label', 'Escuchar texto seleccionado');
-            document.body.appendChild(floatBtn);
-
-            // Crear controles
-            const controls = document.createElement('div');
-            controls.className = 'tts-controls';
-            controls.innerHTML = `
-                <span class="status-text">▶ Leyendo</span>
-                <button class="btn-loop" title="Activar repetición en bucle">🔁</button>
-                <button class="btn-stop" title="Detener">⏹️</button>
-            `;
-            document.body.appendChild(controls);
-
-            const statusText = controls.querySelector('.status-text');
-            const btnLoop = controls.querySelector('.btn-loop');
-            const btnStop = controls.querySelector('.btn-stop');
-
-            // ---------- LIMPIEZA DE TEXTO ----------
-            function limpiarTexto(texto) {
-                // 1. Eliminar emojis y símbolos no deseados (mantiene letras con acentos, números, puntuación básica)
-                // 2. Conserva tildes y caracteres Unicode
-                return texto
-                    .replace(/[^\p{L}\p{N}\s.,;:!?¿¡()\-]/gu, ' ') // Elimina todo lo que no sea letra, número, espacio o puntuación básica
-                    .replace(/\s+/g, ' ')                             // Unifica espacios
-                    .trim();
-            }
-
-            // ---------- SELECCIÓN DE VOZ ----------
-            function seleccionarVoz() {
-                const voces = window.speechSynthesis.getVoices();
-                // Priorizar voces de español latino
-                const prioridad = [
-                    'Google español de México',
-                    'Google español',
-                    'Mónica',
-                    'Diego',
-                    'Jorge',
-                    'Spanish',
-                    'es-MX',
-                    'es-AR',
-                    'es-CO',
-                    'es-ES'
-                ];
-                for (let nombre of prioridad) {
-                    const voz = voces.find(v =>
-                        v.lang.startsWith('es') &&
-                        v.name.toLowerCase().includes(nombre.toLowerCase())
-                    );
-                    if (voz) return voz;
-                }
-                // Si no encuentra, devuelve la primera voz en español
-                return voces.find(v => v.lang.startsWith('es')) || voces[0];
-            }
-
-            // Cargar voces cuando estén disponibles
-            window.speechSynthesis.onvoiceschanged = function() {
-                selectedVoice = seleccionarVoz();
-                console.log('🗣️ Voz seleccionada:', selectedVoice ? selectedVoice.name : 'Ninguna');
-            };
-            // Intentar cargar inmediatamente por si ya están disponibles
-            setTimeout(() => {
-                if (!selectedVoice) {
-                    selectedVoice = seleccionarVoz();
-                    console.log('🗣️ Voz seleccionada (timeout):', selectedVoice ? selectedVoice.name : 'Ninguna');
-                }
-            }, 500);
-
-            // ---------- FUNCIONES DE SELECCIÓN ----------
-            function getSelectedText() {
-                const sel = window.getSelection();
-                if (!sel || sel.isCollapsed || sel.toString().trim().length === 0) return '';
-                return sel.toString().trim();
-            }
-
-            function getSelectionPosition() {
-                const sel = window.getSelection();
-                if (!sel || sel.isCollapsed || sel.rangeCount === 0) return null;
-                const range = sel.getRangeAt(0);
-                const rect = range.getBoundingClientRect();
-                return { x: rect.left + rect.width / 2, y: rect.top - 10 };
-            }
-
-            // ---------- UI ----------
-            function updateFloatButton() {
-                const text = getSelectedText();
-                if (text.length > 0 && !isPlaying) {
-                    const pos = getSelectionPosition();
-                    if (pos) {
-                        floatBtn.style.display = 'flex';
-                        floatBtn.style.left = (pos.x - 22) + 'px';
-                        floatBtn.style.top = (pos.y - 44) + 'px';
-                        floatBtn.style.transform = 'none';
-                        floatBtn.classList.add('pulse');
-                    } else {
-                        floatBtn.style.display = 'flex';
-                        floatBtn.style.left = '50%';
-                        floatBtn.style.top = '80px';
-                        floatBtn.style.transform = 'translateX(-50%)';
-                        floatBtn.classList.add('pulse');
-                    }
-                } else {
-                    if (!isPlaying) {
-                        floatBtn.style.display = 'none';
-                        floatBtn.classList.remove('pulse');
-                    }
-                }
-            }
-
-            // ---------- REPRODUCCIÓN ----------
-            function stopSpeech() {
-                if (window.speechSynthesis) window.speechSynthesis.cancel();
-                if (loopTimeout) { clearTimeout(loopTimeout);
-                    loopTimeout = null; }
-                isPlaying = false;
-                isLoopActive = false;
-                utterance = null;
-                controls.style.display = 'none';
-                floatBtn.classList.remove('playing');
-                floatBtn.innerHTML = '🔊';
-                setTimeout(updateFloatButton, 200);
-            }
-
-            function finishPlayback() {
-                isPlaying = false;
-                if (loopTimeout) { clearTimeout(loopTimeout);
-                    loopTimeout = null; }
-                utterance = null;
-                controls.style.display = 'none';
-                floatBtn.classList.remove('playing');
-                floatBtn.innerHTML = '🔊';
-                setTimeout(updateFloatButton, 200);
-            }
-
-            function speakText(text, loop) {
-                if (!text || text.length === 0) return;
-                stopSpeech();
-
-                // Limpiar el texto antes de leerlo
-                const textoLimpio = limpiarTexto(text);
-                if (textoLimpio.length === 0) {
-                    console.warn('El texto quedó vacío después de limpiar.');
-                    return;
-                }
-
-                currentText = textoLimpio;
-                isLoopActive = loop;
-
-                utterance = new SpeechSynthesisUtterance(textoLimpio);
-                utterance.lang = 'es-ES';
-                utterance.rate = 0.92;
-                utterance.pitch = 1.0;
-                utterance.volume = 1;
-
-                // Asignar voz seleccionada
-                if (selectedVoice) {
-                    utterance.voice = selectedVoice;
-                } else {
-                    selectedVoice = seleccionarVoz();
-                    if (selectedVoice) utterance.voice = selectedVoice;
-                }
-
-                utterance.onend = function() {
-                    if (isLoopActive) {
-                        loopTimeout = setTimeout(function() {
-                            if (isLoopActive) {
-                                speakText(currentText, true);
-                            }
-                        }, 800);
-                    } else {
-                        finishPlayback();
-                    }
-                };
-
-                utterance.onerror = function(e) {
-                    console.warn('Error en síntesis de voz:', e);
-                    finishPlayback();
-                };
-
-                isPlaying = true;
-                window.speechSynthesis.speak(utterance);
-
-                // UI
-                floatBtn.style.display = 'none';
-                floatBtn.classList.remove('pulse');
-                controls.style.display = 'flex';
-                const pos = getSelectionPosition();
-                if (pos) {
-                    controls.style.left = Math.max(20, pos.x - 120) + 'px';
-                    controls.style.top = (pos.y + 20) + 'px';
-                    controls.style.transform = 'none';
-                } else {
-                    controls.style.left = '50%';
-                    controls.style.top = '80px';
-                    controls.style.transform = 'translateX(-50%)';
-                }
-                statusText.textContent = loop ? '🔁 Bucle' : '▶ Leyendo';
-                btnLoop.classList.toggle('active', loop);
-                floatBtn.classList.add('playing');
-                floatBtn.innerHTML = '⏹️';
-            }
-
-            function toggleLoop() {
-                if (!isPlaying) return;
-                isLoopActive = !isLoopActive;
-                btnLoop.classList.toggle('active', isLoopActive);
-                statusText.textContent = isLoopActive ? '🔁 Bucle' : '▶ Leyendo';
-                if (!isLoopActive && loopTimeout) {
-                    clearTimeout(loopTimeout);
-                    loopTimeout = null;
-                }
-            }
-
-            // ---------- EVENTOS ----------
-            document.addEventListener('selectionchange', function() {
-                if (!isPlaying) updateFloatButton();
-            });
-
-            floatBtn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                if (isPlaying) {
-                    stopSpeech();
-                    return;
-                }
-                const text = getSelectedText();
-                if (text) {
-                    speakText(text, false);
-                }
-            });
-
-            btnLoop.addEventListener('click', function(e) {
-                e.stopPropagation();
-                toggleLoop();
-            });
-
-            btnStop.addEventListener('click', function(e) {
-                e.stopPropagation();
-                stopSpeech();
-            });
-
-            // Inicializar
-            floatBtn.style.display = 'none';
-            controls.style.display = 'none';
-            console.log('✅ Sistema TTS mejorado (voz latina) cargado.');
-        })();
     </script>
 </body>
 </html>
