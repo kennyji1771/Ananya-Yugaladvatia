@@ -404,101 +404,300 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ananya Yugaladvatia · 13 Lecciones</title>
-    <style>
-        /* ... TODO EL CSS QUE YA TIENES ... */
+  <!-- ============================================================
+    SISTEMA DE LECTURA EN VOZ ALTA CON BUCLE (TTS)
+    ============================================================ -->
+<style>
+    .tts-float-btn {
+        position: fixed;
+        background: #2b3a67;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 44px;
+        height: 44px;
+        font-size: 20px;
+        cursor: pointer;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: transform 0.2s, background 0.2s;
+        font-family: 'Segoe UI', sans-serif;
+        line-height: 1;
+        padding: 0;
+    }
+    .tts-float-btn:hover {
+        background: #4a6fa5;
+        transform: scale(1.08);
+    }
+    .tts-float-btn.playing {
+        background: #e67e22;
+    }
+    .tts-float-btn.playing:hover {
+        background: #d35400;
+    }
+    .tts-controls {
+        position: fixed;
+        background: rgba(43, 58, 103, 0.92);
+        backdrop-filter: blur(6px);
+        color: white;
+        padding: 8px 16px 8px 20px;
+        border-radius: 40px;
+        display: none;
+        align-items: center;
+        gap: 12px;
+        z-index: 9999;
+        box-shadow: 0 6px 24px rgba(0,0,0,0.2);
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 14px;
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+    .tts-controls button {
+        background: transparent;
+        border: none;
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+        padding: 4px 6px;
+        border-radius: 8px;
+        transition: background 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+    }
+    .tts-controls button:hover {
+        background: rgba(255,255,255,0.15);
+    }
+    .tts-controls .status-text {
+        font-size: 13px;
+        opacity: 0.8;
+        letter-spacing: 0.3px;
+        margin-right: 4px;
+        min-width: 60px;
+        text-align: center;
+    }
+    .tts-controls .btn-loop.active {
+        color: #f1c40f;
+        text-shadow: 0 0 12px rgba(241,196,15,0.4);
+    }
+    .tts-controls .btn-stop {
+        color: #e74c3c;
+    }
+    .tts-controls .btn-stop:hover {
+        background: rgba(231,76,60,0.2);
+    }
+    @keyframes tts-pulse {
+        0% { box-shadow: 0 0 0 0 rgba(43,58,103,0.4); }
+        70% { box-shadow: 0 0 0 10px rgba(43,58,103,0); }
+        100% { box-shadow: 0 0 0 0 rgba(43,58,103,0); }
+    }
+    .tts-float-btn.pulse {
+        animation: tts-pulse 1.5s infinite;
+    }
+</style>
+    (function() {
+        'use strict';
+        console.log('🚀 Iniciando sistema TTS...');
 
-        /* ================================================
-           👇 PEGA AQUÍ EL NUEVO CSS DE TEXTO A VOZ
-           ================================================ */
-        .tts-float-btn {
-            position: fixed;
-            background: #2b3a67;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 44px;
-            height: 44px;
-            font-size: 20px;
-            cursor: pointer;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: transform 0.2s, background 0.2s;
-            font-family: 'Segoe UI', sans-serif;
-            line-height: 1;
-            padding: 0;
+        // Crear botón flotante
+        var floatBtn = document.createElement('button');
+        floatBtn.className = 'tts-float-btn';
+        floatBtn.innerHTML = '🔊';
+        floatBtn.setAttribute('aria-label', 'Escuchar texto seleccionado');
+        document.body.appendChild(floatBtn);
+
+        // Crear controles
+        var controls = document.createElement('div');
+        controls.className = 'tts-controls';
+        controls.innerHTML = '<span class="status-text">▶ Leyendo</span><button class="btn-loop" title="Activar repetición en bucle">🔁</button><button class="btn-stop" title="Detener">⏹️</button>';
+        document.body.appendChild(controls);
+
+        var statusText = controls.querySelector('.status-text');
+        var btnLoop = controls.querySelector('.btn-loop');
+        var btnStop = controls.querySelector('.btn-stop');
+
+        var isPlaying = false;
+        var isLoopActive = false;
+        var utterance = null;
+        var loopTimeout = null;
+        var currentText = '';
+
+        function getSelectedText() {
+            var sel = window.getSelection();
+            if (!sel || sel.isCollapsed || sel.toString().trim().length === 0) {
+                return '';
+            }
+            return sel.toString().trim();
         }
-        .tts-float-btn:hover {
-            background: #4a6fa5;
-            transform: scale(1.08);
+
+        function getSelectionPosition() {
+            var sel = window.getSelection();
+            if (!sel || sel.isCollapsed || sel.rangeCount === 0) return null;
+            var range = sel.getRangeAt(0);
+            var rect = range.getBoundingClientRect();
+            return { x: rect.left + rect.width / 2, y: rect.top - 10 };
         }
-        .tts-float-btn.playing {
-            background: #e67e22;
+
+        function updateFloatButton() {
+            var text = getSelectedText();
+            if (text.length > 0 && !isPlaying) {
+                var pos = getSelectionPosition();
+                if (pos) {
+                    floatBtn.style.display = 'flex';
+                    floatBtn.style.left = (pos.x - 22) + 'px';
+                    floatBtn.style.top = (pos.y - 44) + 'px';
+                    floatBtn.style.transform = 'none';
+                    floatBtn.classList.add('pulse');
+                } else {
+                    floatBtn.style.display = 'flex';
+                    floatBtn.style.left = '50%';
+                    floatBtn.style.top = '80px';
+                    floatBtn.style.transform = 'translateX(-50%)';
+                    floatBtn.classList.add('pulse');
+                }
+            } else {
+                if (!isPlaying) {
+                    floatBtn.style.display = 'none';
+                    floatBtn.classList.remove('pulse');
+                }
+            }
         }
-        .tts-float-btn.playing:hover {
-            background: #d35400;
+
+        function stopSpeech() {
+            if (window.speechSynthesis) {
+                window.speechSynthesis.cancel();
+            }
+            if (loopTimeout) {
+                clearTimeout(loopTimeout);
+                loopTimeout = null;
+            }
+            isPlaying = false;
+            isLoopActive = false;
+            utterance = null;
+            controls.style.display = 'none';
+            floatBtn.classList.remove('playing');
+            floatBtn.innerHTML = '🔊';
+            setTimeout(updateFloatButton, 200);
         }
-        .tts-controls {
-            position: fixed;
-            background: rgba(43, 58, 103, 0.92);
-            backdrop-filter: blur(6px);
-            color: white;
-            padding: 8px 16px 8px 20px;
-            border-radius: 40px;
-            display: none;
-            align-items: center;
-            gap: 12px;
-            z-index: 9999;
-            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
-            font-family: 'Segoe UI', sans-serif;
-            font-size: 14px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+
+        function finishPlayback() {
+            isPlaying = false;
+            if (loopTimeout) {
+                clearTimeout(loopTimeout);
+                loopTimeout = null;
+            }
+            utterance = null;
+            controls.style.display = 'none';
+            floatBtn.classList.remove('playing');
+            floatBtn.innerHTML = '🔊';
+            setTimeout(updateFloatButton, 200);
         }
-        .tts-controls button {
-            background: transparent;
-            border: none;
-            color: white;
-            font-size: 18px;
-            cursor: pointer;
-            padding: 4px 6px;
-            border-radius: 8px;
-            transition: background 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            line-height: 1;
+
+        function speakText(text, loop) {
+            if (!text || text.length === 0) return;
+            stopSpeech();
+
+            currentText = text;
+            isLoopActive = loop;
+
+            utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'es-ES';
+            utterance.rate = 0.95;
+            utterance.pitch = 1.0;
+            utterance.volume = 1;
+
+            utterance.onend = function() {
+                if (isLoopActive) {
+                    loopTimeout = setTimeout(function() {
+                        if (isLoopActive) {
+                            speakText(currentText, true);
+                        }
+                    }, 800);
+                } else {
+                    finishPlayback();
+                }
+            };
+
+            utterance.onerror = function(e) {
+                console.warn('Error en síntesis de voz:', e);
+                finishPlayback();
+            };
+
+            isPlaying = true;
+            window.speechSynthesis.speak(utterance);
+
+            floatBtn.style.display = 'none';
+            floatBtn.classList.remove('pulse');
+            controls.style.display = 'flex';
+            var pos = getSelectionPosition();
+            if (pos) {
+                controls.style.left = Math.max(20, pos.x - 120) + 'px';
+                controls.style.top = (pos.y + 20) + 'px';
+                controls.style.transform = 'none';
+            } else {
+                controls.style.left = '50%';
+                controls.style.top = '80px';
+                controls.style.transform = 'translateX(-50%)';
+            }
+            statusText.textContent = loop ? '🔁 Bucle' : '▶ Leyendo';
+            btnLoop.classList.toggle('active', loop);
+            floatBtn.classList.add('playing');
+            floatBtn.innerHTML = '⏹️';
         }
-        .tts-controls button:hover {
-            background: rgba(255, 255, 255, 0.15);
+
+        function toggleLoop() {
+            if (!isPlaying) return;
+            isLoopActive = !isLoopActive;
+            btnLoop.classList.toggle('active', isLoopActive);
+            statusText.textContent = isLoopActive ? '🔁 Bucle' : '▶ Leyendo';
+            if (!isLoopActive && loopTimeout) {
+                clearTimeout(loopTimeout);
+                loopTimeout = null;
+            }
         }
-        .tts-controls .status-text {
-            font-size: 13px;
-            opacity: 0.8;
-            letter-spacing: 0.3px;
-            margin-right: 4px;
-            min-width: 60px;
-            text-align: center;
-        }
-        .tts-controls .btn-loop.active {
-            color: #f1c40f;
-            text-shadow: 0 0 12px rgba(241, 196, 15, 0.4);
-        }
-        .tts-controls .btn-stop {
-            color: #e74c3c;
-        }
-        .tts-controls .btn-stop:hover {
-            background: rgba(231, 76, 60, 0.2);
-        }
-        @keyframes tts-pulse {
-            0% { box-shadow: 0 0 0 0 rgba(43, 58, 103, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(43, 58, 103, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(43, 58, 103, 0); }
-        }
-        .tts-float-btn.pulse {
-            animation: tts-pulse 1.5s infinite;
-        }
+
+        // Eventos
+        document.addEventListener('selectionchange', function() {
+            if (!isPlaying) {
+                updateFloatButton();
+            }
+        });
+
+        floatBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (isPlaying) {
+                stopSpeech();
+                return;
+            }
+            var text = getSelectedText();
+            if (text) {
+                speakText(text, false);
+            }
+        });
+
+        btnLoop.addEventListener('click', function(e) {
+            e.stopPropagation();
+            toggleLoop();
+        });
+
+        btnStop.addEventListener('click', function(e) {
+            e.stopPropagation();
+            stopSpeech();
+        });
+
+        // Inicializar
+        floatBtn.style.display = 'none';
+        controls.style.display = 'none';
+
+        console.log('✅ Sistema TTS cargado correctamente.');
+        console.log('Botón flotante:', floatBtn);
+        console.log('Controles:', controls);
+    })();
+</script>
+        
     </style>
 </head>
  <body>
