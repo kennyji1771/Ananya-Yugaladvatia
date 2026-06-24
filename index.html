@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ananya Yugaladvatia · 13 Lecciones</title>
     <style>
-        /* ==================== RESET & BASE ==================== */
+        /* ============================================================
+           ESTILOS GENERALES Y PORTADA
+           ============================================================ */
         * {
             margin: 0;
             padding: 0;
@@ -19,19 +21,16 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            transition: background 0.3s;
         }
 
-        /* ==================== PORTADA (DASHBOARD) ==================== */
+        /* ---- PORTADA ---- */
         #dashboard {
             width: 100%;
             max-width: 1300px;
-            transition: opacity 0.4s ease, transform 0.4s ease;
+            transition: opacity 0.4s ease;
         }
         #dashboard.hidden {
             display: none;
-            opacity: 0;
-            transform: scale(0.96);
         }
 
         .header {
@@ -63,7 +62,6 @@
             color: #2b3a67;
         }
 
-        /* Grid de tarjetas */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -71,13 +69,12 @@
             width: 100%;
         }
 
-        /* Tarjeta individual */
         .card-dash {
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(4px);
             border-radius: 28px;
             padding: 28px 22px 22px;
-            box-shadow: 0 8px 24px rgba(0, 20, 40, 0.06), 0 2px 6px rgba(0, 0, 0, 0.02);
+            box-shadow: 0 8px 24px rgba(0, 20, 40, 0.06);
             border: 1px solid rgba(255, 255, 255, 0.6);
             transition: all 0.3s ease;
             display: flex;
@@ -88,15 +85,10 @@
         }
         .card-dash:hover {
             transform: translateY(-8px) scale(1.01);
-            box-shadow: 0 20px 40px rgba(0, 20, 40, 0.10), 0 8px 20px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 20px 40px rgba(0, 20, 40, 0.10);
             border-color: rgba(74, 111, 165, 0.3);
             background: rgba(255, 255, 255, 0.95);
         }
-        .card-dash:active {
-            transform: scale(0.97);
-        }
-
-        /* Banda de color superior */
         .card-dash::before {
             content: '';
             position: absolute;
@@ -111,7 +103,6 @@
         .card-dash:hover::before {
             height: 8px;
         }
-
         .card-dash .icono {
             font-size: 2.6rem;
             line-height: 1;
@@ -158,47 +149,20 @@
             align-self: flex-start;
             opacity: 0.6;
         }
-
         /* Colores de acento para cada tarjeta */
-        .card-dash:nth-child(1) {
-            --accent: #5b7fbf;
-        }
-        .card-dash:nth-child(2) {
-            --accent: #6c8ebf;
-        }
-        .card-dash:nth-child(3) {
-            --accent: #7d9fbf;
-        }
-        .card-dash:nth-child(4) {
-            --accent: #8fb0bf;
-        }
-        .card-dash:nth-child(5) {
-            --accent: #a1c0bf;
-        }
-        .card-dash:nth-child(6) {
-            --accent: #b3cfbf;
-        }
-        .card-dash:nth-child(7) {
-            --accent: #c5ddbf;
-        }
-        .card-dash:nth-child(8) {
-            --accent: #d6eabf;
-        }
-        .card-dash:nth-child(9) {
-            --accent: #e8f5bf;
-        }
-        .card-dash:nth-child(10) {
-            --accent: #f5eabf;
-        }
-        .card-dash:nth-child(11) {
-            --accent: #f5dbbf;
-        }
-        .card-dash:nth-child(12) {
-            --accent: #f5ccbf;
-        }
-        .card-dash:nth-child(13) {
-            --accent: #f5bdcf;
-        }
+        .card-dash:nth-child(1) { --accent: #5b7fbf; }
+        .card-dash:nth-child(2) { --accent: #6c8ebf; }
+        .card-dash:nth-child(3) { --accent: #7d9fbf; }
+        .card-dash:nth-child(4) { --accent: #8fb0bf; }
+        .card-dash:nth-child(5) { --accent: #a1c0bf; }
+        .card-dash:nth-child(6) { --accent: #b3cfbf; }
+        .card-dash:nth-child(7) { --accent: #c5ddbf; }
+        .card-dash:nth-child(8) { --accent: #d6eabf; }
+        .card-dash:nth-child(9) { --accent: #e8f5bf; }
+        .card-dash:nth-child(10) { --accent: #f5eabf; }
+        .card-dash:nth-child(11) { --accent: #f5dbbf; }
+        .card-dash:nth-child(12) { --accent: #f5ccbf; }
+        .card-dash:nth-child(13) { --accent: #f5bdcf; }
 
         .footer-dash {
             margin-top: 60px;
@@ -212,7 +176,7 @@
             max-width: 600px;
         }
 
-        /* ==================== MAPA MENTAL (INTERIOR) ==================== */
+        /* ---- MAPA MENTAL (INTERIOR) ---- */
         #mapaContainer {
             width: 100%;
             max-width: 1300px;
@@ -222,16 +186,9 @@
         #mapaContainer.visible {
             display: block;
         }
-
         @keyframes fadeSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .app {
@@ -240,7 +197,6 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
             overflow: hidden;
         }
-
         .toolbar {
             background: #1e2f4f;
             padding: 14px 24px;
@@ -304,7 +260,6 @@
             border-radius: 10px;
         }
 
-        /* Estilos de las tarjetas del mapa (igual que el ejemplo) */
         .card-map {
             background: white;
             border-left: 5px solid;
@@ -319,31 +274,14 @@
             background: #f5f7fb;
             transform: translateX(4px);
         }
-        .level-0 {
-            border-left-color: #e67e22;
-            background: #fff6ea;
-        }
-        .level-1 {
-            border-left-color: #3b82f6;
-        }
-        .level-2 {
-            border-left-color: #10b981;
-        }
-        .level-3 {
-            border-left-color: #8b5cf6;
-        }
-        .level-4 {
-            border-left-color: #ec4899;
-        }
-        .level-5 {
-            border-left-color: #f59e0b;
-        }
-        .level-6 {
-            border-left-color: #6366f1;
-        }
-        .level-7 {
-            border-left-color: #14b8a6;
-        }
+        .level-0 { border-left-color: #e67e22; background: #fff6ea; }
+        .level-1 { border-left-color: #3b82f6; }
+        .level-2 { border-left-color: #10b981; }
+        .level-3 { border-left-color: #8b5cf6; }
+        .level-4 { border-left-color: #ec4899; }
+        .level-5 { border-left-color: #f59e0b; }
+        .level-6 { border-left-color: #6366f1; }
+        .level-7 { border-left-color: #14b8a6; }
 
         .title {
             font-weight: 600;
@@ -376,331 +314,109 @@
             letter-spacing: 1px;
         }
 
-        /* ==================== RESPONSIVE ==================== */
+        /* ---- SISTEMA TTS (TEXTO A VOZ) ---- */
+        .tts-float-btn {
+            position: fixed;
+            background: #2b3a67;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: transform 0.2s, background 0.2s;
+            font-family: 'Segoe UI', sans-serif;
+            line-height: 1;
+            padding: 0;
+        }
+        .tts-float-btn:hover {
+            background: #4a6fa5;
+            transform: scale(1.08);
+        }
+        .tts-float-btn.playing {
+            background: #e67e22;
+        }
+        .tts-float-btn.playing:hover {
+            background: #d35400;
+        }
+        .tts-controls {
+            position: fixed;
+            background: rgba(43, 58, 103, 0.92);
+            backdrop-filter: blur(6px);
+            color: white;
+            padding: 8px 16px 8px 20px;
+            border-radius: 40px;
+            display: none;
+            align-items: center;
+            gap: 12px;
+            z-index: 9999;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.2);
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 14px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .tts-controls button {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 4px 6px;
+            border-radius: 8px;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+        .tts-controls button:hover {
+            background: rgba(255,255,255,0.15);
+        }
+        .tts-controls .status-text {
+            font-size: 13px;
+            opacity: 0.8;
+            letter-spacing: 0.3px;
+            margin-right: 4px;
+            min-width: 60px;
+            text-align: center;
+        }
+        .tts-controls .btn-loop.active {
+            color: #f1c40f;
+            text-shadow: 0 0 12px rgba(241,196,15,0.4);
+        }
+        .tts-controls .btn-stop {
+            color: #e74c3c;
+        }
+        .tts-controls .btn-stop:hover {
+            background: rgba(231,76,60,0.2);
+        }
+        @keyframes tts-pulse {
+            0% { box-shadow: 0 0 0 0 rgba(43,58,103,0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(43,58,103,0); }
+            100% { box-shadow: 0 0 0 0 rgba(43,58,103,0); }
+        }
+        .tts-float-btn.pulse {
+            animation: tts-pulse 1.5s infinite;
+        }
+
+        /* ---- RESPONSIVE ---- */
         @media (max-width: 600px) {
-            .header h1 {
-                font-size: 2.2rem;
-            }
-            .header .subtitle {
-                font-size: 1rem;
-                letter-spacing: 3px;
-            }
-            .grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            .card-dash {
-                padding: 22px 18px;
-            }
-            .toolbar {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .toolbar .grupo {
-                justify-content: center;
-            }
+            .header h1 { font-size: 2.2rem; }
+            .header .subtitle { font-size: 1rem; letter-spacing: 3px; }
+            .grid { grid-template-columns: 1fr; gap: 20px; }
+            .card-dash { padding: 22px 18px; }
+            .toolbar { flex-direction: column; align-items: stretch; }
+            .toolbar .grupo { justify-content: center; }
         }
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ananya Yugaladvatia · 13 Lecciones</title>
-  <!-- ============================================================
-    SISTEMA DE LECTURA EN VOZ ALTA CON BUCLE (TTS)
-    ============================================================ -->
-<style>
-    .tts-float-btn {
-        position: fixed;
-        background: #2b3a67;
-        color: white;
-        border: none;
-        border-radius: 50%;
-        width: 44px;
-        height: 44px;
-        font-size: 20px;
-        cursor: pointer;
-        box-shadow: 0 4px 14px rgba(0,0,0,0.15);
-        display: none;
-        align-items: center;
-        justify-content: center;
-        z-index: 9999;
-        transition: transform 0.2s, background 0.2s;
-        font-family: 'Segoe UI', sans-serif;
-        line-height: 1;
-        padding: 0;
-    }
-    .tts-float-btn:hover {
-        background: #4a6fa5;
-        transform: scale(1.08);
-    }
-    .tts-float-btn.playing {
-        background: #e67e22;
-    }
-    .tts-float-btn.playing:hover {
-        background: #d35400;
-    }
-    .tts-controls {
-        position: fixed;
-        background: rgba(43, 58, 103, 0.92);
-        backdrop-filter: blur(6px);
-        color: white;
-        padding: 8px 16px 8px 20px;
-        border-radius: 40px;
-        display: none;
-        align-items: center;
-        gap: 12px;
-        z-index: 9999;
-        box-shadow: 0 6px 24px rgba(0,0,0,0.2);
-        font-family: 'Segoe UI', sans-serif;
-        font-size: 14px;
-        border: 1px solid rgba(255,255,255,0.1);
-    }
-    .tts-controls button {
-        background: transparent;
-        border: none;
-        color: white;
-        font-size: 18px;
-        cursor: pointer;
-        padding: 4px 6px;
-        border-radius: 8px;
-        transition: background 0.2s;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        line-height: 1;
-    }
-    .tts-controls button:hover {
-        background: rgba(255,255,255,0.15);
-    }
-    .tts-controls .status-text {
-        font-size: 13px;
-        opacity: 0.8;
-        letter-spacing: 0.3px;
-        margin-right: 4px;
-        min-width: 60px;
-        text-align: center;
-    }
-    .tts-controls .btn-loop.active {
-        color: #f1c40f;
-        text-shadow: 0 0 12px rgba(241,196,15,0.4);
-    }
-    .tts-controls .btn-stop {
-        color: #e74c3c;
-    }
-    .tts-controls .btn-stop:hover {
-        background: rgba(231,76,60,0.2);
-    }
-    @keyframes tts-pulse {
-        0% { box-shadow: 0 0 0 0 rgba(43,58,103,0.4); }
-        70% { box-shadow: 0 0 0 10px rgba(43,58,103,0); }
-        100% { box-shadow: 0 0 0 0 rgba(43,58,103,0); }
-    }
-    .tts-float-btn.pulse {
-        animation: tts-pulse 1.5s infinite;
-    }
-</style>
-    (function() {
-        'use strict';
-        console.log('🚀 Iniciando sistema TTS...');
-
-        // Crear botón flotante
-        var floatBtn = document.createElement('button');
-        floatBtn.className = 'tts-float-btn';
-        floatBtn.innerHTML = '🔊';
-        floatBtn.setAttribute('aria-label', 'Escuchar texto seleccionado');
-        document.body.appendChild(floatBtn);
-
-        // Crear controles
-        var controls = document.createElement('div');
-        controls.className = 'tts-controls';
-        controls.innerHTML = '<span class="status-text">▶ Leyendo</span><button class="btn-loop" title="Activar repetición en bucle">🔁</button><button class="btn-stop" title="Detener">⏹️</button>';
-        document.body.appendChild(controls);
-
-        var statusText = controls.querySelector('.status-text');
-        var btnLoop = controls.querySelector('.btn-loop');
-        var btnStop = controls.querySelector('.btn-stop');
-
-        var isPlaying = false;
-        var isLoopActive = false;
-        var utterance = null;
-        var loopTimeout = null;
-        var currentText = '';
-
-        function getSelectedText() {
-            var sel = window.getSelection();
-            if (!sel || sel.isCollapsed || sel.toString().trim().length === 0) {
-                return '';
-            }
-            return sel.toString().trim();
-        }
-
-        function getSelectionPosition() {
-            var sel = window.getSelection();
-            if (!sel || sel.isCollapsed || sel.rangeCount === 0) return null;
-            var range = sel.getRangeAt(0);
-            var rect = range.getBoundingClientRect();
-            return { x: rect.left + rect.width / 2, y: rect.top - 10 };
-        }
-
-        function updateFloatButton() {
-            var text = getSelectedText();
-            if (text.length > 0 && !isPlaying) {
-                var pos = getSelectionPosition();
-                if (pos) {
-                    floatBtn.style.display = 'flex';
-                    floatBtn.style.left = (pos.x - 22) + 'px';
-                    floatBtn.style.top = (pos.y - 44) + 'px';
-                    floatBtn.style.transform = 'none';
-                    floatBtn.classList.add('pulse');
-                } else {
-                    floatBtn.style.display = 'flex';
-                    floatBtn.style.left = '50%';
-                    floatBtn.style.top = '80px';
-                    floatBtn.style.transform = 'translateX(-50%)';
-                    floatBtn.classList.add('pulse');
-                }
-            } else {
-                if (!isPlaying) {
-                    floatBtn.style.display = 'none';
-                    floatBtn.classList.remove('pulse');
-                }
-            }
-        }
-
-        function stopSpeech() {
-            if (window.speechSynthesis) {
-                window.speechSynthesis.cancel();
-            }
-            if (loopTimeout) {
-                clearTimeout(loopTimeout);
-                loopTimeout = null;
-            }
-            isPlaying = false;
-            isLoopActive = false;
-            utterance = null;
-            controls.style.display = 'none';
-            floatBtn.classList.remove('playing');
-            floatBtn.innerHTML = '🔊';
-            setTimeout(updateFloatButton, 200);
-        }
-
-        function finishPlayback() {
-            isPlaying = false;
-            if (loopTimeout) {
-                clearTimeout(loopTimeout);
-                loopTimeout = null;
-            }
-            utterance = null;
-            controls.style.display = 'none';
-            floatBtn.classList.remove('playing');
-            floatBtn.innerHTML = '🔊';
-            setTimeout(updateFloatButton, 200);
-        }
-
-        function speakText(text, loop) {
-            if (!text || text.length === 0) return;
-            stopSpeech();
-
-            currentText = text;
-            isLoopActive = loop;
-
-            utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = 'es-ES';
-            utterance.rate = 0.95;
-            utterance.pitch = 1.0;
-            utterance.volume = 1;
-
-            utterance.onend = function() {
-                if (isLoopActive) {
-                    loopTimeout = setTimeout(function() {
-                        if (isLoopActive) {
-                            speakText(currentText, true);
-                        }
-                    }, 800);
-                } else {
-                    finishPlayback();
-                }
-            };
-
-            utterance.onerror = function(e) {
-                console.warn('Error en síntesis de voz:', e);
-                finishPlayback();
-            };
-
-            isPlaying = true;
-            window.speechSynthesis.speak(utterance);
-
-            floatBtn.style.display = 'none';
-            floatBtn.classList.remove('pulse');
-            controls.style.display = 'flex';
-            var pos = getSelectionPosition();
-            if (pos) {
-                controls.style.left = Math.max(20, pos.x - 120) + 'px';
-                controls.style.top = (pos.y + 20) + 'px';
-                controls.style.transform = 'none';
-            } else {
-                controls.style.left = '50%';
-                controls.style.top = '80px';
-                controls.style.transform = 'translateX(-50%)';
-            }
-            statusText.textContent = loop ? '🔁 Bucle' : '▶ Leyendo';
-            btnLoop.classList.toggle('active', loop);
-            floatBtn.classList.add('playing');
-            floatBtn.innerHTML = '⏹️';
-        }
-
-        function toggleLoop() {
-            if (!isPlaying) return;
-            isLoopActive = !isLoopActive;
-            btnLoop.classList.toggle('active', isLoopActive);
-            statusText.textContent = isLoopActive ? '🔁 Bucle' : '▶ Leyendo';
-            if (!isLoopActive && loopTimeout) {
-                clearTimeout(loopTimeout);
-                loopTimeout = null;
-            }
-        }
-
-        // Eventos
-        document.addEventListener('selectionchange', function() {
-            if (!isPlaying) {
-                updateFloatButton();
-            }
-        });
-
-        floatBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            if (isPlaying) {
-                stopSpeech();
-                return;
-            }
-            var text = getSelectedText();
-            if (text) {
-                speakText(text, false);
-            }
-        });
-
-        btnLoop.addEventListener('click', function(e) {
-            e.stopPropagation();
-            toggleLoop();
-        });
-
-        btnStop.addEventListener('click', function(e) {
-            e.stopPropagation();
-            stopSpeech();
-        });
-
-        // Inicializar
-        floatBtn.style.display = 'none';
-        controls.style.display = 'none';
-
-        console.log('✅ Sistema TTS cargado correctamente.');
-        console.log('Botón flotante:', floatBtn);
-        console.log('Controles:', controls);
-    })();
-</script>
-        
     </style>
 </head>
- <body>
+<body>
 
     <!-- ============================================================
     PORTADA (DASHBOARD)
@@ -856,11 +572,11 @@
     </div>
 
     <!-- ============================================================
-    JAVASCRIPT
+    JAVASCRIPT (RENDERIZADO + TTS)
     ============================================================ -->
     <script>
         // ============================================================
-        // 1. CONTENIDO COMPLETO DEL CURSO (igual que el que me diste)
+        // 1. CONTENIDO COMPLETO DEL CURSO
         // ============================================================
         const textoOriginal = `# CURSO ANANYA YUGALADVATIA – LAS 13 LECCIONES
 
@@ -1625,7 +1341,7 @@
         El nombre del curso —**Ananya Yugaladvatia**— es el recordatorio de que el camino es único y no dual, pero también abraza la totalidad de los opuestos. Eres, al mismo tiempo, el que busca y el que encuentra, el que cae y el que asciende, el que muere y el que renace.`;
 
         // ============================================================
-        // 2. MOTOR DE PARSEO Y RENDERIZADO (igual que tu HTML de ejemplo)
+        // 2. MOTOR DE PARSEO Y RENDERIZADO
         // ============================================================
         function parsear(texto) {
             const lineas = texto.split(/\r?\n/);
@@ -1642,8 +1358,8 @@
                     etiqueta = linea.slice(3).trim(); } else if (linea.startsWith("### ")) { nivel = 2;
                     etiqueta = linea.slice(4).trim(); } else if (linea.startsWith("#### ")) { nivel = 3;
                     etiqueta = linea.slice(5).trim(); } else if (linea.startsWith("##### ")) { nivel = 4;
-                    etiqueta = linea.slice(6).trim(); } else if (linea.startsWith("- ") || linea.startsWith("* ")) { nivel = pila.length ? pila[pila.length -
-                    1].nivel + 1 : 1;
+                    etiqueta = linea.slice(6).trim(); } else if (linea.startsWith("- ") || linea.startsWith("* ")) { nivel = pila.length ? pila[pila
+                        .length - 1].nivel + 1 : 1;
                     etiqueta = linea.slice(2).trim(); } else { nivel = pila.length ? pila[pila.length - 1].nivel + 1 : 1;
                     etiqueta = linea; }
                 while (pila.length && pila[pila.length - 1].nivel >= nivel) pila.pop();
@@ -1716,7 +1432,7 @@
         }
 
         // ============================================================
-        // 3. FUNCIONES DE NAVEGACIÓN ENTRE PORTADA Y MAPA
+        // 3. NAVEGACIÓN ENTRE PORTADA Y MAPA
         // ============================================================
         let mapaRenderizado = false;
         let todosLosNodos = [];
@@ -1727,11 +1443,9 @@
             const dashboard = document.getElementById('dashboard');
             const mapaContainer = document.getElementById('mapaContainer');
 
-            // Ocultar portada y mostrar mapa
             dashboard.classList.add('hidden');
             mapaContainer.classList.add('visible');
 
-            // Renderizar el mapa solo la primera vez
             if (!mapaRenderizado) {
                 const parsed = parsear(textoOriginal);
                 todosLosNodos = parsed.nodos;
@@ -1743,18 +1457,15 @@
                 mapaRenderizado = true;
             }
 
-            // Buscar el nodo de la lección correspondiente
             const targetText = `📜 LECCIÓN ${leccionNum}:`;
             const targetNode = todosLosNodos.find(n => n.etiqueta.includes(targetText));
 
             if (targetNode) {
-                // Expandir todos los ancestros y el propio nodo
                 expandirNodoYAncestros(targetNode.id);
             }
         }
 
         function expandirNodoYAncestros(nodeId) {
-            // Obtener todos los nodos que son ancestros (incluyendo el propio)
             const ancestros = [];
             let currentId = nodeId;
             while (currentId) {
@@ -1763,7 +1474,6 @@
                 currentId = nodo ? nodo.padreId : null;
             }
 
-            // Buscar los elementos card en el DOM y expandir sus hijos
             const cards = document.querySelectorAll('.card-map');
             cards.forEach(card => {
                 const id = parseInt(card.dataset.id);
@@ -1777,13 +1487,10 @@
                 }
             });
 
-            // Hacer scroll al nodo objetivo (el último de la lista es el más profundo, pero queremos el target)
-            // Encontramos la card del target y hacemos scroll
             const targetCard = document.querySelector(`.card-map[data-id="${nodeId}"]`);
             if (targetCard) {
                 setTimeout(() => {
                     targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    // Resaltar brevemente
                     targetCard.style.transition = 'background 0.3s';
                     targetCard.style.background = '#e8f0fe';
                     setTimeout(() => {
@@ -1799,10 +1506,8 @@
         }
 
         // ============================================================
-        // 4. EVENTOS
+        // 4. EVENTOS DE LAS TARJETAS Y BOTONES
         // ============================================================
-
-        // Click en tarjetas de la portada
         document.querySelectorAll('.card-dash').forEach(card => {
             card.addEventListener('click', function() {
                 const leccion = parseInt(this.dataset.leccion);
@@ -1812,10 +1517,8 @@
             });
         });
 
-        // Botón volver
         document.getElementById('btnVolver').addEventListener('click', mostrarDashboard);
 
-        // Expandir / Colapsar todo (solo cuando el mapa está visible)
         document.getElementById('expandirTodo').addEventListener('click', function() {
             if (document.getElementById('mapaContainer').classList.contains('visible')) {
                 document.querySelectorAll('.children').forEach(c => c.classList.remove('collapsed'));
@@ -1829,11 +1532,212 @@
             }
         });
 
-        // ============================================================
-        // 5. INICIO: PORTADA VISIBLE, MAPA OCULTO
-        // ============================================================
+        // Inicio: portada visible, mapa oculto
         document.getElementById('dashboard').classList.remove('hidden');
         document.getElementById('mapaContainer').classList.remove('visible');
+
+        // ============================================================
+        // 5. SISTEMA TTS (TEXTO A VOZ CON BUCLE)
+        // ============================================================
+        (function() {
+            'use strict';
+
+            console.log('🚀 Iniciando sistema TTS...');
+
+            // Crear botón flotante
+            var floatBtn = document.createElement('button');
+            floatBtn.className = 'tts-float-btn';
+            floatBtn.innerHTML = '🔊';
+            floatBtn.setAttribute('aria-label', 'Escuchar texto seleccionado');
+            document.body.appendChild(floatBtn);
+
+            // Crear controles
+            var controls = document.createElement('div');
+            controls.className = 'tts-controls';
+            controls.innerHTML = '<span class="status-text">▶ Leyendo</span><button class="btn-loop" title="Activar repetición en bucle">🔁</button><button class="btn-stop" title="Detener">⏹️</button>';
+            document.body.appendChild(controls);
+
+            var statusText = controls.querySelector('.status-text');
+            var btnLoop = controls.querySelector('.btn-loop');
+            var btnStop = controls.querySelector('.btn-stop');
+
+            var isPlaying = false;
+            var isLoopActive = false;
+            var utterance = null;
+            var loopTimeout = null;
+            var currentText = '';
+
+            function getSelectedText() {
+                var sel = window.getSelection();
+                if (!sel || sel.isCollapsed || sel.toString().trim().length === 0) {
+                    return '';
+                }
+                return sel.toString().trim();
+            }
+
+            function getSelectionPosition() {
+                var sel = window.getSelection();
+                if (!sel || sel.isCollapsed || sel.rangeCount === 0) return null;
+                var range = sel.getRangeAt(0);
+                var rect = range.getBoundingClientRect();
+                return { x: rect.left + rect.width / 2, y: rect.top - 10 };
+            }
+
+            function updateFloatButton() {
+                var text = getSelectedText();
+                if (text.length > 0 && !isPlaying) {
+                    var pos = getSelectionPosition();
+                    if (pos) {
+                        floatBtn.style.display = 'flex';
+                        floatBtn.style.left = (pos.x - 22) + 'px';
+                        floatBtn.style.top = (pos.y - 44) + 'px';
+                        floatBtn.style.transform = 'none';
+                        floatBtn.classList.add('pulse');
+                    } else {
+                        floatBtn.style.display = 'flex';
+                        floatBtn.style.left = '50%';
+                        floatBtn.style.top = '80px';
+                        floatBtn.style.transform = 'translateX(-50%)';
+                        floatBtn.classList.add('pulse');
+                    }
+                } else {
+                    if (!isPlaying) {
+                        floatBtn.style.display = 'none';
+                        floatBtn.classList.remove('pulse');
+                    }
+                }
+            }
+
+            function stopSpeech() {
+                if (window.speechSynthesis) {
+                    window.speechSynthesis.cancel();
+                }
+                if (loopTimeout) {
+                    clearTimeout(loopTimeout);
+                    loopTimeout = null;
+                }
+                isPlaying = false;
+                isLoopActive = false;
+                utterance = null;
+                controls.style.display = 'none';
+                floatBtn.classList.remove('playing');
+                floatBtn.innerHTML = '🔊';
+                setTimeout(updateFloatButton, 200);
+            }
+
+            function finishPlayback() {
+                isPlaying = false;
+                if (loopTimeout) {
+                    clearTimeout(loopTimeout);
+                    loopTimeout = null;
+                }
+                utterance = null;
+                controls.style.display = 'none';
+                floatBtn.classList.remove('playing');
+                floatBtn.innerHTML = '🔊';
+                setTimeout(updateFloatButton, 200);
+            }
+
+            function speakText(text, loop) {
+                if (!text || text.length === 0) return;
+                stopSpeech();
+
+                currentText = text;
+                isLoopActive = loop;
+
+                utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'es-ES';
+                utterance.rate = 0.95;
+                utterance.pitch = 1.0;
+                utterance.volume = 1;
+
+                utterance.onend = function() {
+                    if (isLoopActive) {
+                        loopTimeout = setTimeout(function() {
+                            if (isLoopActive) {
+                                speakText(currentText, true);
+                            }
+                        }, 800);
+                    } else {
+                        finishPlayback();
+                    }
+                };
+
+                utterance.onerror = function(e) {
+                    console.warn('Error en síntesis de voz:', e);
+                    finishPlayback();
+                };
+
+                isPlaying = true;
+                window.speechSynthesis.speak(utterance);
+
+                floatBtn.style.display = 'none';
+                floatBtn.classList.remove('pulse');
+                controls.style.display = 'flex';
+                var pos = getSelectionPosition();
+                if (pos) {
+                    controls.style.left = Math.max(20, pos.x - 120) + 'px';
+                    controls.style.top = (pos.y + 20) + 'px';
+                    controls.style.transform = 'none';
+                } else {
+                    controls.style.left = '50%';
+                    controls.style.top = '80px';
+                    controls.style.transform = 'translateX(-50%)';
+                }
+                statusText.textContent = loop ? '🔁 Bucle' : '▶ Leyendo';
+                btnLoop.classList.toggle('active', loop);
+                floatBtn.classList.add('playing');
+                floatBtn.innerHTML = '⏹️';
+            }
+
+            function toggleLoop() {
+                if (!isPlaying) return;
+                isLoopActive = !isLoopActive;
+                btnLoop.classList.toggle('active', isLoopActive);
+                statusText.textContent = isLoopActive ? '🔁 Bucle' : '▶ Leyendo';
+                if (!isLoopActive && loopTimeout) {
+                    clearTimeout(loopTimeout);
+                    loopTimeout = null;
+                }
+            }
+
+            // Eventos TTS
+            document.addEventListener('selectionchange', function() {
+                if (!isPlaying) {
+                    updateFloatButton();
+                }
+            });
+
+            floatBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (isPlaying) {
+                    stopSpeech();
+                    return;
+                }
+                var text = getSelectedText();
+                if (text) {
+                    speakText(text, false);
+                }
+            });
+
+            btnLoop.addEventListener('click', function(e) {
+                e.stopPropagation();
+                toggleLoop();
+            });
+
+            btnStop.addEventListener('click', function(e) {
+                e.stopPropagation();
+                stopSpeech();
+            });
+
+            // Inicializar
+            floatBtn.style.display = 'none';
+            controls.style.display = 'none';
+
+            console.log('✅ Sistema TTS cargado correctamente.');
+            console.log('Botón flotante:', floatBtn);
+            console.log('Controles:', controls);
+        })();
     </script>
 </body>
 </html>
