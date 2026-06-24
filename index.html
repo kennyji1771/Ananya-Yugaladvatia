@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Plantilla de estudio · Ananya Yugaladvatia</title>
+    <title>Plantilla · Mapa Mental + Voz</title>
     <style>
         /* ============================================================
            ESTILOS GENERALES Y PORTADA
@@ -174,6 +174,7 @@
             font-size: 2.6rem;
             line-height: 1;
             margin-bottom: 10px;
+            transition: 0.2s;
         }
         .card-dash .numero {
             font-size: 0.8rem;
@@ -359,18 +360,10 @@
             box-shadow: 0 0 0 3px rgba(74,111,165,0.15);
         }
         .modal-group textarea {
-            min-height: 200px;
+            min-height: 150px;
             font-family: 'Courier New', monospace;
             font-size: 0.9rem;
             resize: vertical;
-        }
-        .modal-group .help-text {
-            font-size: 0.8rem;
-            color: #666;
-            margin-top: 4px;
-        }
-        body.dark .modal-group .help-text {
-            color: #999;
         }
         .modal-actions {
             display: flex;
@@ -423,6 +416,51 @@
             background: #2ecc71;
         }
 
+        /* ---- GALERÍA DE ÍCONOS (EMOJI PICKER) ---- */
+        .emoji-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+            gap: 8px;
+            max-height: 250px;
+            overflow-y: auto;
+            padding: 10px;
+            border: 1px solid #d1d9e6;
+            border-radius: 12px;
+            background: #fafcff;
+        }
+        body.dark .emoji-grid {
+            background: #1a1a35;
+            border-color: #3a3a6a;
+        }
+        .emoji-grid button {
+            font-size: 2rem;
+            background: none;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            padding: 4px;
+            transition: 0.2s;
+            text-align: center;
+        }
+        .emoji-grid button:hover {
+            background: rgba(74,111,165,0.1);
+            border-color: #4a6fa5;
+            transform: scale(1.1);
+        }
+        .emoji-search {
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 8px 12px;
+            border-radius: 30px;
+            border: 1px solid #d1d9e6;
+            font-size: 1rem;
+        }
+        body.dark .emoji-search {
+            background: #1e1e3a;
+            border-color: #3a3a6a;
+            color: #e0e0e0;
+        }
+
         /* ---- MAPA MENTAL (INTERIOR) ---- */
         #mapaContainer {
             width: 100%;
@@ -443,6 +481,7 @@
             border-radius: 28px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
             overflow: hidden;
+            transition: background 0.3s, box-shadow 0.3s;
         }
         body.dark .app {
             background: #1e1e3a;
@@ -457,6 +496,7 @@
             gap: 12px;
             justify-content: space-between;
             align-items: center;
+            transition: background 0.3s;
         }
         body.dark .toolbar {
             background: #2a2a5a;
@@ -529,6 +569,7 @@
             max-height: 700px;
             overflow-y: auto;
             background: #fafcff;
+            transition: background 0.3s;
         }
         body.dark .mapa {
             background: #1a1a35;
@@ -657,6 +698,8 @@
             .top-actions { top: 10px; right: 10px; }
             .top-actions button { width: 40px; height: 40px; font-size: 1.4rem; }
             .modal-content { padding: 25px 20px; }
+            .emoji-grid { grid-template-columns: repeat(auto-fill, minmax(40px, 1fr)); }
+            .emoji-grid button { font-size: 1.5rem; }
         }
     </style>
 </head>
@@ -676,9 +719,7 @@
             <div class="subtitle" id="mainSubtitle">LAS <span>13</span> LECCIONES · EL CAMINO ÚNICO HACIA LA UNIDAD</div>
         </header>
 
-        <div class="grid" id="gridTarjetas">
-            <!-- Generado dinámicamente -->
-        </div>
+        <div class="grid" id="gridTarjetas"></div>
 
         <footer class="footer-dash">
             <strong id="footerStrong">ANANYA YUGALADVATIA</strong> · <span id="footerDesc">El camino único hacia la unidad de los opuestos</span><br />
@@ -698,10 +739,11 @@
                 <select id="voiceSelect">
                     <option value="">Cargando voces...</option>
                 </select>
+                <button id="setDefaultVoice" style="margin-top:8px; background:#4a6fa5; color:white; border:none; padding:6px 16px; border-radius:30px; cursor:pointer;">Establecer como predeterminada</button>
             </div>
             <div class="modal-group">
                 <label for="rateControl">Velocidad: <span class="range-value" id="rateValue">0.92</span></label>
-                <div class="range-container" style="display:flex; align-items:center; gap:10px;">
+                <div style="display:flex; align-items:center; gap:10px;">
                     <span>Lento</span>
                     <input type="range" id="rateControl" min="0.5" max="1.8" step="0.01" value="0.92" style="flex:1;" />
                     <span>Rápido</span>
@@ -709,7 +751,7 @@
             </div>
             <div class="modal-group">
                 <label for="pitchControl">Tono: <span class="range-value" id="pitchValue">1.0</span></label>
-                <div class="range-container" style="display:flex; align-items:center; gap:10px;">
+                <div style="display:flex; align-items:center; gap:10px;">
                     <span>Grave</span>
                     <input type="range" id="pitchControl" min="0.5" max="1.5" step="0.01" value="1.0" style="flex:1;" />
                     <span>Agudo</span>
@@ -739,19 +781,12 @@
             </div>
             <div class="modal-group">
                 <label>Contenido del mapa mental (texto con marcadores #, ##, ###, etc.)</label>
-                <textarea id="editContent" style="min-height:200px; font-family:monospace; font-size:0.85rem;"></textarea>
-                <div class="help-text">
-                    💡 <strong>Protocolo de vinculación:</strong> Cada tarjeta debe tener un número (ej. "Lección 1") que coincida con un nodo raíz (#) que comience con "📜 LECCIÓN 1:". 
-                    Así, al hacer clic en la tarjeta, se abrirá y expandirá esa lección en el mapa.
-                </div>
+                <textarea id="editContent" style="min-height:200px;"></textarea>
             </div>
             <div class="modal-group">
-                <label>Tarjetas de la portada (cada línea: icono|numero|título|código|descripción|tag)</label>
-                <textarea id="editCards" style="min-height:200px; font-family:monospace; font-size:0.85rem;"></textarea>
-                <div class="help-text">
-                    💡 El campo "numero" debe coincidir con el número de la lección (ej. "Lección 1"). 
-                    El contenido del mapa debe tener un nodo # que comience con "📜 LECCIÓN 1:" para que la vinculación funcione.
-                </div>
+                <label>Tarjetas de la portada (cada línea: icono|número|título|código|descripción|etiqueta)</label>
+                <textarea id="editCards" style="min-height:200px;"></textarea>
+                <button id="openEmojiPicker" style="margin-top:8px; background:#4a6fa5; color:white; border:none; padding:6px 16px; border-radius:30px; cursor:pointer;">🎨 Buscar íconos</button>
             </div>
             <div class="modal-group">
                 <label>Tema de colores</label>
@@ -772,12 +807,30 @@
     </div>
 
     <!-- ============================================================
+    MODAL DE BÚSQUEDA DE ÍCONOS (EMOJI PICKER)
+    ============================================================ -->
+    <div class="modal-overlay" id="emojiModal">
+        <div class="modal-content" style="max-width:500px;">
+            <button class="close-modal" id="closeEmojiModal">✕</button>
+            <h2>🎨 Buscar íconos</h2>
+            <div class="modal-group">
+                <input type="text" id="emojiSearchInput" class="emoji-search" placeholder="Buscar por palabra clave (ej. amor, paz, fuego)" />
+                <div class="emoji-grid" id="emojiGrid"></div>
+                <p style="margin-top:8px; font-size:0.8rem; opacity:0.6;">Haz clic en un ícono para insertarlo en la tarjeta seleccionada.</p>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-secondary" id="closeEmojiPicker">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
     MAPA MENTAL (INTERIOR)
     ============================================================ -->
     <div id="mapaContainer">
         <div class="app">
             <div class="toolbar">
-                <div class="titulo" id="mapTitle">🧠 Mapa Mental · <span id="mapTitleSpan">Ananya Yugaladvatia</span></div>
+                <div class="titulo">🧠 Mapa Mental · <span id="mapaTitle">Ananya Yugaladvatia</span></div>
                 <div class="grupo">
                     <button id="expandirTodo">🔽 Expandir todo</button>
                     <button id="colapsarTodo">🔼 Colapsar todo</button>
@@ -791,14 +844,14 @@
         </div>
     </div>
 
+    <!-- ============================================================
+    JAVASCRIPT (TODAS LAS FUNCIONALIDADES)
+    ============================================================ -->
     <script>
         // ============================================================
-        // 1. CONFIGURACIÓN Y DATOS POR DEFECTO (CARGADOS DESDE EL HTML)
+        // 1. DATOS POR DEFECTO
         // ============================================================
-        // Si el archivo se exporta, estos datos se incrustarán aquí
-        const DEFAULT_TITLE = '⚜️ ANANYA YUGALADVATIA';
-        const DEFAULT_SUBTITLE = 'LAS 13 LECCIONES · EL CAMINO ÚNICO HACIA LA UNIDAD';
-        const DEFAULT_CARDS = [
+        const defaultCards = [
             { icono: '🧘', numero: 'Lección 1', titulo: 'La purificación del recipiente', codice: 'Códice I · Jung',
                 desc: 'Vacía la mente y el corazón mediante una respiración sagrada para recibir la luz del Pléroma.',
                 tag: 'Viaje interior' },
@@ -841,8 +894,7 @@
                 tag: 'Sabiduría femenina' }
         ];
 
-        // Contenido por defecto (se define en una variable separada)
-        const DEFAULT_CONTENT = `# CURSO ANANYA YUGALADVATIA – LAS 13 LECCIONES
+        const defaultContent = `# CURSO ANANYA YUGALADVATIA – LAS 13 LECCIONES
 
         ## EL NOMBRE DEL CURSO: ANANYA YUGALADVATIA
 
@@ -886,50 +938,34 @@
         | 13 | Códice XIII | La voz del primer pensamiento: invocar la sabiduría femenina (Protennoia Trimorfa).`;
 
         // ============================================================
-        // 2. CARGA DE DATOS (PRIORIDAD: DATOS INCRUSTADOS > LOCALSTORAGE > DEFAULT)
+        // 2. GESTIÓN DE ESTADO DE LA PLANTILLA
         // ============================================================
-        let currentTitle = DEFAULT_TITLE;
-        let currentSubtitle = DEFAULT_SUBTITLE;
-        let currentCards = [...DEFAULT_CARDS];
-        let currentContent = DEFAULT_CONTENT;
+        let currentCards = [];
+        let currentContent = '';
+        let currentTitle = '⚜️ ANANYA YUGALADVATIA';
+        let currentSubtitle = 'LAS 13 LECCIONES · EL CAMINO ÚNICO HACIA LA UNIDAD';
 
-        // Función para cargar datos desde localStorage o desde datos incrustados
-        function loadTemplateData() {
-            // Verificar si hay datos incrustados en el HTML (para exportación)
-            const embedded = document.getElementById('embeddedData');
-            if (embedded) {
-                try {
-                    const data = JSON.parse(embedded.textContent);
-                    if (data.title) currentTitle = data.title;
-                    if (data.subtitle) currentSubtitle = data.subtitle;
-                    if (data.cards) currentCards = data.cards;
-                    if (data.content) currentContent = data.content;
-                    if (data.theme) applyTheme(data.theme);
-                    return;
-                } catch (e) {}
-            }
-
-            // Si no hay datos incrustados, cargar de localStorage
+        function loadTemplate() {
             try {
                 const saved = localStorage.getItem('templateConfig');
                 if (saved) {
                     const data = JSON.parse(saved);
-                    if (data.title) currentTitle = data.title;
-                    if (data.subtitle) currentSubtitle = data.subtitle;
-                    if (data.cards) currentCards = data.cards;
-                    if (data.content) currentContent = data.content;
-                    if (data.theme) applyTheme(data.theme);
+                    currentTitle = data.title || currentTitle;
+                    currentSubtitle = data.subtitle || currentSubtitle;
+                    currentCards = data.cards || defaultCards;
+                    currentContent = data.content || defaultContent;
+                    applyTheme(data.theme || 'light');
+                } else {
+                    currentCards = defaultCards;
+                    currentContent = defaultContent;
                 }
             } catch (e) {
-                // Si hay error, usar valores por defecto
-                currentTitle = DEFAULT_TITLE;
-                currentSubtitle = DEFAULT_SUBTITLE;
-                currentCards = [...DEFAULT_CARDS];
-                currentContent = DEFAULT_CONTENT;
+                currentCards = defaultCards;
+                currentContent = defaultContent;
             }
         }
 
-        function saveTemplateData() {
+        function saveTemplate() {
             try {
                 localStorage.setItem('templateConfig', JSON.stringify({
                     title: currentTitle,
@@ -945,15 +981,9 @@
             document.body.classList.remove('dark');
             if (theme === 'dark') {
                 document.body.classList.add('dark');
-            } else if (theme === 'blue') {
-                document.documentElement.style.setProperty('--accent', '#3b82f6');
-            } else if (theme === 'green') {
-                document.documentElement.style.setProperty('--accent', '#10b981');
-            } else if (theme === 'warm') {
-                document.documentElement.style.setProperty('--accent', '#f59e0b');
-            } else {
-                document.documentElement.style.setProperty('--accent', '#4a6fa5');
             }
+            // Para otros temas, usamos variables CSS (por simplicidad, solo dark/light)
+            // Si se quiere más variedad, se puede expandir.
         }
 
         // ============================================================
@@ -965,9 +995,7 @@
             currentCards.forEach((card, index) => {
                 const div = document.createElement('div');
                 div.className = 'card-dash';
-                // Guardamos el índice o el número de lección para vincular
-                const leccionNum = index + 1;
-                div.dataset.leccion = leccionNum;
+                div.dataset.leccion = index + 1;
                 div.innerHTML = `
                     <span class="icono">${card.icono}</span>
                     <div class="numero">${card.numero}</div>
@@ -988,11 +1016,9 @@
             document.getElementById('mainSubtitle').innerHTML = currentSubtitle;
             document.getElementById('footerStrong').textContent = currentTitle.replace(/[^A-Za-z0-9 ]/g, '').trim();
             document.getElementById('footerDesc').textContent = currentSubtitle;
-
-            // Actualizar título del mapa (si está visible)
-            const mapTitleSpan = document.getElementById('mapTitleSpan');
-            if (mapTitleSpan) {
-                mapTitleSpan.textContent = currentTitle.replace(/[^A-Za-z0-9 ]/g, '').trim() || 'Plantilla';
+            // Actualizar título del mapa si está visible
+            if (document.getElementById('mapaContainer').classList.contains('visible')) {
+                document.getElementById('mapaTitle').textContent = currentTitle.replace(/[^A-Za-z0-9 ]/g, '').trim();
             }
         }
 
@@ -1123,12 +1149,25 @@
             return texto;
         }
 
+        // ============================================================
+        // 5. LIMPIEZA DE TEXTO PARA VOZ (MEJORADA)
+        // ============================================================
         function limpiarTextoParaVoz(texto) {
-            return texto.replace(/[^\p{L}\p{N}\s.,;:!?¿¡()\-]/gu, ' ').replace(/\s+/g, ' ').trim();
+            // 1. Eliminar números al inicio de cada línea (si son como "1.", "2.", etc.)
+            // 2. Eliminar barras, puntos repetidos, guiones, asteriscos, etc.
+            // 3. Mantener letras, números, espacios, puntuación básica.
+            return texto
+                .replace(/^[\d]+\.\s*/gm, '') // Elimina números al inicio de línea (ej. "1. ")
+                .replace(/^[\d]+\)\s*/gm, '') // Elimina "1) "
+                .replace(/^[\d]+\s*/gm, '') // Elimina números sueltos al inicio
+                .replace(/[\/\\|*_~`]/g, ' ') // Barras, guiones bajos, etc.
+                .replace(/\.{2,}/g, '.') // Puntos repetidos
+                .replace(/\s+/g, ' ') // Unificar espacios
+                .trim();
         }
 
         // ============================================================
-        // 5. SISTEMA TTS CON BUCLE
+        // 6. SISTEMA TTS CON BUCLE Y CONFIGURACIÓN
         // ============================================================
         let ttsConfig = {
             voice: null,
@@ -1148,6 +1187,7 @@
                     const parsed = JSON.parse(saved);
                     ttsConfig.rate = parsed.rate || 0.92;
                     ttsConfig.pitch = parsed.pitch || 1.0;
+                    // La voz se cargará después de que estén disponibles
                 }
             } catch (e) {}
         }
@@ -1169,13 +1209,9 @@
         }
 
         function detenerLectura() {
-            if (window.speechSynthesis) {
-                window.speechSynthesis.cancel();
-            }
-            if (loopTimeout) {
-                clearTimeout(loopTimeout);
-                loopTimeout = null;
-            }
+            if (window.speechSynthesis) window.speechSynthesis.cancel();
+            if (loopTimeout) { clearTimeout(loopTimeout);
+                loopTimeout = null; }
             isSpeaking = false;
             currentUtterance = null;
             const btn = document.getElementById('btnEscuchar');
@@ -1188,9 +1224,7 @@
         function leerNodo(id) {
             if (isSpeaking) {
                 detenerLectura();
-                setTimeout(() => {
-                    leerNodoInterno(id);
-                }, 300);
+                setTimeout(() => { leerNodoInterno(id); }, 300);
                 return;
             }
             leerNodoInterno(id);
@@ -1206,9 +1240,11 @@
             }
 
             const textoCompleto = obtenerTextoNodo(id);
-            const textoLimpio = limpiarTextoParaVoz(textoCompleto);
+            let textoLimpio = limpiarTextoParaVoz(textoCompleto);
+            // Eliminar números sueltos que puedan quedar
+            textoLimpio = textoLimpio.replace(/^\d+\s*/g, '');
             if (textoLimpio.length === 0) {
-                console.warn('Texto vacío');
+                console.warn('Texto vacío después de limpiar');
                 return;
             }
             currentSpeakingText = textoLimpio;
@@ -1279,7 +1315,7 @@
         }
 
         // ============================================================
-        // 6. NAVEGACIÓN Y EXPANSIÓN AUTOMÁTICA
+        // 7. NAVEGACIÓN Y DESPLIEGUE AUTOMÁTICO
         // ============================================================
         let mapaRenderizado = false;
 
@@ -1290,6 +1326,9 @@
             dashboard.classList.add('hidden');
             mapaContainer.classList.add('visible');
 
+            // Actualizar título del mapa con el título actual de la portada
+            document.getElementById('mapaTitle').textContent = currentTitle.replace(/[^A-Za-z0-9 ]/g, '').trim();
+
             if (!mapaRenderizado || !allNodes.length) {
                 const parsed = parsear(currentContent);
                 allNodes = parsed.nodos;
@@ -1299,24 +1338,23 @@
                 allNodes.forEach(n => nodesMap.set(n.id, n));
                 renderizarMapa(rootNodes, nodesMap, childrenMap);
                 mapaRenderizado = true;
-                if (rootNodes.length > 0) {
-                    setActiveNode(rootNodes[0]);
-                }
+                if (rootNodes.length > 0) setActiveNode(rootNodes[0]);
             }
 
-            // Buscar la lección correspondiente y expandirla
-            const targetText = `📜 LECCIÓN ${leccionNum}:`;
-            const targetNode = allNodes.find(n => n.etiqueta.includes(targetText));
+            // Buscar el nodo raíz que corresponda a la lección (patrón flexible)
+            // Buscar "📜 LECCIÓN X:", "📜 proyecto X:", "📜 plan X:", etc.
+            const patron = new RegExp(`📜.*?${leccionNum}\\s*[:：]`, 'i');
+            const targetNode = allNodes.find(n => patron.test(n.etiqueta));
+
             if (targetNode) {
+                // Expandir todos los ancestros y el nodo objetivo
                 expandirNodoYAncestros(targetNode.id);
                 setActiveNode(targetNode.id);
-                // Desplazar la vista al nodo
-                const targetCard = document.querySelector(`.card-map[data-id="${targetNode.id}"]`);
-                if (targetCard) {
-                    setTimeout(() => {
-                        targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }, 400);
-                }
+                // Scroll al nodo
+                setTimeout(() => {
+                    const card = document.querySelector(`.card-map[data-id="${targetNode.id}"]`);
+                    if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 400);
             } else {
                 // Si no se encuentra, expandir el primer nodo raíz
                 if (rootNodes.length > 0) {
@@ -1352,11 +1390,10 @@
             document.getElementById('dashboard').classList.remove('hidden');
             document.getElementById('mapaContainer').classList.remove('visible');
             detenerLectura();
-            // No desactivar el bucle, el usuario decide
         }
 
         // ============================================================
-        // 7. EVENTOS DE LA INTERFAZ
+        // 8. EVENTOS DE BOTONES PRINCIPALES
         // ============================================================
         document.getElementById('btnVolver').addEventListener('click', mostrarDashboard);
 
@@ -1394,7 +1431,7 @@
         });
 
         // ============================================================
-        // 8. MODAL DE CONFIGURACIÓN DE VOZ
+        // 9. MODAL DE CONFIGURACIÓN DE VOZ
         // ============================================================
         const configBtn = document.getElementById('configBtn');
         const configModal = document.getElementById('configModal');
@@ -1406,6 +1443,7 @@
         const pitchControl = document.getElementById('pitchControl');
         const rateValue = document.getElementById('rateValue');
         const pitchValue = document.getElementById('pitchValue');
+        const setDefaultVoiceBtn = document.getElementById('setDefaultVoice');
 
         function populateVoices() {
             const voces = window.speechSynthesis.getVoices();
@@ -1433,6 +1471,7 @@
                 opt.textContent = `${v.name} (${v.lang})`;
                 voiceSelect.appendChild(opt);
             });
+            // Seleccionar la voz guardada si existe
             if (ttsConfig.voice) {
                 for (let opt of voiceSelect.options) {
                     if (opt.value === ttsConfig.voice.name) { opt.selected = true; break; }
@@ -1472,9 +1511,20 @@
             closeConfigModalFn();
             if (isSpeaking) {
                 detenerLectura();
-                if (activeNodeId) {
-                    setTimeout(() => leerNodo(activeNodeId), 300);
-                }
+                if (activeNodeId) setTimeout(() => leerNodo(activeNodeId), 300);
+            }
+        });
+
+        setDefaultVoiceBtn.addEventListener('click', function() {
+            const selected = voiceSelect.value;
+            const voces = window.speechSynthesis.getVoices();
+            const voice = voces.find(v => v.name === selected) || null;
+            if (voice) {
+                ttsConfig.voice = voice;
+                saveVoiceConfig();
+                alert(`Voz "${voice.name}" establecida como predeterminada.`);
+            } else {
+                alert('Selecciona una voz primero.');
             }
         });
 
@@ -1491,7 +1541,7 @@
         setTimeout(populateVoices, 500);
 
         // ============================================================
-        // 9. MODAL DE EDICIÓN DE PLANTILLA
+        // 10. MODAL DE EDICIÓN DE PLANTILLA + GALERÍA DE ÍCONOS
         // ============================================================
         const editBtn = document.getElementById('editBtn');
         const editModal = document.getElementById('editModal');
@@ -1499,7 +1549,133 @@
         const cancelEdit = document.getElementById('cancelEdit');
         const saveEdit = document.getElementById('saveEdit');
         const exportHtml = document.getElementById('exportHtml');
+        const openEmojiPicker = document.getElementById('openEmojiPicker');
+        const emojiModal = document.getElementById('emojiModal');
+        const closeEmojiModal = document.getElementById('closeEmojiModal');
+        const closeEmojiPicker = document.getElementById('closeEmojiPicker');
+        const emojiSearchInput = document.getElementById('emojiSearchInput');
+        const emojiGrid = document.getElementById('emojiGrid');
 
+        // Lista de emojis para la galería (amplia y variada)
+        const emojiList = [
+            '🌟', '⭐', '✨', '🔥', '💡', '🌈', '🌸', '🌺', '🌻', '🌹', '🌷', '🌱', '🌿', '☘️', '🍀',
+            '🌳', '🌲', '🌵', '🍃', '🍂', '🍁', '🍄', '🌾', '🌼', '💐', '🌎', '🌍', '🌏', '🌕', '🌙',
+            '🌊', '🌅', '🌄', '🌇', '🌆', '🌃', '🌌', '🌉', '🌋', '🌧️', '⛅', '☀️', '🌤️', '⛰️', '🏔️',
+            '❤️', '🧡', '💛', '💚', '💙', '💜', '🖤', '🤍', '🤎', '💖', '💗', '💓', '💕', '💞', '💘',
+            '💝', '💟', '☮️', '✝️', '☯️', '🕉️', '☸️', '✡️', '🔯', '🕊️', '🐦', '🦅', '🦉', '🦋', '🐝',
+            '🐞', '🍄', '🌺', '🌸', '🏵️', '💮', '🪷', '🌷', '🌱', '🌿', '☘️', '🍀', '🌴', '🌳', '🌲',
+            '🧘', '🧠', '💪', '👁️', '👀', '🗣️', '👤', '👥', '🕊️', '🌹', '🥀', '🌺', '🌸', '🌷', '🌻',
+            '🌼', '🌾', '🌿', '🍃', '🍂', '🍁', '🍄', '🌰', '🪴', '🌵', '🌴', '🌳', '🌲', '🎋', '🎍',
+            '📖', '📜', '📚', '📓', '📔', '📒', '📕', '📗', '📘', '📙', '📰', '📑', '🔖', '🏷️', '📌',
+            '📎', '📏', '📐', '✂️', '📝', '📄', '📃', '📋', '📂', '📁', '📆', '📅', '📇', '📈', '📉',
+            '🔍', '🔎', '🔦', '🔮', '🔭', '🪄', '⚗️', '🧪', '🧬', '🔬', '🔭', '🩺', '💉', '💊', '🩹',
+            '🎯', '🎵', '🎶', '🎼', '🎤', '🎧', '🎹', '🎸', '🎺', '🎻', '🥁', '🎷', '🎼', '🎵', '🎶',
+            '🌙', '☀️', '⭐', '🌌', '🌠', '🌄', '🌅', '🌇', '🌆', '🌃', '🌉', '🌊', '🌋', '🏜️', '🏝️'
+        ];
+
+        // Palabras clave para búsqueda (asociadas a emojis)
+        const emojiKeywords = {
+            'amor': ['❤️', '🧡', '💛', '💚', '💙', '💜', '💖', '💗', '💓', '💕', '💞', '💘', '💝', '💟'],
+            'paz': ['🕊️', '☮️', '✝️', '☯️', '🕉️', '☸️', '✡️', '🔯', '🌿', '☘️', '🍀'],
+            'sabiduría': ['📖', '📜', '📚', '🦉', '🔮', '🧠', '💡', '⭐'],
+            'fuerza': ['💪', '⚡', '🔥', '🛡️', '⚔️', '🏹', '💥'],
+            'luz': ['💡', '☀️', '⭐', '🌟', '✨', '🔦', '🌈'],
+            'naturaleza': ['🌱', '🌿', '🍀', '🌳', '🌲', '🌵', '🌸', '🌺', '🌻', '🌷', '🌹', '🌾', '🍃', '🌴'],
+            'agua': ['🌊', '💧', '🌧️', '⛅', '🌅', '🌄'],
+            'fuego': ['🔥', '🌋', '⚡', '💥', '🔴'],
+            'viaje': ['🌍', '🌎', '🌏', '🧭', '🗺️', '✈️', '🚀', '🛸'],
+            'estudio': ['📖', '📚', '📓', '📔', '📒', '📝', '📄', '📃', '📋', '📂', '📁'],
+            'música': ['🎵', '🎶', '🎼', '🎤', '🎧', '🎹', '🎸', '🎺', '🎻', '🥁', '🎷'],
+            'cielo': ['☀️', '⭐', '🌙', '🌌', '🌠', '☁️', '🌈', '🌤️', '⛅'],
+            'magia': ['🔮', '🪄', '✨', '🌟', '🔭', '🪷', '🌙', '⭐'],
+            'alma': ['🕊️', '💖', '🧠', '💭', '🌙', '⭐', '🌟'],
+            'espiritualidad': ['🕉️', '☯️', '✡️', '🔯', '🕊️', '☮️', '🧘', '🌿', '🪷'],
+            'conocimiento': ['📖', '📜', '🧠', '💡', '🔍', '🔎', '🦉', '📚']
+        };
+
+        function renderEmojis(filter = '') {
+            let emojis = emojiList;
+            if (filter) {
+                const lower = filter.toLowerCase();
+                // Buscar en las keywords
+                const matched = new Set();
+                for (const [key, values] of Object.entries(emojiKeywords)) {
+                    if (key.includes(lower)) {
+                        values.forEach(v => matched.add(v));
+                    }
+                }
+                // Si no hay match por keyword, filtrar por el propio emoji (si se busca "❤️" por ejemplo)
+                if (matched.size === 0) {
+                    emojis = emojis.filter(e => e.includes(filter) || e === filter);
+                } else {
+                    emojis = Array.from(matched);
+                }
+            }
+            emojiGrid.innerHTML = '';
+            if (emojis.length === 0) {
+                emojiGrid.innerHTML = '<p style="grid-column:1/-1; text-align:center; opacity:0.6;">No se encontraron íconos.</p>';
+                return;
+            }
+            emojis.forEach(emoji => {
+                const btn = document.createElement('button');
+                btn.textContent = emoji;
+                btn.title = `Insertar ${emoji}`;
+                btn.addEventListener('click', function() {
+                    // Insertar el emoji en el campo de edición de tarjetas
+                    const cardsText = document.getElementById('editCards');
+                    const cursorPos = cardsText.selectionStart;
+                    const text = cardsText.value;
+                    const before = text.substring(0, cursorPos);
+                    const after = text.substring(cursorPos);
+                    // Buscar la línea donde está el cursor y reemplazar el icono
+                    // O simplemente insertarlo al final de la línea actual
+                    const lines = text.split('\n');
+                    let lineIndex = 0;
+                    let charCount = 0;
+                    for (let i = 0; i < lines.length; i++) {
+                        if (charCount + lines[i].length + 1 > cursorPos) {
+                            lineIndex = i;
+                            break;
+                        }
+                        charCount += lines[i].length + 1;
+                    }
+                    // Si la línea tiene un icono al inicio (primer carácter), reemplazarlo
+                    if (lines[lineIndex].length > 0 && lines[lineIndex][0] !== '|') {
+                        // Reemplazar el primer carácter (que debería ser el icono)
+                        lines[lineIndex] = emoji + lines[lineIndex].substring(1);
+                    } else {
+                        // Insertar al principio
+                        lines[lineIndex] = emoji + '|' + lines[lineIndex];
+                    }
+                    cardsText.value = lines.join('\n');
+                    // Cerrar modal de emojis
+                    closeEmojiModalFn();
+                    alert('Ícono insertado en la tarjeta actual.');
+                });
+                emojiGrid.appendChild(btn);
+            });
+        }
+
+        function openEmojiModal() {
+            emojiSearchInput.value = '';
+            renderEmojis('');
+            emojiModal.classList.add('active');
+        }
+
+        function closeEmojiModalFn() { emojiModal.classList.remove('active'); }
+
+        openEmojiPicker.addEventListener('click', openEmojiModal);
+        closeEmojiModal.addEventListener('click', closeEmojiModalFn);
+        closeEmojiPicker.addEventListener('click', closeEmojiModalFn);
+        emojiModal.addEventListener('click', function(e) { if (e.target === this) closeEmojiModalFn(); });
+
+        emojiSearchInput.addEventListener('input', function() {
+            renderEmojis(this.value.trim());
+        });
+
+        // ============================================================
+        // 11. FUNCIONES DE EDICIÓN Y EXPORTACIÓN
+        // ============================================================
         function openEditModal() {
             document.getElementById('editTitle').value = currentTitle;
             document.getElementById('editSubtitle').value = currentSubtitle;
@@ -1521,7 +1697,7 @@
         saveEdit.addEventListener('click', function() {
             currentTitle = document.getElementById('editTitle').value.trim() || currentTitle;
             currentSubtitle = document.getElementById('editSubtitle').value.trim() || currentSubtitle;
-            currentContent = document.getElementById('editContent').value || currentContent;
+            currentContent = document.getElementById('editContent').value;
 
             const cardsText = document.getElementById('editCards').value;
             const lines = cardsText.split('\n').filter(l => l.trim());
@@ -1542,7 +1718,7 @@
             if (theme === 'dark') document.body.classList.add('dark');
             else document.body.classList.remove('dark');
 
-            saveTemplateData();
+            saveTemplate();
             renderDashboard();
 
             // Re-renderizar mapa si está visible
@@ -1560,34 +1736,9 @@
             closeEditModalFn();
         });
 
-        // Exportar HTML (incluye datos incrustados para preservar la vinculación)
         exportHtml.addEventListener('click', function() {
-            // Obtener el HTML actual
-            let htmlContent = document.documentElement.outerHTML;
-
-            // Incrustar los datos actuales en el HTML antes de exportar
-            const dataEmbed = {
-                title: currentTitle,
-                subtitle: currentSubtitle,
-                cards: currentCards,
-                content: currentContent,
-                theme: document.body.classList.contains('dark') ? 'dark' : 'light'
-            };
-            const scriptTag = `<script id="embeddedData" type="application/json">${JSON.stringify(dataEmbed)}<\/script>`;
-
-            // Insertar los datos justo antes de cargar el script principal
-            // Buscamos el primer <script> y lo insertamos antes
-            const firstScript = htmlContent.indexOf('<script');
-            if (firstScript !== -1) {
-                htmlContent = htmlContent.slice(0, firstScript) + scriptTag + htmlContent.slice(firstScript);
-            } else {
-                // Si no hay script, insertar al final del body
-                const bodyEnd = htmlContent.lastIndexOf('</body>');
-                if (bodyEnd !== -1) {
-                    htmlContent = htmlContent.slice(0, bodyEnd) + scriptTag + htmlContent.slice(bodyEnd);
-                }
-            }
-
+            // Generar el HTML completo con los cambios actuales
+            const htmlContent = document.documentElement.outerHTML;
             const blob = new Blob([htmlContent], { type: 'text/html' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
@@ -1602,18 +1753,21 @@
         editBtn.addEventListener('click', openEditModal);
 
         // ============================================================
-        // 10. INICIALIZACIÓN
+        // 12. INICIALIZACIÓN
         // ============================================================
-        loadTemplateData();
+        loadTemplate();
         renderDashboard();
 
+        // Inicialmente portada visible
         document.getElementById('dashboard').classList.remove('hidden');
         document.getElementById('mapaContainer').classList.remove('visible');
 
-        console.log('✅ Herramienta 100% lista.');
-        console.log('🔁 Bucle:', isLoopActive);
-        console.log('📦 Plantilla editable con vinculación automática.');
-    </script>
+        // Estado de bucle apagado por defecto
+        isLoopActive = false;
 
+        console.log('🚀 Herramienta 100% lista.');
+        console.log('🔁 Bucle:', isLoopActive);
+        console.log('📦 Plantilla editable con galería de íconos.');
+    </script>
 </body>
 </html>
