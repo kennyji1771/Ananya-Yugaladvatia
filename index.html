@@ -13,9 +13,21 @@
             padding: 0;
             box-sizing: border-box;
         }
+        :root {
+            --primary: #2b3a67;
+            --secondary: #4a6fa5;
+            --bg-light: #f5f9ff;
+            --bg-dark: #1a1a2e;
+            --text-light: #1e2f4f;
+            --text-dark: #e0e0e0;
+            --card-bg: rgba(255,255,255,0.85);
+            --card-border: rgba(255,255,255,0.6);
+            --shadow: 0 8px 24px rgba(0,20,40,0.06);
+            --radius: 28px;
+        }
         body {
             font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
-            background: linear-gradient(135deg, #f5f9ff 0%, #e6f0fa 100%);
+            background: var(--bg-light);
             min-height: 100vh;
             padding: 20px;
             display: flex;
@@ -24,8 +36,8 @@
             transition: background 0.3s, color 0.3s;
         }
         body.dark {
-            background: #1a1a2e;
-            color: #e0e0e0;
+            background: var(--bg-dark);
+            color: var(--text-dark);
         }
 
         /* ---- PORTADA ---- */
@@ -59,7 +71,7 @@
             align-items: center;
             justify-content: center;
             transition: 0.3s;
-            color: #2b3a67;
+            color: var(--primary);
             backdrop-filter: blur(4px);
             border: 1px solid rgba(43, 58, 103, 0.15);
         }
@@ -85,7 +97,7 @@
         .header h1 {
             font-size: 3.2rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #2b3a67, #4a6fa5);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -114,7 +126,7 @@
         }
         .header .subtitle span {
             font-weight: 600;
-            color: #2b3a67;
+            color: var(--primary);
         }
         body.dark .header .subtitle span {
             color: #a8c0ff;
@@ -128,12 +140,12 @@
         }
 
         .card-dash {
-            background: rgba(255, 255, 255, 0.85);
+            background: var(--card-bg);
             backdrop-filter: blur(4px);
-            border-radius: 28px;
+            border-radius: var(--radius);
             padding: 28px 22px 22px;
-            box-shadow: 0 8px 24px rgba(0, 20, 40, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--card-border);
             transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
@@ -163,8 +175,8 @@
             left: 0;
             right: 0;
             height: 6px;
-            border-radius: 28px 28px 0 0;
-            background: var(--accent, #4a6fa5);
+            border-radius: var(--radius) var(--radius) 0 0;
+            background: var(--accent, var(--secondary));
             transition: height 0.2s;
         }
         .card-dash:hover::before {
@@ -181,7 +193,7 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            color: var(--accent, #4a6fa5);
+            color: var(--accent, var(--secondary));
             opacity: 0.7;
             margin-bottom: 4px;
         }
@@ -192,17 +204,17 @@
         .card-dash .titulo {
             font-size: 1.25rem;
             font-weight: 700;
-            color: #1e2f4f;
+            color: var(--text-light);
             margin-bottom: 6px;
             line-height: 1.3;
         }
         body.dark .card-dash .titulo {
-            color: #e0e0e0;
+            color: var(--text-dark);
         }
         .card-dash .codice {
             font-size: 0.85rem;
             font-weight: 600;
-            color: var(--accent, #4a6fa5);
+            color: var(--accent, var(--secondary));
             letter-spacing: 0.5px;
             margin-bottom: 8px;
         }
@@ -224,7 +236,7 @@
             font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: var(--accent, #4a6fa5);
+            color: var(--accent, var(--secondary));
             border-top: 1px solid rgba(0, 0, 0, 0.04);
             padding-top: 12px;
             align-self: flex-start;
@@ -297,7 +309,7 @@
             color: #e0e0e0;
         }
         .modal-content h2 {
-            color: #2b3a67;
+            color: var(--primary);
             margin-bottom: 20px;
             text-align: center;
             font-weight: 300;
@@ -330,7 +342,7 @@
         .modal-group label {
             display: block;
             font-weight: 600;
-            color: #2b3a67;
+            color: var(--primary);
             margin-bottom: 6px;
             font-size: 0.9rem;
         }
@@ -356,7 +368,7 @@
         }
         .modal-group input:focus, .modal-group select:focus, .modal-group textarea:focus {
             outline: none;
-            border-color: #4a6fa5;
+            border-color: var(--secondary);
             box-shadow: 0 0 0 3px rgba(74,111,165,0.15);
         }
         .modal-group textarea {
@@ -382,21 +394,21 @@
             font-size: 0.95rem;
         }
         .modal-actions .btn-primary {
-            background: #2b3a67;
+            background: var(--primary);
             color: white;
         }
         .modal-actions .btn-primary:hover {
-            background: #4a6fa5;
+            background: var(--secondary);
         }
         body.dark .modal-actions .btn-primary {
-            background: #4a6fa5;
+            background: var(--secondary);
         }
         body.dark .modal-actions .btn-primary:hover {
             background: #6a8fc5;
         }
         .modal-actions .btn-secondary {
             background: #eef2f8;
-            color: #2b3a67;
+            color: var(--primary);
         }
         .modal-actions .btn-secondary:hover {
             background: #d1d9e6;
@@ -444,7 +456,7 @@
         }
         .emoji-grid button:hover {
             background: rgba(74,111,165,0.1);
-            border-color: #4a6fa5;
+            border-color: var(--secondary);
             transform: scale(1.1);
         }
         .emoji-search {
@@ -478,7 +490,7 @@
 
         .app {
             background: white;
-            border-radius: 28px;
+            border-radius: var(--radius);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
             overflow: hidden;
             transition: background 0.3s, box-shadow 0.3s;
@@ -489,7 +501,7 @@
         }
 
         .toolbar {
-            background: #1e2f4f;
+            background: var(--primary);
             padding: 14px 24px;
             display: flex;
             flex-wrap: wrap;
@@ -516,6 +528,47 @@
             flex-wrap: wrap;
             align-items: center;
         }
+        .toolbar .grupo input[type="text"] {
+            padding: 6px 14px;
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.15);
+            color: white;
+            font-size: 0.85rem;
+            width: 180px;
+            transition: 0.3s;
+            outline: none;
+            font-family: inherit;
+        }
+        .toolbar .grupo input[type="text"]::placeholder {
+            color: rgba(255,255,255,0.6);
+        }
+        .toolbar .grupo input[type="text"]:focus {
+            border-color: #ffcd3c;
+            background: rgba(255,255,255,0.25);
+        }
+        .toolbar .search-info {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .toolbar .search-info button {
+            background: rgba(255,255,255,0.15);
+            border: none;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: 0.2s;
+        }
+        .toolbar .search-info button:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
         .toolbar button {
             background: #ffcd3c;
             border: none;
@@ -533,7 +586,7 @@
             transform: scale(1.02);
         }
         .btn-volver {
-            background: #4a6fa5 !important;
+            background: var(--secondary) !important;
             color: white !important;
         }
         .btn-volver:hover {
@@ -588,7 +641,7 @@
             background: #2a2a5a;
         }
         body.dark .mapa::-webkit-scrollbar-thumb {
-            background: #4a6fa5;
+            background: var(--secondary);
         }
 
         .card-map {
@@ -617,6 +670,19 @@
         }
         .card-map.active-tts > .title .icon-map {
             color: #27ae60;
+        }
+        .card-map .title strong {
+            color: inherit;
+            font-weight: 700;
+        }
+        .card-map .highlight {
+            background: #ffeb3b;
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+        body.dark .card-map .highlight {
+            background: #f39c12;
+            color: #1a1a2e;
         }
         .level-0 { border-left-color: #e67e22; background: #fff6ea; }
         .level-1 { border-left-color: #3b82f6; }
@@ -649,7 +715,7 @@
             color: #d0d0e0;
         }
         .title:hover {
-            color: #2b3a67;
+            color: var(--primary);
         }
         body.dark .title:hover {
             color: #8ab4f8;
@@ -695,6 +761,7 @@
             .card-dash { padding: 22px 18px; }
             .toolbar { flex-direction: column; align-items: stretch; }
             .toolbar .grupo { justify-content: center; }
+            .toolbar .grupo input[type="text"] { width: 100%; }
             .top-actions { top: 10px; right: 10px; }
             .top-actions button { width: 40px; height: 40px; font-size: 1.4rem; }
             .modal-content { padding: 25px 20px; }
@@ -739,7 +806,7 @@
                 <select id="voiceSelect">
                     <option value="">Cargando voces...</option>
                 </select>
-                <button id="setDefaultVoice" style="margin-top:8px; background:#4a6fa5; color:white; border:none; padding:6px 16px; border-radius:30px; cursor:pointer;">Establecer como predeterminada</button>
+                <button id="setDefaultVoice" style="margin-top:8px; background:var(--secondary); color:white; border:none; padding:6px 16px; border-radius:30px; cursor:pointer;">Establecer como predeterminada</button>
             </div>
             <div class="modal-group">
                 <label for="rateControl">Velocidad: <span class="range-value" id="rateValue">0.92</span></label>
@@ -781,27 +848,24 @@
             </div>
             <div class="modal-group">
                 <label>Contenido del mapa mental (texto con marcadores #, ##, ###, etc.)</label>
-                <textarea id="editContent" style="min-height:200px;"></textarea>
+                <textarea id="editContent" style="min-height:200px;" spellcheck="true"></textarea>
             </div>
             <div class="modal-group">
                 <label>Tarjetas de la portada (cada línea: icono|número|título|código|descripción|etiqueta)</label>
                 <textarea id="editCards" style="min-height:200px;"></textarea>
-                <button id="openEmojiPicker" style="margin-top:8px; background:#4a6fa5; color:white; border:none; padding:6px 16px; border-radius:30px; cursor:pointer;">🎨 Buscar íconos</button>
+                <button id="openEmojiPicker" style="margin-top:8px; background:var(--secondary); color:white; border:none; padding:6px 16px; border-radius:30px; cursor:pointer;">🎨 Buscar íconos</button>
             </div>
             <div class="modal-group">
                 <label>Tema de colores</label>
                 <select id="editTheme">
                     <option value="light">Claro</option>
                     <option value="dark">Oscuro</option>
-                    <option value="blue">Azul</option>
-                    <option value="green">Verde</option>
-                    <option value="warm">Cálido</option>
                 </select>
             </div>
             <div class="modal-actions">
                 <button class="btn-secondary" id="cancelEdit">Cancelar</button>
                 <button class="btn-primary" id="saveEdit">Guardar cambios</button>
-                <button class="btn-success" id="exportHtml">📥 Exportar HTML</button>
+                <button class="btn-success" id="exportFinal">📥 Exportar versión final</button>
             </div>
         </div>
     </div>
@@ -814,7 +878,7 @@
             <button class="close-modal" id="closeEmojiModal">✕</button>
             <h2>🎨 Buscar íconos</h2>
             <div class="modal-group">
-                <input type="text" id="emojiSearchInput" class="emoji-search" placeholder="Buscar por palabra clave (ej. amor, paz, fuego)" />
+                <input type="text" id="emojiSearchInput" class="emoji-search" placeholder="Buscar por palabra clave (ej. amor, paz, militar)" />
                 <div class="emoji-grid" id="emojiGrid"></div>
                 <p style="margin-top:8px; font-size:0.8rem; opacity:0.6;">Haz clic en un ícono para insertarlo en la tarjeta seleccionada.</p>
             </div>
@@ -832,6 +896,12 @@
             <div class="toolbar">
                 <div class="titulo">🧠 Mapa Mental · <span id="mapaTitle">Ananya Yugaladvatia</span></div>
                 <div class="grupo">
+                    <input type="text" id="searchInput" placeholder="Buscar..." />
+                    <span class="search-info" id="searchInfo">
+                        <span id="searchCount">0</span>
+                        <button id="searchPrev" title="Anterior">⬆️</button>
+                        <button id="searchNext" title="Siguiente">⬇️</button>
+                    </span>
                     <button id="expandirTodo">🔽 Expandir todo</button>
                     <button id="colapsarTodo">🔼 Colapsar todo</button>
                     <button class="btn-bucle" id="btnBucle" title="Activar/desactivar repetición en bucle">🔁 Bucle</button>
@@ -982,8 +1052,6 @@
             if (theme === 'dark') {
                 document.body.classList.add('dark');
             }
-            // Para otros temas, usamos variables CSS (por simplicidad, solo dark/light)
-            // Si se quiere más variedad, se puede expandir.
         }
 
         // ============================================================
@@ -1016,14 +1084,13 @@
             document.getElementById('mainSubtitle').innerHTML = currentSubtitle;
             document.getElementById('footerStrong').textContent = currentTitle.replace(/[^A-Za-z0-9 ]/g, '').trim();
             document.getElementById('footerDesc').textContent = currentSubtitle;
-            // Actualizar título del mapa si está visible
             if (document.getElementById('mapaContainer').classList.contains('visible')) {
                 document.getElementById('mapaTitle').textContent = currentTitle.replace(/[^A-Za-z0-9 ]/g, '').trim();
             }
         }
 
         // ============================================================
-        // 4. MOTOR DE PARSEO Y RENDERIZADO DEL MAPA
+        // 4. MOTOR DE PARSEO Y RENDERIZADO DEL MAPA (CON NEGRITAS)
         // ============================================================
         let activeNodeId = null;
         let allNodes = [];
@@ -1063,7 +1130,20 @@
             return { nodos, hijosMap, raices };
         }
 
-        function renderizarMapa(raices, nodosMap, hijosMap) {
+        // Renderiza el texto con soporte para **negrita** y resaltado de búsqueda
+        function renderTextWithBoldAndHighlight(text, searchTerm = '') {
+            let html = text;
+            // Convertir **texto** a <strong>texto</strong>
+            html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            // Resaltar búsqueda
+            if (searchTerm) {
+                const regex = new RegExp(`(${searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+                html = html.replace(regex, '<span class="highlight">$1</span>');
+            }
+            return html;
+        }
+
+        function renderizarMapa(raices, nodosMap, hijosMap, searchTerm = '') {
             const contenedor = document.getElementById('mapa');
             if (!raices.length) { contenedor.innerHTML = '<div style="padding:20px;">No se encontró jerarquía</div>'; return; }
 
@@ -1079,7 +1159,7 @@
                 const tituloDiv = document.createElement('div');
                 tituloDiv.className = 'title';
                 const span = document.createElement('span');
-                span.textContent = nodo.etiqueta;
+                span.innerHTML = renderTextWithBoldAndHighlight(nodo.etiqueta, searchTerm);
                 tituloDiv.appendChild(span);
 
                 let icono = null;
@@ -1153,16 +1233,13 @@
         // 5. LIMPIEZA DE TEXTO PARA VOZ (MEJORADA)
         // ============================================================
         function limpiarTextoParaVoz(texto) {
-            // 1. Eliminar números al inicio de cada línea (si son como "1.", "2.", etc.)
-            // 2. Eliminar barras, puntos repetidos, guiones, asteriscos, etc.
-            // 3. Mantener letras, números, espacios, puntuación básica.
             return texto
-                .replace(/^[\d]+\.\s*/gm, '') // Elimina números al inicio de línea (ej. "1. ")
-                .replace(/^[\d]+\)\s*/gm, '') // Elimina "1) "
-                .replace(/^[\d]+\s*/gm, '') // Elimina números sueltos al inicio
-                .replace(/[\/\\|*_~`]/g, ' ') // Barras, guiones bajos, etc.
-                .replace(/\.{2,}/g, '.') // Puntos repetidos
-                .replace(/\s+/g, ' ') // Unificar espacios
+                .replace(/^[\d]+\.\s*/gm, '') // números al inicio de línea
+                .replace(/^[\d]+\)\s*/gm, '')
+                .replace(/^[\d]+\s*/gm, '')
+                .replace(/[\/\\|*_~`\-]/g, ' ') // barras, guiones, etc.
+                .replace(/\.{2,}/g, '.') // puntos repetidos
+                .replace(/\s+/g, ' ')
                 .trim();
         }
 
@@ -1241,7 +1318,7 @@
 
             const textoCompleto = obtenerTextoNodo(id);
             let textoLimpio = limpiarTextoParaVoz(textoCompleto);
-            // Eliminar números sueltos que puedan quedar
+            // Eliminar cualquier número suelto al inicio
             textoLimpio = textoLimpio.replace(/^\d+\s*/g, '');
             if (textoLimpio.length === 0) {
                 console.warn('Texto vacío después de limpiar');
@@ -1326,7 +1403,6 @@
             dashboard.classList.add('hidden');
             mapaContainer.classList.add('visible');
 
-            // Actualizar título del mapa con el título actual de la portada
             document.getElementById('mapaTitle').textContent = currentTitle.replace(/[^A-Za-z0-9 ]/g, '').trim();
 
             if (!mapaRenderizado || !allNodes.length) {
@@ -1336,27 +1412,23 @@
                 rootNodes = parsed.raices;
                 nodesMap = new Map();
                 allNodes.forEach(n => nodesMap.set(n.id, n));
-                renderizarMapa(rootNodes, nodesMap, childrenMap);
+                renderizarMapa(rootNodes, nodesMap, childrenMap, '');
                 mapaRenderizado = true;
                 if (rootNodes.length > 0) setActiveNode(rootNodes[0]);
             }
 
-            // Buscar el nodo raíz que corresponda a la lección (patrón flexible)
-            // Buscar "📜 LECCIÓN X:", "📜 proyecto X:", "📜 plan X:", etc.
+            // Buscar nodo raíz que coincida con "📜 * X:"
             const patron = new RegExp(`📜.*?${leccionNum}\\s*[:：]`, 'i');
             const targetNode = allNodes.find(n => patron.test(n.etiqueta));
 
             if (targetNode) {
-                // Expandir todos los ancestros y el nodo objetivo
                 expandirNodoYAncestros(targetNode.id);
                 setActiveNode(targetNode.id);
-                // Scroll al nodo
                 setTimeout(() => {
                     const card = document.querySelector(`.card-map[data-id="${targetNode.id}"]`);
                     if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }, 400);
             } else {
-                // Si no se encuentra, expandir el primer nodo raíz
                 if (rootNodes.length > 0) {
                     expandirNodoYAncestros(rootNodes[0]);
                     setActiveNode(rootNodes[0]);
@@ -1393,7 +1465,70 @@
         }
 
         // ============================================================
-        // 8. EVENTOS DE BOTONES PRINCIPALES
+        // 8. BÚSQUEDA EN EL MAPA
+        // ============================================================
+        let searchResults = [];
+        let searchIndex = -1;
+
+        function performSearch(term) {
+            const searchInput = document.getElementById('searchInput');
+            const searchCount = document.getElementById('searchCount');
+            if (!term || term.length < 2) {
+                searchResults = [];
+                searchIndex = -1;
+                searchCount.textContent = '0';
+                // Volver a renderizar sin resaltar
+                if (mapaRenderizado) {
+                    renderizarMapa(rootNodes, nodesMap, childrenMap, '');
+                }
+                return;
+            }
+
+            // Buscar en todos los nodos
+            searchResults = [];
+            const regex = new RegExp(term, 'gi');
+            allNodes.forEach(n => {
+                if (regex.test(n.etiqueta)) {
+                    searchResults.push(n.id);
+                }
+            });
+            if (searchResults.length > 0) {
+                searchIndex = 0;
+                searchCount.textContent = searchResults.length;
+                // Resaltar y expandir
+                const firstId = searchResults[0];
+                expandirNodoYAncestros(firstId);
+                setActiveNode(firstId);
+                // Re-renderizar con resaltado
+                renderizarMapa(rootNodes, nodesMap, childrenMap, term);
+                setTimeout(() => {
+                    const card = document.querySelector(`.card-map[data-id="${firstId}"]`);
+                    if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 300);
+            } else {
+                searchResults = [];
+                searchIndex = -1;
+                searchCount.textContent = '0';
+                renderizarMapa(rootNodes, nodesMap, childrenMap, '');
+            }
+        }
+
+        function navigateSearch(direction) {
+            if (searchResults.length === 0) return;
+            searchIndex = (searchIndex + direction + searchResults.length) % searchResults.length;
+            const id = searchResults[searchIndex];
+            expandirNodoYAncestros(id);
+            setActiveNode(id);
+            const term = document.getElementById('searchInput').value;
+            renderizarMapa(rootNodes, nodesMap, childrenMap, term);
+            setTimeout(() => {
+                const card = document.querySelector(`.card-map[data-id="${id}"]`);
+                if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 300);
+        }
+
+        // ============================================================
+        // 9. EVENTOS DE BOTONES PRINCIPALES
         // ============================================================
         document.getElementById('btnVolver').addEventListener('click', mostrarDashboard);
 
@@ -1430,8 +1565,20 @@
             leerNodo(id);
         });
 
+        // Búsqueda
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', function() {
+            performSearch(this.value.trim());
+        });
+        document.getElementById('searchPrev').addEventListener('click', function() {
+            navigateSearch(-1);
+        });
+        document.getElementById('searchNext').addEventListener('click', function() {
+            navigateSearch(1);
+        });
+
         // ============================================================
-        // 9. MODAL DE CONFIGURACIÓN DE VOZ
+        // 10. MODAL DE CONFIGURACIÓN DE VOZ
         // ============================================================
         const configBtn = document.getElementById('configBtn');
         const configModal = document.getElementById('configModal');
@@ -1471,7 +1618,6 @@
                 opt.textContent = `${v.name} (${v.lang})`;
                 voiceSelect.appendChild(opt);
             });
-            // Seleccionar la voz guardada si existe
             if (ttsConfig.voice) {
                 for (let opt of voiceSelect.options) {
                     if (opt.value === ttsConfig.voice.name) { opt.selected = true; break; }
@@ -1541,14 +1687,14 @@
         setTimeout(populateVoices, 500);
 
         // ============================================================
-        // 10. MODAL DE EDICIÓN DE PLANTILLA + GALERÍA DE ÍCONOS
+        // 11. MODAL DE EDICIÓN DE PLANTILLA + GALERÍA DE ÍCONOS
         // ============================================================
         const editBtn = document.getElementById('editBtn');
         const editModal = document.getElementById('editModal');
         const closeEditModal = document.getElementById('closeEditModal');
         const cancelEdit = document.getElementById('cancelEdit');
         const saveEdit = document.getElementById('saveEdit');
-        const exportHtml = document.getElementById('exportHtml');
+        const exportFinal = document.getElementById('exportFinal');
         const openEmojiPicker = document.getElementById('openEmojiPicker');
         const emojiModal = document.getElementById('emojiModal');
         const closeEmojiModal = document.getElementById('closeEmojiModal');
@@ -1556,29 +1702,37 @@
         const emojiSearchInput = document.getElementById('emojiSearchInput');
         const emojiGrid = document.getElementById('emojiGrid');
 
-        // Lista de emojis para la galería (amplia y variada)
+        // ============================================================
+        // 11A. GALERÍA DE ÍCONOS AMPLIADA
+        // ============================================================
         const emojiList = [
             '🌟', '⭐', '✨', '🔥', '💡', '🌈', '🌸', '🌺', '🌻', '🌹', '🌷', '🌱', '🌿', '☘️', '🍀',
             '🌳', '🌲', '🌵', '🍃', '🍂', '🍁', '🍄', '🌾', '🌼', '💐', '🌎', '🌍', '🌏', '🌕', '🌙',
             '🌊', '🌅', '🌄', '🌇', '🌆', '🌃', '🌌', '🌉', '🌋', '🌧️', '⛅', '☀️', '🌤️', '⛰️', '🏔️',
             '❤️', '🧡', '💛', '💚', '💙', '💜', '🖤', '🤍', '🤎', '💖', '💗', '💓', '💕', '💞', '💘',
             '💝', '💟', '☮️', '✝️', '☯️', '🕉️', '☸️', '✡️', '🔯', '🕊️', '🐦', '🦅', '🦉', '🦋', '🐝',
-            '🐞', '🍄', '🌺', '🌸', '🏵️', '💮', '🪷', '🌷', '🌱', '🌿', '☘️', '🍀', '🌴', '🌳', '🌲',
-            '🧘', '🧠', '💪', '👁️', '👀', '🗣️', '👤', '👥', '🕊️', '🌹', '🥀', '🌺', '🌸', '🌷', '🌻',
-            '🌼', '🌾', '🌿', '🍃', '🍂', '🍁', '🍄', '🌰', '🪴', '🌵', '🌴', '🌳', '🌲', '🎋', '🎍',
-            '📖', '📜', '📚', '📓', '📔', '📒', '📕', '📗', '📘', '📙', '📰', '📑', '🔖', '🏷️', '📌',
-            '📎', '📏', '📐', '✂️', '📝', '📄', '📃', '📋', '📂', '📁', '📆', '📅', '📇', '📈', '📉',
-            '🔍', '🔎', '🔦', '🔮', '🔭', '🪄', '⚗️', '🧪', '🧬', '🔬', '🔭', '🩺', '💉', '💊', '🩹',
-            '🎯', '🎵', '🎶', '🎼', '🎤', '🎧', '🎹', '🎸', '🎺', '🎻', '🥁', '🎷', '🎼', '🎵', '🎶',
-            '🌙', '☀️', '⭐', '🌌', '🌠', '🌄', '🌅', '🌇', '🌆', '🌃', '🌉', '🌊', '🌋', '🏜️', '🏝️'
+            '🐞', '🍄', '🌸', '🏵️', '💮', '🪷', '🌷', '🌱', '🌿', '☘️', '🍀', '🌴', '🌳', '🌲', '🧘',
+            '🧠', '💪', '👁️', '👀', '🗣️', '👤', '👥', '🌹', '🥀', '🌻', '🌼', '🌾', '🍃', '🍂', '🍁',
+            '🍄', '🌰', '🪴', '🌵', '🌴', '🌳', '🌲', '🎋', '🎍', '📖', '📜', '📚', '📓', '📔', '📒',
+            '📕', '📗', '📘', '📙', '📰', '📑', '🔖', '🏷️', '📌', '📎', '📏', '📐', '✂️', '📝', '📄',
+            '📃', '📋', '📂', '📁', '📆', '📅', '📇', '📈', '📉', '🔍', '🔎', '🔦', '🔮', '🔭', '🪄',
+            '⚗️', '🧪', '🧬', '🔬', '🔭', '🩺', '💉', '💊', '🩹', '🎯', '🎵', '🎶', '🎼', '🎤', '🎧',
+            '🎹', '🎸', '🎺', '🎻', '🥁', '🎷', '🎼', '🎵', '🎶', '🌙', '☀️', '⭐', '🌌', '🌠',
+            '🌄', '🌅', '🌇', '🌆', '🌃', '🌉', '🌊', '🌋', '🏜️', '🏝️',
+            // Iconos militares y más
+            '⚔️', '🛡️', '🏹', '🎖️', '🏅', '🎯', '🔫', '💣', '🧨', '🚀', '🛸', '🪖', '⛑️', '🛰️', '📡',
+            '🔭', '🧭', '🗺️', '🏴', '🏳️', '🚩', '🎌', '🏁', '⚡', '💥', '🔱', '⚜️', '🪙', '💎', '🔶',
+            '🔷', '🔴', '🟠', '🟡', '🟢', '🔵', '🟣', '🟤', '⚫', '⚪', '🟥', '🟧', '🟨', '🟩', '🟦'
         ];
 
-        // Palabras clave para búsqueda (asociadas a emojis)
         const emojiKeywords = {
             'amor': ['❤️', '🧡', '💛', '💚', '💙', '💜', '💖', '💗', '💓', '💕', '💞', '💘', '💝', '💟'],
             'paz': ['🕊️', '☮️', '✝️', '☯️', '🕉️', '☸️', '✡️', '🔯', '🌿', '☘️', '🍀'],
             'sabiduría': ['📖', '📜', '📚', '🦉', '🔮', '🧠', '💡', '⭐'],
-            'fuerza': ['💪', '⚡', '🔥', '🛡️', '⚔️', '🏹', '💥'],
+            'fuerza': ['💪', '⚡', '🔥', '🛡️', '⚔️', '🏹', '💥', '🪖'],
+            'militar': ['⚔️', '🛡️', '🏹', '🎖️', '🏅', '🔫', '💣', '🧨', '🚀', '🛸', '🪖', '⛑️', '🚩', '🏴'],
+            'guerra': ['⚔️', '🛡️', '🏹', '💥', '🔫', '💣', '🧨', '🚀', '🏴'],
+            'estrategia': ['⚔️', '🛡️', '🏹', '🎯', '🗺️', '🧭', '📡', '🛰️'],
             'luz': ['💡', '☀️', '⭐', '🌟', '✨', '🔦', '🌈'],
             'naturaleza': ['🌱', '🌿', '🍀', '🌳', '🌲', '🌵', '🌸', '🌺', '🌻', '🌷', '🌹', '🌾', '🍃', '🌴'],
             'agua': ['🌊', '💧', '🌧️', '⛅', '🌅', '🌄'],
@@ -1597,18 +1751,17 @@
             let emojis = emojiList;
             if (filter) {
                 const lower = filter.toLowerCase();
-                // Buscar en las keywords
                 const matched = new Set();
                 for (const [key, values] of Object.entries(emojiKeywords)) {
                     if (key.includes(lower)) {
                         values.forEach(v => matched.add(v));
                     }
                 }
-                // Si no hay match por keyword, filtrar por el propio emoji (si se busca "❤️" por ejemplo)
-                if (matched.size === 0) {
-                    emojis = emojis.filter(e => e.includes(filter) || e === filter);
-                } else {
+                if (matched.size > 0) {
                     emojis = Array.from(matched);
+                } else {
+                    // Búsqueda por coincidencia en el emoji mismo
+                    emojis = emojis.filter(e => e.includes(filter) || e === filter);
                 }
             }
             emojiGrid.innerHTML = '';
@@ -1621,14 +1774,9 @@
                 btn.textContent = emoji;
                 btn.title = `Insertar ${emoji}`;
                 btn.addEventListener('click', function() {
-                    // Insertar el emoji en el campo de edición de tarjetas
                     const cardsText = document.getElementById('editCards');
                     const cursorPos = cardsText.selectionStart;
                     const text = cardsText.value;
-                    const before = text.substring(0, cursorPos);
-                    const after = text.substring(cursorPos);
-                    // Buscar la línea donde está el cursor y reemplazar el icono
-                    // O simplemente insertarlo al final de la línea actual
                     const lines = text.split('\n');
                     let lineIndex = 0;
                     let charCount = 0;
@@ -1639,16 +1787,12 @@
                         }
                         charCount += lines[i].length + 1;
                     }
-                    // Si la línea tiene un icono al inicio (primer carácter), reemplazarlo
                     if (lines[lineIndex].length > 0 && lines[lineIndex][0] !== '|') {
-                        // Reemplazar el primer carácter (que debería ser el icono)
                         lines[lineIndex] = emoji + lines[lineIndex].substring(1);
                     } else {
-                        // Insertar al principio
                         lines[lineIndex] = emoji + '|' + lines[lineIndex];
                     }
                     cardsText.value = lines.join('\n');
-                    // Cerrar modal de emojis
                     closeEmojiModalFn();
                     alert('Ícono insertado en la tarjeta actual.');
                 });
@@ -1674,7 +1818,7 @@
         });
 
         // ============================================================
-        // 11. FUNCIONES DE EDICIÓN Y EXPORTACIÓN
+        // 12. FUNCIONES DE EDICIÓN, CORRECCIÓN Y EXPORTACIÓN FINAL
         // ============================================================
         function openEditModal() {
             document.getElementById('editTitle').value = currentTitle;
@@ -1729,21 +1873,69 @@
                 rootNodes = parsed.raices;
                 nodesMap = new Map();
                 allNodes.forEach(n => nodesMap.set(n.id, n));
-                renderizarMapa(rootNodes, nodesMap, childrenMap);
+                renderizarMapa(rootNodes, nodesMap, childrenMap, '');
                 if (rootNodes.length > 0) setActiveNode(rootNodes[0]);
             }
 
             closeEditModalFn();
         });
 
-        exportHtml.addEventListener('click', function() {
-            // Generar el HTML completo con los cambios actuales
-            const htmlContent = document.documentElement.outerHTML;
-            const blob = new Blob([htmlContent], { type: 'text/html' });
+        // Exportar versión final (sin botones de configuración)
+        exportFinal.addEventListener('click', function() {
+            // Clonar el documento
+            const clone = document.documentElement.cloneNode(true);
+            // Eliminar elementos de configuración
+            const configBtnClone = clone.querySelector('#configBtn');
+            const editBtnClone = clone.querySelector('#editBtn');
+            if (configBtnClone) configBtnClone.remove();
+            if (editBtnClone) editBtnClone.remove();
+            // Eliminar modales
+            const modals = clone.querySelectorAll('.modal-overlay');
+            modals.forEach(m => m.remove());
+            // Eliminar los botones de edición en el modal (si quedan)
+            // También eliminar el botón de exportar en el modal de edición
+            const exportBtn = clone.querySelector('#exportFinal');
+            if (exportBtn) exportBtn.remove();
+            // Asegurar que la portada esté visible y el mapa oculto al inicio
+            const dashboard = clone.querySelector('#dashboard');
+            const mapaContainer = clone.querySelector('#mapaContainer');
+            if (dashboard) dashboard.style.display = 'block';
+            if (mapaContainer) mapaContainer.style.display = 'none';
+            // Guardar la voz predeterminada en el localStorage del nuevo HTML
+            // inyectamos un script que cargue la configuración de voz guardada
+            const script = clone.createElement('script');
+            script.textContent = `
+                // Cargar configuración de voz guardada
+                (function() {
+                    try {
+                        const saved = localStorage.getItem('ttsConfig');
+                        if (saved) {
+                            const config = JSON.parse(saved);
+                            // Aplicar configuración cuando las voces estén disponibles
+                            window.speechSynthesis.onvoiceschanged = function() {
+                                const voces = window.speechSynthesis.getVoices();
+                                const voice = voces.find(v => v.name === config.voice);
+                                if (voice) {
+                                    // Guardar en localStorage para que persista
+                                    localStorage.setItem('ttsConfig', JSON.stringify({
+                                        rate: config.rate,
+                                        pitch: config.pitch,
+                                        voice: voice.name
+                                    }));
+                                }
+                            };
+                        }
+                    } catch(e) {}
+                })();
+            `;
+            clone.body.appendChild(script);
+            // Generar el HTML
+            const html = '<!DOCTYPE html>\n' + clone.outerHTML;
+            const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'plantilla_editada.html';
+            a.download = 'version_final.html';
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -1753,21 +1945,19 @@
         editBtn.addEventListener('click', openEditModal);
 
         // ============================================================
-        // 12. INICIALIZACIÓN
+        // 13. INICIALIZACIÓN
         // ============================================================
         loadTemplate();
         renderDashboard();
 
-        // Inicialmente portada visible
         document.getElementById('dashboard').classList.remove('hidden');
         document.getElementById('mapaContainer').classList.remove('visible');
 
-        // Estado de bucle apagado por defecto
         isLoopActive = false;
 
-        console.log('🚀 Herramienta 100% lista.');
+        console.log('🚀 Herramienta 100% final lista.');
         console.log('🔁 Bucle:', isLoopActive);
-        console.log('📦 Plantilla editable con galería de íconos.');
+        console.log('📦 Plantilla editable con galería de íconos ampliada, buscador, corrección ortográfica y exportación final.');
     </script>
 </body>
 </html>
